@@ -52,27 +52,31 @@ export default function ContactPage() {
   ];
 
   // Motion variants
-  const page = {
-    hidden: { opacity: 0, y: 12 },
-    show: { opacity: 1, y: 0, transition: { staggerChildren: 0.08 } },
-  };
+const page = {
+  hidden: { opacity: 0, y: 12 },
+  show: { opacity: 1, y: 0, transition: { staggerChildren: 0.08 } },
+};
 
-  const cardVariant = {
-    hidden: { opacity: 0, y: 18, scale: 0.995 },
-    show: {
-      opacity: 1,
-      y: 0,
-      scale: 1,
-      transition: { duration: 0.45 }, // ✅ FIXED (ease removed)
-    },
-  };
+const cardVariant = {
+  hidden: { opacity: 0, y: 18, scale: 0.995 },
+  show: {
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    transition: { duration: 0.45 }, // ✅ perfectly fine
+  },
+};
 
-  const heroVariant = {
-    hidden: { opacity: 0, y: -8 },
-    show: { opacity: 1, y: 0, transition: { duration: 0.5 } },
-  };
+const heroVariant = {
+  hidden: { opacity: 0, y: -8 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.5 } },
+};
 
-  const btnTap = { whileTap: { scale: 0.97 }, whileHover: { y: -4 } };
+const btnTap = {
+  whileTap: { scale: 0.97 },
+  whileHover: { y: -4 },
+};
+
 
   const [openIndex, setOpenIndex] = React.useState<number | null>(null);
 
