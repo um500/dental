@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Floating Contact Widget - Standalone Version</title>
+  
+  <style>
+    /* Reset and Base Styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      line-height: 1.5;
+    }
+
+    /* Floating Buttons Container */
+    .floating-contact-widget {
+      position: fixed;
+      right: 24px;
+      bottom: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      z-index: 1000;
+      opacity: 0;
+      transform: translateX(50px);
+      transition: all 0.5s ease;
+    }
+
+    .floating-contact-widget.visible {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    /* Hide when printing */
+    @media print {
+      .floating-contact-widget {
+        display: none !important;
+      }
+    }
+
+    /* Floating Button Styles */
+    .floating-btn {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      transition: all 0.3s ease;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .floating-btn:hover {
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+      transform: translateY(-2px);
+    }
+
+    .floating-btn-whatsapp {
+      background-color: #25D366;
+    }
+
+    .floating-btn-call {
+      background-color: #0ea5e9;
+    }
+
+    .floating-btn svg {
+      width: 28px;
+      height: 28px;
+      fill: white;
+    }
+
+    /* Tooltip */
+    .floating-btn-tooltip {
+      position: absolute;
+      right: 100%;
+      margin-right: 12px;
+      background-color: #1f2937;
+      color: white;
+      padding: 8px 12px;
+      border-radius: 8px;
+      font-size: 14px;
+      white-space: nowrap;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.2s ease;
+    }
+
+    .floating-btn:hover .floating-btn-tooltip {
+      opacity: 1;
+    }
+
+    /* Modal Backdrop */
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background-color: rgba(0, 0, 0, 0.5);
+      z-index: 2000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+      animation: fadeIn 0.3s ease;
+    }
+
+    .modal-backdrop.active {
+      display: flex;
+    }
+
+    /* Modal Container */
+    .modal-container {
+      background: white;
+      border-radius: 16px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+      max-width: 500px;
+      width: 100%;
+      max-height: 90vh;
+      overflow-y: auto;
+      animation: slideUp 0.3s ease;
+    }
+
+    /* Modal Header */
+    .modal-header {
+      background: linear-gradient(135deg, #25D366, #128C7E);
+      color: white;
+      padding: 20px;
+      border-radius: 16px 16px 0 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .modal-header h3 {
+      font-size: 18px;
+      font-weight: 600;
+    }
+
+    .modal-header p {
+      font-size: 13px;
+      opacity: 0.9;
+      margin-top: 4px;
+    }
+
+    .modal-close {
+      background: rgba(255, 255, 255, 0.2);
+      border: none;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s;
+    }
+
+    .modal-close:hover {
+      background: rgba(255, 255, 255, 0.3);
+    }
+
+    /* Modal Content */
+    .modal-content {
+      padding: 24px;
+    }
+
+    .modal-section {
+      margin-bottom: 20px;
+    }
+
+    .modal-label {
+      display: block;
+      font-size: 14px;
+      font-weight: 500;
+      color: #374151;
+      margin-bottom: 8px;
+    }
+
+    /* Template Buttons */
+    .template-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 8px;
+    }
+
+    .template-btn {
+      padding: 12px;
+      border: 2px solid #e5e7eb;
+      border-radius: 8px;
+      background: white;
+      cursor: pointer;
+      text-align: left;
+      transition: all 0.2s;
+      font-size: 13px;
+    }
+
+    .template-btn:hover {
+      border-color: #25D366;
+      background-color: #f0fdf4;
+    }
+
+    .template-btn-label {
+      font-weight: 500;
+      color: #111827;
+    }
+
+    .template-btn-label-hi {
+      font-size: 11px;
+      color: #6b7280;
+      margin-top: 2px;
+    }
+
+    /* Message Textarea */
+    .message-textarea {
+      width: 100%;
+      padding: 12px;
+      border: 2px solid #e5e7eb;
+      border-radius: 8px;
+      font-family: inherit;
+      font-size: 14px;
+      resize: none;
+      transition: border-color 0.2s;
+    }
+
+    .message-textarea:focus {
+      outline: none;
+      border-color: #25D366;
+    }
+
+    /* Checkbox */
+    .checkbox-container {
+      display: flex;
+      align-items: start;
+      gap: 12px;
+    }
+
+    .checkbox-input {
+      width: 16px;
+      height: 16px;
+      margin-top: 2px;
+      accent-color: #25D366;
+    }
+
+    .phone-input {
+      width: 100%;
+      padding: 8px 12px;
+      border: 1px solid #d1d5db;
+      border-radius: 8px;
+      margin-top: 8px;
+      font-size: 14px;
+    }
+
+    /* Privacy Note */
+    .privacy-note {
+      font-size: 12px;
+      color: #6b7280;
+      line-height: 1.5;
+    }
+
+    /* Action Buttons */
+    .action-buttons {
+      display: flex;
+      gap: 12px;
+      margin-top: 16px;
+    }
+
+    .btn-primary {
+      flex: 1;
+      background: linear-gradient(135deg, #25D366, #128C7E);
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 8px;
+      font-size: 15px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .btn-primary:hover {
+      box-shadow: 0 4px 12px rgba(37, 211, 102, 0.3);
+      transform: translateY(-1px);
+    }
+
+    .btn-secondary {
+      padding: 12px 24px;
+      border: 2px solid #d1d5db;
+      background: white;
+      border-radius: 8px;
+      font-size: 15px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .btn-secondary:hover {
+      background-color: #f9fafb;
+    }
+
+    /* Toast Notification */
+    .toast {
+      position: fixed;
+      bottom: 100px;
+      right: 24px;
+      background: #1f2937;
+      color: white;
+      padding: 12px 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+      z-index: 3000;
+      animation: fadeIn 0.3s ease;
+    }
+
+    /* Call Confirm Modal */
+    .call-modal {
+      max-width: 400px;
+      text-align: center;
+    }
+
+    .call-icon {
+      width: 64px;
+      height: 64px;
+      background-color: #dbeafe;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 16px;
+    }
+
+    .call-icon svg {
+      width: 32px;
+      height: 32px;
+      fill: #2563eb;
+    }
+
+    /* Animations */
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+
+    @keyframes slideUp {
+      from {
+        opacity: 0;
+        transform: scale(0.95) translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+      }
+    }
+
+    /* Mobile Responsive */
+    @media (max-width: 768px) {
+      .floating-contact-widget {
+        right: 16px;
+        bottom: 16px;
+      }
+
+      .floating-btn {
+        width: 48px;
+        height: 48px;
+      }
+
+      .floating-btn svg {
+        width: 24px;
+        height: 24px;
+      }
+
+      .template-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Demo Page Content -->
+  <div style="padding: 40px; max-width: 800px; margin: 0 auto;">
+    <h1 style="color: #111827; margin-bottom: 16px;">Floating Contact Widget - Demo</h1>
+    <p style="color: #6b7280; margin-bottom: 24px;">
+      This is a standalone HTML/CSS/JavaScript version of the floating contact widget.
+      Scroll down to see the widget in action on the bottom-right corner.
+    </p>
+    
+    <div style="background: #f3f4f6; padding: 24px; border-radius: 12px; margin-bottom: 24px;">
+      <h2 style="font-size: 18px; margin-bottom: 12px;">Quick Integration</h2>
+      <ol style="color: #4b5563; line-height: 1.8;">
+        <li>Copy the HTML code below</li>
+        <li>Replace phone number with your clinic's number</li>
+        <li>Paste before closing &lt;/body&gt; tag</li>
+        <li>Customize colors and text as needed</li>
+      </ol>
+    </div>
+
+    <div style="height: 1000px; background: linear-gradient(to bottom, #dbeafe, #fef3c7); border-radius: 12px; padding: 40px; text-align: center;">
+      <h2 style="font-size: 24px; color: #1f2937;">Scroll to see the widget</h2>
+      <p style="color: #6b7280; margin-top: 12px;">The floating buttons appear on the bottom-right</p>
+    </div>
+  </div>
+
+  <!-- Floating Contact Widget HTML -->
+  <div class="floating-contact-widget" id="contactWidget">
+    <!-- WhatsApp Button -->
+    <button class="floating-btn floating-btn-whatsapp" id="whatsappBtn" aria-label="Chat on WhatsApp">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+      </svg>
+      <span class="floating-btn-tooltip">Chat on WhatsApp</span>
+    </button>
+
+    <!-- Call Button -->
+    <button class="floating-btn floating-btn-call" id="callBtn" aria-label="Call Us">
+      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <span class="floating-btn-tooltip">Call Us</span>
+    </button>
+  </div>
+
+  <!-- WhatsApp Modal -->
+  <div class="modal-backdrop" id="whatsappModal">
+    <div class="modal-container" onclick="event.stopPropagation()">
+      <div class="modal-header">
+        <div>
+          <h3>Chat with us on WhatsApp<br></h3>
+          <p>Get instant replies</p>
+        </div>
+        <button class="modal-close" id="closeWhatsappModal" aria-label="Close">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M18 6L6 18M6 6l12 12" stroke="white" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </button>
+      </div>
+
+      <div class="modal-content">
+        <div class="modal-section">
+          <label class="modal-label">Select treatment</label>
+          <div class="template-grid">
+            <button class="template-btn" data-template="I want to know about RCT treatment and costs.">
+              <div class="template-btn-label">RCT / Root Canal</div>
+              
+            </button>
+            <button class="template-btn" data-template="Please tell me about crown & bridge options.">
+              <div class="template-btn-label">Crown & Bridge</div>
+              
+            </button>
+            <button class="template-btn" data-template="I want consultation for braces.">
+              <div class="template-btn-label">Braces / Orthodontics</div>
+             
+            </button>
+            <button class="template-btn" data-template="I need details & cost for dental implants.">
+              <div class="template-btn-label">Dental Implants</div>
+             
+            </button>
+            <button class="template-btn" data-template="I want to book a cleaning/scaling appointment.">
+              <div class="template-btn-label">Cleaning / Scaling</div>
+            
+            </button>
+          </div>
+        </div>
+
+        <div class="modal-section">
+          <label class="modal-label" for="messageText">Your message</label>
+          <textarea
+            id="messageText"
+            class="message-textarea"
+            rows="6"
+            placeholder="Type your message here..."
+          >Hello, I found you via the website. I have a question about dental treatment. My name is [Your Name].</textarea>
+        </div>
+
+        <div class="modal-section">
+          <div class="checkbox-container">
+            <input type="checkbox" id="includePhone" class="checkbox-input">
+            <div style="flex: 1;">
+              <label for="includePhone" style="font-size: 14px; color: #374151; cursor: pointer;">
+                Include my phone number
+              </label>
+              <input
+                type="tel"
+                id="userPhone"
+                class="phone-input"
+                placeholder="+91 XXXXXXXXXX"
+                style="display: none;"
+              >
+            </div>
+          </div>
+        </div>
+
+        <p class="privacy-note">
+          By opening WhatsApp, you agree to our privacy policy. Your information is kept secure.<br>
+         
+        </p>
+
+        <div class="action-buttons">
+          <button class="btn-primary" id="openWhatsapp">
+            Open in WhatsApp
+          </button>
+          <button class="btn-secondary" id="cancelWhatsapp">
+            Cancel 
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Call Confirmation Modal -->
+  <div class="modal-backdrop" id="callModal">
+    <div class="modal-container call-modal" onclick="event.stopPropagation()">
+      <div style="padding: 32px;">
+        <div class="call-icon">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z" stroke="#2563eb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <h3 style="font-size: 20px; margin-bottom: 8px;">Call Now? </h3>
+        <p style="color: #6b7280; margin-bottom: 24px; font-size: 16px;">+91 9471373777</p>
+        <div style="display: flex; gap: 12px;">
+          <button class="btn-primary" id="confirmCall" style="flex: 1;">
+            Proceed
+          </button>
+          <button class="btn-secondary" id="cancelCall" style="flex: 1;">
+            Cancel
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Configuration - CHANGE THESE VALUES
+    const CONFIG = {
+      phoneNumber: '+919471373777',
+      whatsappNumber: '919471373777', // Without + or spaces
+      enableAnalytics: true
+    };
+
+    // DOM Elements
+    const contactWidget = document.getElementById('contactWidget');
+    const whatsappBtn = document.getElementById('whatsappBtn');
+    const callBtn = document.getElementById('callBtn');
+    const whatsappModal = document.getElementById('whatsappModal');
+    const callModal = document.getElementById('callModal');
+    const messageText = document.getElementById('messageText');
+    const includePhone = document.getElementById('includePhone');
+    const userPhone = document.getElementById('userPhone');
+    const templateBtns = document.querySelectorAll('.template-btn');
+
+    // Show widget with animation
+    setTimeout(() => {
+      contactWidget.classList.add('visible');
+    }, 500);
+
+    // Check if mobile
+    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+
+    // Load saved phone from localStorage
+    const savedPhone = localStorage.getItem('userPhone');
+    if (savedPhone) {
+      userPhone.value = savedPhone;
+      includePhone.checked = true;
+      userPhone.style.display = 'block';
+    }
+
+    // Toggle phone input visibility
+    includePhone.addEventListener('change', function() {
+      userPhone.style.display = this.checked ? 'block' : 'none';
+    });
+
+    // Analytics tracking
+    function trackEvent(eventName, data = {}) {
+      if (CONFIG.enableAnalytics && typeof gtag !== 'undefined') {
+        gtag('event', eventName, {
+          event_category: 'Contact Widget',
+          ...data
+        });
+      }
+      console.log(`[Analytics] ${eventName}`, data);
+    }
+
+    // Show toast notification
+    function showToast(message) {
+      const toast = document.createElement('div');
+      toast.className = 'toast';
+      toast.textContent = message;
+      document.body.appendChild(toast);
+      
+      setTimeout(() => {
+        toast.style.animation = 'fadeOut 0.3s ease';
+        setTimeout(() => document.body.removeChild(toast), 300);
+      }, 2000);
+    }
+
+    // WhatsApp Modal
+    whatsappBtn.addEventListener('click', () => {
+      whatsappModal.classList.add('active');
+      trackEvent('whatsapp_modal_open');
+    });
+
+    document.getElementById('closeWhatsappModal').addEventListener('click', () => {
+      whatsappModal.classList.remove('active');
+    });
+
+    document.getElementById('cancelWhatsapp').addEventListener('click', () => {
+      whatsappModal.classList.remove('active');
+    });
+
+    whatsappModal.addEventListener('click', () => {
+      whatsappModal.classList.remove('active');
+    });
+
+    // Template buttons
+    templateBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const template = btn.getAttribute('data-template');
+        messageText.value = `Hello, I found you via the website.\n\n${template}\n\nMy name is [Your Name].\n\n[Via: Website]`;
+        trackEvent('template_selected', { template });
+      });
+    });
+
+    // Open WhatsApp
+    document.getElementById('openWhatsapp').addEventListener('click', () => {
+      let message = messageText.value;
+      
+      if (includePhone.checked && userPhone.value) {
+        message += `\n\nMy phone: ${userPhone.value}`;
+        localStorage.setItem('userPhone', userPhone.value);
+      }
+      
+      const encodedMessage = encodeURIComponent(message);
+      const whatsappUrl = `https://wa.me/${CONFIG.whatsappNumber}?text=${encodedMessage}`;
+      
+      window.open(whatsappUrl, '_blank');
+      trackEvent('whatsapp_opened', { messageLength: message.length });
+      showToast('Opening WhatsApp... / व्हाट्सएप खोल रहे हैं...');
+      whatsappModal.classList.remove('active');
+    });
+
+    // Call functionality
+    callBtn.addEventListener('click', () => {
+      if (isMobile) {
+        window.location.href = `tel:${CONFIG.phoneNumber}`;
+        trackEvent('call_initiated', { device: 'mobile' });
+        showToast('Dialing... / कॉल कर रहे हैं...');
+      } else {
+        callModal.classList.add('active');
+        trackEvent('call_confirm_shown', { device: 'desktop' });
+      }
+    });
+
+    document.getElementById('confirmCall').addEventListener('click', () => {
+      window.location.href = `tel:${CONFIG.phoneNumber}`;
+      trackEvent('call_confirmed', { device: 'desktop' });
+      showToast('Dialing... / कॉल कर रहे हैं...');
+      callModal.classList.remove('active');
+    });
+
+    document.getElementById('cancelCall').addEventListener('click', () => {
+      callModal.classList.remove('active');
+    });
+
+    callModal.addEventListener('click', () => {
+      callModal.classList.remove('active');
+    });
+
+    // ESC key to close modals
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        whatsappModal.classList.remove('active');
+        callModal.classList.remove('active');
+      }
+    });
+  </script>
+
+</body>
+</html>

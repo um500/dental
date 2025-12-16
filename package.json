@@ -1,0 +1,45 @@
+{
+  "name": "Dental clinic website",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@radix-ui/react-label": "^2.1.8",
+    "@radix-ui/react-select": "^2.2.6",
+    "@radix-ui/react-slot": "^1.1.0",
+    "@vercel/analytics": "latest",
+    "autoprefixer": "^10.4.0",
+    "class-variance-authority": "^0.7.0",
+    "clsx": "^2.1.0",
+    "cors": "latest",
+    "dotenv": "latest",
+    "express": "latest",
+    "framer-motion": "^12.23.24",
+    "lucide-react": "^0.400.0",
+    "mongoose": "latest",
+    "next": "latest",
+    "node-cron": "latest",
+    "nodemailer": "^7.0.11",
+    "pg": "latest",
+    "postcss": "^8.4.0",
+    "react": "latest",
+    "react-countup": "^6.5.3",
+    "react-dom": "^19.0.0",
+    "sonner": "^2.0.7",
+    "tailwind-merge": "^2.3.0",
+    "tailwindcss": "^3.4.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "eslint": "^8.0.0",
+    "eslint-config-next": "^15.0.0",
+    "typescript": "^5.0.0"
+  }
+}

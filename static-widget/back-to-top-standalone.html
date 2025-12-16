@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Back to Top Button - Standalone Demo</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      line-height: 1.6;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: #333;
+    }
+
+    /* Demo content */
+    .demo-content {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 60px 20px;
+    }
+
+    .demo-section {
+      background: white;
+      padding: 40px;
+      margin-bottom: 30px;
+      border-radius: 12px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    }
+
+    h1 {
+      color: #0ea5e9;
+      margin-bottom: 20px;
+      font-size: 2.5em;
+    }
+
+    h2 {
+      color: #06b6d4;
+      margin: 30px 0 15px;
+      font-size: 1.8em;
+    }
+
+    p {
+      margin-bottom: 15px;
+      font-size: 1.1em;
+      color: #555;
+    }
+
+    /* Back to Top Button */
+    #backToTopBtn {
+      position: fixed;
+      left: 24px;
+      bottom: 24px;
+      width: 56px;
+      height: 56px;
+      background-color: #0ea5e9;
+      color: white;
+      border: none;
+      border-radius: 50%;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      cursor: pointer;
+      opacity: 0;
+      transform: translateY(48px);
+      transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+      z-index: 40;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    #backToTopBtn.show {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: all;
+    }
+
+    #backToTopBtn:hover {
+      background-color: #0284c7;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+      transform: translateY(-2px);
+    }
+
+    #backToTopBtn:active {
+      transform: translateY(0);
+    }
+
+    #backToTopBtn svg {
+      width: 28px;
+      height: 28px;
+    }
+
+    /* Tooltip */
+    #backToTopBtn::after {
+      content: attr(data-tooltip);
+      position: absolute;
+      left: 100%;
+      margin-left: 12px;
+      padding: 8px 12px;
+      background-color: #1f2937;
+      color: white;
+      font-size: 14px;
+      border-radius: 8px;
+      white-space: nowrap;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s;
+    }
+
+    #backToTopBtn:hover::after {
+      opacity: 1;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      #backToTopBtn {
+        width: 48px;
+        height: 48px;
+        left: 16px;
+        bottom: 16px;
+      }
+
+      #backToTopBtn svg {
+        width: 24px;
+        height: 24px;
+      }
+
+      .demo-section {
+        padding: 30px 20px;
+      }
+
+      h1 {
+        font-size: 2em;
+      }
+
+      h2 {
+        font-size: 1.5em;
+      }
+    }
+
+    /* Print */
+    @media print {
+      #backToTopBtn {
+        display: none !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Demo Content -->
+  <div class="demo-content">
+    <div class="demo-section">
+      <h1>🦷 Back to Top Button Demo</h1>
+      <p>Scroll down to see the "Back to Top" button appear in the bottom-left corner. Click it to smoothly return to the top of the page.</p>
+      <p>This is a standalone implementation using pure HTML, CSS, and JavaScript - no frameworks required!</p>
+    </div>
+
+    <div class="demo-section">
+      <h2>Features</h2>
+      <ul style="margin-left: 20px; font-size: 1.1em; color: #555;">
+        <li>✅ Appears after scrolling 300px</li>
+        <li>✅ Smooth fade-in and fade-out animation</li>
+        <li>✅ Positioned on bottom-left (doesn't block WhatsApp/Call buttons)</li>
+        <li>✅ Smooth scroll behavior to top</li>
+        <li>✅ Responsive design (smaller on mobile)</li>
+        <li>✅ Hover tooltip for accessibility</li>
+        <li>✅ Hidden when printing</li>
+        <li>✅ Dental theme color (#0ea5e9)</li>
+      </ul>
+    </div>
+
+    <div class="demo-section">
+      <h2>Integration Instructions</h2>
+      <p><strong>Step 1:</strong> Copy the CSS from the &lt;style&gt; section (lines starting with <code>#backToTopBtn</code>)</p>
+      <p><strong>Step 2:</strong> Copy the HTML button code from the bottom of this file</p>
+      <p><strong>Step 3:</strong> Copy the JavaScript code at the end of &lt;body&gt;</p>
+      <p><strong>Step 4:</strong> Customize the <code>showAfterScroll</code> value (default: 300px) and color if needed</p>
+      <p><strong>Step 5:</strong> Test on mobile and desktop to ensure proper positioning</p>
+    </div>
+
+    <!-- More sections to enable scrolling -->
+    <div class="demo-section">
+      <h2>Section 1</h2>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+      <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+    </div>
+
+    <div class="demo-section">
+      <h2>Section 2</h2>
+      <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
+      <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.</p>
+    </div>
+
+    <div class="demo-section">
+      <h2>Section 3</h2>
+      <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident.</p>
+      <p>Similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio.</p>
+    </div>
+
+    <div class="demo-section">
+      <h2>Section 4</h2>
+      <p>Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus.</p>
+      <p>Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae.</p>
+    </div>
+
+    <div class="demo-section">
+      <h2>Section 5 - Final</h2>
+      <p>You've reached the bottom! Click the blue button on the bottom-left to scroll back to the top smoothly.</p>
+      <p style="color: #0ea5e9; font-weight: bold; font-size: 1.2em;">⬅️ Look for the Back to Top button!</p>
+    </div>
+  </div>
+
+  <!-- Back to Top Button -->
+  <button id="backToTopBtn" aria-label="Back to Top " data-tooltip="Back to Top">
+    <!-- Chevron Up SVG Icon -->
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="18 15 12 9 6 15"></polyline>
+    </svg>
+  </button>
+
+  <!-- JavaScript -->
+  <script>
+    (function() {
+      'use strict';
+
+      // Configuration
+      const SHOW_AFTER_SCROLL = 300; // pixels
+      const backToTopBtn = document.getElementById('backToTopBtn');
+
+      // Show/hide button based on scroll position
+      function toggleButtonVisibility() {
+        if (window.scrollY > SHOW_AFTER_SCROLL) {
+          backToTopBtn.classList.add('show');
+        } else {
+          backToTopBtn.classList.remove('show');
+        }
+      }
+
+      // Smooth scroll to top
+      function scrollToTop() {
+        window.scrollTo({
+          top: 0,
+          behavior: 'smooth'
+        });
+
+        // Optional: Send analytics event
+        if (typeof gtag !== 'undefined') {
+          gtag('event', 'back_to_top_clicked', {
+            event_category: 'Navigation',
+            event_label: 'Back to Top Button'
+          });
+        }
+        console.log('[v0] Back to Top clicked');
+      }
+
+      // Event listeners
+      window.addEventListener('scroll', toggleButtonVisibility);
+      backToTopBtn.addEventListener('click', scrollToTop);
+
+      // Initial check
+      toggleButtonVisibility();
+    })();
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,78 @@
+{
+  "en": {
+    "whatsapp_tooltip": "Chat on WhatsApp",
+    "call_tooltip": "Call Us",
+    "modal_title": "Chat with us on WhatsApp",
+    "modal_subtitle": "Get instant replies",
+    "select_treatment": "Select treatment:",
+    "your_message": "Your message:",
+    "include_phone": "Include my phone number",
+    "privacy_note": "By opening WhatsApp, you agree to our privacy policy. Your information is kept secure.",
+    "open_whatsapp": "Open in WhatsApp",
+    "cancel": "Cancel",
+    "call_now": "Call Now?",
+    "proceed": "Proceed",
+    "dialing": "Dialing...",
+    "opening_whatsapp": "Opening WhatsApp...",
+    "templates": {
+      "rct": {
+        "label": "RCT / Root Canal",
+        "message": "I want to know about RCT treatment and costs."
+      },
+      "crown": {
+        "label": "Crown & Bridge",
+        "message": "Please tell me about crown & bridge options."
+      },
+      "braces": {
+        "label": "Braces / Orthodontics",
+        "message": "I want consultation for braces."
+      },
+      "implants": {
+        "label": "Dental Implants",
+        "message": "I need details & cost for dental implants."
+      },
+      "cleaning": {
+        "label": "Cleaning / Scaling",
+        "message": "I want to book a cleaning/scaling appointment."
+      }
+    }
+  },
+  "hi": {
+    "whatsapp_tooltip": "व्हाट्सएप पर चैट करें",
+    "call_tooltip": "हमें कॉल करें",
+    "modal_title": "व्हाट्सएप पर बात करें",
+    "modal_subtitle": "तुरंत जवाब पाएं",
+    "select_treatment": "त्वरित विकल्प चुनें:",
+    "your_message": "आपका संदेश:",
+    "include_phone": "अपना फ़ोन नंबर शामिल करें",
+    "privacy_note": "व्हाट्सएप खोलकर, आप हमारी गोपनीयता नीति से सहमत हैं। हम आपकी जानकारी सुरक्षित रखते हैं।",
+    "open_whatsapp": "व्हाट्सएप खोलें",
+    "cancel": "रद्द करें",
+    "call_now": "कॉल करें?",
+    "proceed": "कॉल करें",
+    "dialing": "कॉल कर रहे हैं...",
+    "opening_whatsapp": "व्हाट्सएप खोल रहे हैं...",
+    "templates": {
+      "rct": {
+        "label": "आरसीटी / रूट कैनाल",
+        "message": "मुझे आरसीटी उपचार और लागत के बारे में जानना है।"
+      },
+      "crown": {
+        "label": "क्राउन और ब्रिज",
+        "message": "कृपया मुझे क्राउन और ब्रिज विकल्पों के बारे में बताएं।"
+      },
+      "braces": {
+        "label": "ब्रेसिज़ / ऑर्थोडोंटिक्स",
+        "message": "मुझे ब्रेसिज़ के लिए परामर्श चाहिए।"
+      },
+      "implants": {
+        "label": "डेंटल इम्प्लांट्स",
+        "message": "मुझे डेंटल इम्प्लांट्स का विवरण और लागत चाहिए।"
+      },
+      "cleaning": {
+        "label": "सफाई / स्केलिंग",
+        "message": "मैं सफाई/स्केलिंग अपॉइंटमेंट बुक करना चाहता हूं।"
+      }
+    }
+  }
+}

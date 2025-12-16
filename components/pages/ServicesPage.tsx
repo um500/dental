@@ -1,0 +1,328 @@
+// services-page.jsx
+import { Phone, ArrowRight } from "lucide-react";
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
+import { Card } from "@/components/ui/card";
+
+export default function ServicesPage() {
+  const services = [
+    {
+      title: "Smile Designing",
+      image: "/smile.jpg",
+      description:
+        "Your smile is a reflection of your confidence — our Smile Designing treatment combines art and advanced dental science to reshape, align, and brighten your teeth for a naturally beautiful smile.",
+      features: [
+        "Digital smile simulation",
+        "Custom prosthetic planning",
+        "Shade & shape matching",
+        "Minimally invasive cosmetic techniques",
+        "Natural-looking results",
+      ],
+      price: "Starting from ₹5,000",
+    },
+    {
+      title: "Root Canal Treatment (R.C.T.)",
+      image: "/rct.jpg",
+      description:
+        "Root Canal Therapy treats and saves a severely decayed or infected tooth. We use modern rotary systems for painless, precise R.C.T. with minimal recovery time.",
+      features: [
+        "Single sitting R.C.T available",
+        "Latest rotary endodontics",
+        "Digital X-ray guidance",
+        "Pain-free procedures",
+        "High success rate",
+      ],
+      price: "Starting from ₹3,000",
+    },
+    {
+      title: "Restoration (Tooth Fillings)",
+      image: "/Restoration.jpg",
+      description:
+        "Repair cavities or minor tooth damage with high-quality, tooth-colored materials that restore appearance and function.",
+      features: [
+        "Composite fillings",
+        "Durable materials",
+        "Color matching",
+        "Conservative preparation",
+      ],
+      price: "Starting from ₹700",
+    },
+    {
+      title: "Teeth Cleaning (Scaling)",
+      image: "/teeth-clean.jpg",
+      description:
+        "Professional cleaning removes tartar, plaque, and stains to keep your teeth and gums healthy.",
+      features: [
+        "Ultrasonic scaling",
+        "Polishing",
+        "Gum disease prevention",
+        "Stain removal",
+      ],
+      price: "Starting from ₹800",
+    },
+    {
+      title: "Teeth Polishing",
+      image: "/teeth-polishing.jpg",
+      description:
+        "Polishing smooths tooth surfaces, removes stains, and gives a glossy finish after scaling.",
+      features: ["Stain removal", "Smooth finish", "Bright appearance"],
+      price: "Included with cleaning",
+    },
+    {
+      title: "Orthodontic Treatment",
+      image: "/Orthodontic.jpg",
+      description:
+        "Correct alignment and bite issues with metal braces, ceramic braces, or clear aligners.",
+      features: [
+        "Metal & ceramic braces",
+        "Clear aligners",
+        "Customized plans",
+        "Retention included",
+      ],
+      price: "Starting from ₹30,000",
+    },
+    {
+      title: "Dental Crowns",
+      image: "/Crowns.jpg",
+      description:
+        "Strong, natural-looking crowns restore damaged or weak teeth with long-term durability.",
+      features: ["Zirconia crowns", "Color matched", "CAD/CAM design"],
+      price: "Starting from ₹4,000",
+    },
+    {
+      title: "Dental Bridges",
+      image: "/Bridges.jpg",
+      description:
+        "Bridges replace missing teeth using adjacent teeth for support with a perfect natural look.",
+      features: [
+        "Tooth-supported bridges",
+        "Shade matching",
+        "Improved chewing",
+      ],
+      price: "Starting from ₹6,000",
+    },
+    {
+      title: "Dentures (Full & Partial)",
+      image: "/Dentures.jpg",
+      description:
+        "Comfortable full and partial dentures to restore chewing, speech, and smile aesthetics.",
+      features: ["Custom-fit", "Flexible partials", "Repairs & relining"],
+      price: "Starting from ₹8,000",
+    },
+    {
+      title: "Dental Implants",
+      image: "/Implants.jpg",
+      description:
+        "Advanced titanium implants that look, feel, and function exactly like natural teeth.",
+      features: [
+        "Computer-guided placement",
+        "Single & full arch",
+        "Long-term durability",
+      ],
+      price: "Starting from ₹25,000",
+    },
+    {
+      title: "Teeth Whitening",
+      image: "/whitening.jpg",
+      description:
+        "Professional whitening removes deep stains and brightens teeth by several shades.",
+      features: [
+        "In-office bleaching",
+        "Take-home kits",
+        "Laser whitening",
+        "Instant results",
+      ],
+      price: "Starting from ₹5,000",
+    },
+    {
+      title: "Post and Core Treatment",
+      image: "/Post-and-core.jpg",
+      description:
+        "Strengthens and rebuilds teeth with major structure loss after RCT to support a crown.",
+      features: ["Fiber post", "Metal post", "Core buildup"],
+      price: "Starting from ₹2,500",
+    },
+  ];
+
+  return (
+    <div className="min-h-screen">
+
+      {/* ---------------- HERO SECTION ---------------- */}
+      <section className="pt-32 pb-16 px-4 sm:px-6 lg:px-8 bg-blue-50">
+        <div className="max-w-7xl mx-auto text-center">
+          <h1 className="text-5xl font-bold text-gray-900 mb-6">
+            Comprehensive Dental Services
+          </h1>
+          <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-8">
+            From preventive care to advanced procedures, we provide complete
+            dental care with modern technology.
+          </p>
+
+          <Button
+            asChild
+            size="lg"
+            className="bg-blue-600 hover:bg-blue-700 text-white px-10 py-4 rounded-xl font-semibold shadow-lg"
+          >
+            <Link href="/contact" className="flex items-center">
+              Book Your Consultation
+              <ArrowRight className="w-5 h-5 ml-2" />
+            </Link>
+          </Button>
+        </div>
+      </section>
+
+      {/* ---------------- SERVICE GRID ---------------- */}
+      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-white">
+        <div className="max-w-7xl mx-auto grid md:grid-cols-2 lg:grid-cols-3 gap-10">
+
+          {services.map((service, index) => (
+           <Card
+  key={index}
+  className="
+    relative overflow-hidden rounded-2xl border border-gray-100 bg-white
+    p-0 shadow-md transition-transform duration-300 will-change-transform
+    hover:-translate-y-3 hover:scale-[1.01] hover:shadow-2xl
+    group
+  "
+>
+  {/* Gradient burst (appears on hover) */}
+  <div
+    aria-hidden="true"
+    className="
+      absolute -z-10 inset-0 opacity-0 transform scale-95
+      bg-gradient-to-br from-blue-50 via-white to-cyan-50
+      group-hover:opacity-100 group-hover:scale-100
+      transition-all duration-500
+    "
+  />
+
+  {/* FULL-WIDTH TOP IMAGE — zoom on hover */}
+  <div className="w-full h-52 overflow-hidden">
+    {/* eslint-disable-next-line @next/next/no-img-element */}
+    <img
+      src={service.image}
+      alt={service.title}
+      className="
+        w-full h-full object-cover transform transition-transform duration-700
+        group-hover:scale-105
+      "
+      loading="lazy"
+    />
+  </div>
+
+  {/* CONTENT */}
+  <div className="p-6 bg-white/90 transition-colors duration-400 group-hover:bg-white/95">
+    <h3
+      className="text-2xl font-bold text-gray-900 mb-2 transition-colors duration-300"
+      style={{ fontFamily: "var(--font-poppins)" }}
+    >
+      {service.title}
+    </h3>
+
+    <p className="text-gray-600 text-sm mb-4 transition-colors duration-300 group-hover:text-gray-700">
+      {service.description}
+    </p>
+
+    <ul className="space-y-2 mb-4">
+      {service.features.map((feature, idx) => (
+        <li
+          key={idx}
+          className="
+            flex gap-2 text-sm text-gray-700 items-start
+            transition-colors duration-300 group-hover:text-gray-800
+          "
+        >
+          <span className="text-green-600 mt-0.5">✔</span>
+          <span>{feature}</span>
+        </li>
+      ))}
+    </ul>
+
+    <div className="flex items-center justify-between pt-3 border-t border-gray-100">
+      <p className="text-blue-600 font-semibold text-lg transition-colors duration-300 group-hover:text-blue-700">
+        {service.price}
+      </p>
+
+      <Link
+        href="/contact"
+        className="
+          inline-flex items-center px-4 py-2 rounded-md text-sm font-semibold
+          bg-blue-600 text-white shadow-sm transition-all duration-300
+          hover:bg-blue-700 active:translate-y-[1px]
+        "
+      >
+        Book Now
+      </Link>
+    </div>
+  </div>
+</Card>
+
+          ))}
+
+        </div>
+      </section>
+
+      {/* ---------------- EMERGENCY SECTION ---------------- */}
+      <section className="py-16 px-4 bg-red-50 text-center">
+        <h2 className="text-3xl font-bold mb-4">Emergency Dental Care</h2>
+        <p className="text-lg text-gray-700 mb-6">
+          Severe toothache or broken tooth? We provide SAME-DAY emergency care.
+        </p>
+        <Button asChild size="lg" variant="destructive">
+          <a href="tel:+919471373777">
+            <Phone className="w-5 h-5 mr-2" />
+            Emergency: +91 9471373777
+          </a>
+        </Button>
+      </section>
+
+      {/* ---------------- CTA SECTION ---------------- */}
+      <section className="py-20 px-4 bg-blue-600 text-white text-center">
+        <h2 className="text-4xl font-bold mb-6">
+          Not Sure Which Treatment You Need?
+        </h2>
+        <p className="text-xl mb-8">Get a FREE consultation today.</p>
+
+       <div className="flex flex-col sm:flex-row gap-4 justify-center">
+
+  {/* Primary Button */}
+  <Button
+    asChild
+    size="lg"
+    className="
+      bg-white text-blue-600 font-semibold
+      px-8 py-6 text-lg rounded-xl
+      shadow-md hover:shadow-lg
+      transition-all duration-300
+      hover:bg-gray-100 active:scale-95
+    "
+  >
+    <Link href="/contact">Free Consultation</Link>
+  </Button>
+
+  {/* Secondary Button */}
+  <Button
+    asChild
+    size="lg"
+    className="
+      border-2 border-white text-white font-semibold
+      px-8 py-6 text-lg rounded-xl
+      bg-white/10 backdrop-blur-sm
+      hover:bg-white/20 hover:border-white
+      active:scale-95
+      transition-all duration-300
+    "
+  >
+    <a href="tel:+919471373777" className="flex items-center">
+      <Phone className="w-5 h-5 mr-2" />
+      Call Now
+    </a>
+  </Button>
+
+</div>
+
+      </section>
+
+    </div>
+  );
+}
