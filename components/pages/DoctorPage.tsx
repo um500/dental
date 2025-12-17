@@ -110,90 +110,105 @@ const slideRight = {
       {/* Hero Section */}
       <section className="pt-24 pb-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-blue-50 via-white to-cyan-50">
         <div className="max-w-7xl mx-auto">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
+          <div className="grid gap-12 items-center lg:grid-cols-2">
+            {/* IMAGE – MOBILE TOP */}
             <motion.div
-              className="space-y-6"
+              className="relative flex justify-center order-1 lg:order-2"
               initial="hidden"
               whileInView="show"
-              viewport={{ once: true, amount: 0.25 }}
-              variants={container}
+              viewport={{ once: true }}
+              variants={fadeUp}
             >
-              <motion.div variants={fadeUp} className="inline-flex items-center space-x-2 px-4 py-2 bg-blue-100 text-blue-700 rounded-full text-sm font-semibold mb-2 w-max">
-                <Sparkles className="w-4 h-4" />
-                <span>Meet Our Expert Team</span>
+              <motion.div
+                variants={floatImg}
+                animate={floatImg.animate}
+                transition={floatImg.transition}
+                className="aspect-square rounded-3xl overflow-hidden shadow-2xl border-4 border-white w-full max-w-sm sm:max-w-md"
+              >
+                <img
+                  src="/doctor.jpeg"
+                  alt="Doctor"
+                  className="w-full h-full object-cover"
+                />
               </motion.div>
 
-              <motion.h1 variants={slideLeft} className="text-5xl font-extrabold text-gray-900 leading-tight">
+              <div className="absolute -top-4 -right-4 z-10">
+                <div className="bg-gradient-to-br from-yellow-400 to-orange-500 rounded-2xl shadow-xl border-4 border-white p-4">
+                  <Award className="w-10 h-10 text-white mb-1 mx-auto" />
+                  <p className="text-white font-bold text-sm text-center">
+                    Best Dental Care <br /> 2024
+                  </p>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* TEXT – MOBILE BELOW IMAGE */}
+            <motion.div
+              className="space-y-6 order-2 lg:order-1"
+              initial="hidden"
+              whileInView="show"
+              viewport={{ once: true }}
+              variants={container}
+            >
+              <motion.div
+                variants={fadeUp}
+                className="inline-flex items-center gap-2 px-4 py-2 bg-blue-100 text-blue-700 rounded-full text-sm font-semibold w-max"
+              >
+                <Sparkles className="w-4 h-4" />
+                Meet Our Expert Team
+              </motion.div>
+
+              <motion.h1
+                variants={slideLeft}
+                className="text-4xl sm:text-5xl font-extrabold text-gray-900"
+              >
                 Where Your Smile is Our Top Priority
               </motion.h1>
 
-              <motion.p variants={fadeUp} className="text-xl text-gray-600 leading-relaxed">
-                We are a dental practice dedicated to the well-being and happiness of every single patient.
-                Our mission is to provide exceptional, compassionate dental care in a state-of-the-art environment.
+              <motion.p
+                variants={fadeUp}
+                className="text-lg text-gray-600 leading-relaxed"
+              >
+                We are a dental practice dedicated to the well-being and happiness
+                of every patient with compassionate, advanced care.
               </motion.p>
 
-              <motion.div variants={fadeUp} className="flex items-center space-x-4">
-                <div className="flex items-center -space-x-1">
-                  {[...Array(5)].map((_, i) => (
-                    <motion.div
-                      key={i}
-                      initial={{ scale: 0.8, opacity: 0 }}
-                      animate={{ scale: 1, opacity: 1 }}
-                      transition={{ delay: 0.05 * i, duration: 0.3 }}
-                    >
-                      <Star className="w-5 h-5 text-yellow-400" />
-                    </motion.div>
-                  ))}
-                </div>
-                <span className="text-gray-700 font-medium">8+ Years of Excellence</span>
+              <motion.div variants={fadeUp} className="flex items-center gap-3">
+                {[...Array(5)].map((_, i) => (
+                  <Star key={i} className="w-5 h-5 text-yellow-400" />
+                ))}
+                <span className="text-gray-700 font-medium">
+                  8+ Years of Excellence
+                </span>
               </motion.div>
 
-              <motion.div variants={fadeUp} className="flex items-center gap-4">
-                <div className="mb-6 inline-block">
-                  <Card className="border-2 border-blue-200 bg-gradient-to-br from-blue-50 to-cyan-50 shadow-lg">
-                    <div className="px-6 py-4 flex items-center space-x-4">
-                      <div className="w-16 h-16 bg-gradient-to-br from-yellow-400 to-amber-500 rounded-full flex items-center justify-center shadow-md">
-                        <Award className="w-8 h-8 text-white" />
-                      </div>
-                      <div>
-                        <p className="text-sm font-semibold text-blue-600 uppercase tracking-wide">Award Winner</p>
-                        <p className="text-lg font-bold text-gray-900">Best Dental Care</p>
-                        <p className="text-sm text-gray-600">Award - 2024</p>
-                      </div>
+              {/* AWARD + BUTTON (RESPONSIVE FIX) */}
+              <motion.div
+                variants={fadeUp}
+                className="flex flex-col sm:flex-row gap-4 items-start sm:items-center"
+              >
+                <Card className="border-2 border-blue-200 bg-gradient-to-br from-blue-50 to-cyan-50 shadow-lg w-full sm:w-auto">
+                  <div className="px-6 py-4 flex items-center gap-4">
+                    <div className="w-14 h-14 bg-gradient-to-br from-yellow-400 to-amber-500 rounded-full flex items-center justify-center">
+                      <Award className="w-7 h-7 text-white" />
                     </div>
-                  </Card>
-                </div>
+                    <div>
+                      <p className="text-sm font-semibold text-blue-600">
+                        Award Winner
+                      </p>
+                      <p className="font-bold">Best Dental Care</p>
+                      <p className="text-sm text-gray-600">2024</p>
+                    </div>
+                  </div>
+                </Card>
 
-                <Button asChild size="lg" className="bg-blue-600 hover:bg-blue-700 shadow-lg">
-                  <Link href="/contact" className="flex items-center">
+                <Button asChild size="lg" className="bg-blue-600 hover:bg-blue-700 w-full sm:w-auto">
+                  <Link href="/contact" className="flex items-center justify-center">
                     <Phone className="w-5 h-5 mr-2" />
                     Book Consultation
                   </Link>
                 </Button>
               </motion.div>
-            </motion.div>
-
-            <motion.div className="relative flex justify-center" initial="hidden" whileInView="show" viewport={{ once: true }} variants={fadeUp}>
-              <motion.div variants={floatImg} animate={floatImg.animate} transition={floatImg.transition} className="aspect-square rounded-3xl overflow-hidden shadow-2xl border-4 border-white w-full max-w-md">
-                <img
-                  src="/doctor.jpeg"
-                  alt="Professional dentist in white coat with stethoscope smiling confidently in modern clinic"
-                  className="w-full h-full object-cover"
-                />
-              </motion.div>
-
-              <motion.div whileHover={{ rotate: 0, scale: 1.02 }} initial={{ rotate: 6 }} className="absolute -top-4 -right-4 z-10">
-                <div className="bg-gradient-to-br from-yellow-400 via-amber-500 to-orange-500 rounded-2xl shadow-2xl border-4 border-white p-4 transform hover:rotate-0 transition-transform">
-                  <Award className="w-12 h-12 text-white mb-2" />
-                  <p className="text-white font-bold text-sm text-center leading-tight">
-                    Best Dental Care
-                    <br />
-                    2024
-                  </p>
-                </div>
-              </motion.div>
-
-              <div className="absolute -bottom-6 -right-6 w-32 h-32 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-full blur-2xl opacity-50" />
             </motion.div>
           </div>
         </div>
