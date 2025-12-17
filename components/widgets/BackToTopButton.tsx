@@ -38,8 +38,8 @@ export default function BackToTopButton({
 
   const getTooltipText = () => {
     if (language === "en") return "Back to Top"
-    if (language === "hi") return "शीर्ष पर जाएं"
-    return "Back to Top / शीर्ष पर जाएं"
+    if (language === "hi") return "Go Back"
+    return "Back to Top"
   }
 
   return (

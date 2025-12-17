@@ -25,12 +25,12 @@ const defaultTemplates: Template[] = [
   {
     id: "rct",
     label: "RCT / Root Canal",
-    message: "I want to know about RCT treatment. Cost: ₹4000 + ₹500.",
+    message: "I want to know about RCT treatment.",
   },
   {
     id: "crown",
     label: "Crown & Bridge",
-    message: "Please tell me about crown & bridge options. Cost: ₹3000 - ₹8000.",
+    message: "Please tell me about crown & bridge options.",
   },
   {
     id: "braces",
@@ -50,7 +50,7 @@ const defaultTemplates: Template[] = [
   {
     id: "whitening",
     label: "Teeth Whitening",
-    message: "I want to know about teeth whitening treatment. Cost: ₹1000 - ₹4000.",
+    message: "I want to know about teeth whitening treatment.",
   },
 ]
 

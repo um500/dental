@@ -8,7 +8,7 @@ export default function ServicesPage() {
   const services = [
     {
       title: "Smile Designing",
-      image: "/smile.jpg",
+      image: "/Smile Designing.png",
       description:
         "Your smile is a reflection of your confidence — our Smile Designing treatment combines art and advanced dental science to reshape, align, and brighten your teeth for a naturally beautiful smile.",
       features: [
@@ -18,11 +18,11 @@ export default function ServicesPage() {
         "Minimally invasive cosmetic techniques",
         "Natural-looking results",
       ],
-      price: "Starting from ₹5,000",
+    
     },
     {
       title: "Root Canal Treatment (R.C.T.)",
-      image: "/rct.jpg",
+      image: "/rct final.png",
       description:
         "Root Canal Therapy treats and saves a severely decayed or infected tooth. We use modern rotary systems for painless, precise R.C.T. with minimal recovery time.",
       features: [
@@ -32,11 +32,11 @@ export default function ServicesPage() {
         "Pain-free procedures",
         "High success rate",
       ],
-      price: "Starting from ₹3,000",
+    
     },
     {
       title: "Restoration (Tooth Fillings)",
-      image: "/Restoration.jpg",
+      image: "/Restoration.png",
       description:
         "Repair cavities or minor tooth damage with high-quality, tooth-colored materials that restore appearance and function.",
       features: [
@@ -45,11 +45,11 @@ export default function ServicesPage() {
         "Color matching",
         "Conservative preparation",
       ],
-      price: "Starting from ₹700",
+      
     },
     {
       title: "Teeth Cleaning (Scaling)",
-      image: "/teeth-clean.jpg",
+      image: "/Teeth Cleaning (Scaling),.png",
       description:
         "Professional cleaning removes tartar, plaque, and stains to keep your teeth and gums healthy.",
       features: [
@@ -58,19 +58,19 @@ export default function ServicesPage() {
         "Gum disease prevention",
         "Stain removal",
       ],
-      price: "Starting from ₹800",
+      
     },
     {
       title: "Teeth Polishing",
-      image: "/teeth-polishing.jpg",
+      image: "/Teeth Polishing.png",
       description:
         "Polishing smooths tooth surfaces, removes stains, and gives a glossy finish after scaling.",
       features: ["Stain removal", "Smooth finish", "Bright appearance"],
-      price: "Included with cleaning",
+      
     },
     {
       title: "Orthodontic Treatment",
-      image: "/Orthodontic.jpg",
+      image: "/Orthodontic Treatment.png",
       description:
         "Correct alignment and bite issues with metal braces, ceramic braces, or clear aligners.",
       features: [
@@ -79,19 +79,19 @@ export default function ServicesPage() {
         "Customized plans",
         "Retention included",
       ],
-      price: "Starting from ₹30,000",
+    
     },
     {
       title: "Dental Crowns",
-      image: "/Crowns.jpg",
+      image: "/Dental Crowns.png",
       description:
         "Strong, natural-looking crowns restore damaged or weak teeth with long-term durability.",
       features: ["Zirconia crowns", "Color matched", "CAD/CAM design"],
-      price: "Starting from ₹4,000",
+    
     },
     {
       title: "Dental Bridges",
-      image: "/Bridges.jpg",
+      image: "/Dental Bridges.png",
       description:
         "Bridges replace missing teeth using adjacent teeth for support with a perfect natural look.",
       features: [
@@ -99,7 +99,7 @@ export default function ServicesPage() {
         "Shade matching",
         "Improved chewing",
       ],
-      price: "Starting from ₹6,000",
+      
     },
     {
       title: "Dentures (Full & Partial)",
@@ -107,11 +107,11 @@ export default function ServicesPage() {
       description:
         "Comfortable full and partial dentures to restore chewing, speech, and smile aesthetics.",
       features: ["Custom-fit", "Flexible partials", "Repairs & relining"],
-      price: "Starting from ₹8,000",
+      
     },
     {
       title: "Dental Implants",
-      image: "/Implants.jpg",
+      image: "/Dental Implants,.png",
       description:
         "Advanced titanium implants that look, feel, and function exactly like natural teeth.",
       features: [
@@ -119,11 +119,11 @@ export default function ServicesPage() {
         "Single & full arch",
         "Long-term durability",
       ],
-      price: "Starting from ₹25,000",
+      
     },
     {
       title: "Teeth Whitening",
-      image: "/whitening.jpg",
+      image: "/Teeth Whitening.png",
       description:
         "Professional whitening removes deep stains and brightens teeth by several shades.",
       features: [
@@ -132,15 +132,15 @@ export default function ServicesPage() {
         "Laser whitening",
         "Instant results",
       ],
-      price: "Starting from ₹5,000",
+      
     },
     {
       title: "Post and Core Treatment",
-      image: "/Post-and-core.jpg",
+      image: "/Post and Core Treatment.png",
       description:
         "Strengthens and rebuilds teeth with major structure loss after RCT to support a crown.",
       features: ["Fiber post", "Metal post", "Core buildup"],
-      price: "Starting from ₹2,500",
+      
     },
   ];
 
@@ -240,7 +240,7 @@ export default function ServicesPage() {
 
     <div className="flex items-center justify-between pt-3 border-t border-gray-100">
       <p className="text-blue-600 font-semibold text-lg transition-colors duration-300 group-hover:text-blue-700">
-        {service.price}
+      
       </p>
 
       <Link
