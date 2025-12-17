@@ -141,183 +141,205 @@ export default function HomePage() {
   return (
     <div className="min-h-screen">
       <section className="relative pt-32 pb-24 px-4 sm:px-6 lg:px-8 overflow-hidden">
-        {/* Gradient background */}
-        <div className="absolute inset-0 gradient-dental-light"></div>
+  {/* Gradient background */}
+  <div className="absolute inset-0 gradient-dental-light"></div>
 
-        {/* Animated background elements */}
-        <div className="absolute top-20 right-10 w-72 h-72 bg-blue-400/20 rounded-full blur-3xl animate-float"></div>
-        <div
-          className="absolute bottom-20 left-10 w-96 h-96 bg-cyan-400/20 rounded-full blur-3xl animate-float"
-          style={{ animationDelay: "2s" }}
-        ></div>
+  {/* Animated background elements */}
+  <div className="absolute top-20 right-10 w-72 h-72 bg-blue-400/20 rounded-full blur-3xl animate-float"></div>
+  <div
+    className="absolute bottom-20 left-10 w-96 h-96 bg-cyan-400/20 rounded-full blur-3xl animate-float"
+    style={{ animationDelay: "2s" }}
+  ></div>
 
-        <div className="max-w-7xl mx-auto relative z-10">
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
-            <div>
-              <div className="inline-flex items-center space-x-2 px-5 py-2.5 glass-effect border border-blue-200 rounded-full text-sm font-semibold mb-8 shadow-lg">
-                <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-                <Star className="w-4 h-4 text-yellow-500 fill-yellow-500" />
-                <span className="text-gradient">8+ Years of Trusted Care</span>
-              </div>
+  <div className="max-w-7xl mx-auto relative z-10">
+    <div className="grid lg:grid-cols-2 gap-16 items-center">
 
-              <h1
-                className="text-6xl lg:text-7xl font-bold text-gray-900 mb-6 leading-tight text-balance"
-                style={{ fontFamily: "var(--font-poppins)" }}
-              >
-                Where Your Smile is{" "}
-                <span className="text-gradient">Our Priority</span>
-              </h1>
+      {/* TEXT CONTENT */}
+      <div className="order-2 lg:order-1">
+        <div className="inline-flex items-center space-x-2 px-5 py-2.5 glass-effect border border-blue-200 rounded-full text-sm font-semibold mb-8 shadow-lg">
+          <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+          <Star className="w-4 h-4 text-yellow-500 fill-yellow-500" />
+          <span className="text-gradient">8+ Years of Trusted Care</span>
+        </div>
 
-              <p className="text-xl text-gray-600 mb-10 leading-relaxed text-pretty">
-                For over 8 years, SHREE DENTAL CLINIC has been the trusted name
-                in family dental care. We combine state-of-the-art technology
-                with a compassionate, patient-centered approach in Kestopur,
-                Kolkata.
-              </p>
+        <h1
+          className="text-6xl lg:text-7xl font-bold text-gray-900 mb-6 leading-tight text-balance"
+          style={{ fontFamily: "var(--font-poppins)" }}
+        >
+          Where Your Smile is{" "}
+          <span className="text-gradient">Our Priority</span>
+        </h1>
 
-              <div className="flex flex-col sm:flex-row gap-4 mb-10">
-                <Button
-                  asChild
-                  size="lg"
-                  className="gradient-dental hover:opacity-90 shadow-dental text-lg h-14 px-8 font-semibold group"
-                >
-                  <Link href="/contact">
-                    Book Appointment
-                    <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
-                  </Link>
-                </Button>
-                <Button
-                  asChild
-                  size="lg"
-                  variant="outline"
-                  className="text-lg h-14 px-8 border-2 border-gray-300 hover:border-blue-500 hover:text-blue-600 hover:bg-blue-50 bg-white font-semibold group"
-                >
-                  <a href="tel:+919471373777">
-                    <Phone className="w-5 h-5 mr-2 group-hover:rotate-12 transition-transform" />
-                    Call +91 9471373777
-                  </a>
-                </Button>
-              </div>
+        <p className="text-xl text-gray-600 mb-10 leading-relaxed text-pretty">
+          For over 8 years, SHREE DENTAL CLINIC has been the trusted name
+          in family dental care. We combine state-of-the-art technology
+          with a compassionate, patient-centered approach in Kestopur,
+          Kolkata.
+        </p>
 
-              <div className="flex flex-wrap gap-4">
-                <div className="flex items-center space-x-2 px-4 py-2 bg-white rounded-full shadow-md">
-                  <CheckCircle className="w-5 h-5 text-green-600" />
-                  <span className="text-sm font-semibold text-gray-700">
-                    Cosmetic Dentistry Expert
-                  </span>
-                </div>
-                <div className="flex items-center space-x-2 px-4 py-2 bg-white rounded-full shadow-md">
-                  <Heart className="w-5 h-5 text-red-500" />
-                  <span className="text-sm font-semibold text-gray-700">
-                    Gentle & Painless
-                  </span>
-                </div>
-                <div className="flex items-center space-x-2 px-4 py-2 bg-white rounded-full shadow-md">
-                  <Zap className="w-5 h-5 text-yellow-500" />
-                  <span className="text-sm font-semibold text-gray-700">
-                    Advanced Equipment
-                  </span>
-                </div>
-              </div>
-            </div>
+        <div className="flex flex-col sm:flex-row gap-4 mb-10">
+          <Button
+            asChild
+            size="lg"
+            className="gradient-dental hover:opacity-90 shadow-dental text-lg h-14 px-8 font-semibold group"
+          >
+            <Link href="/contact">
+              Book Appointment
+              <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
+            </Link>
+          </Button>
 
-            <div className="relative">
-              <div className="aspect-square rounded-3xl overflow-hidden shadow-2xl border-8 border-white hover-lift">
-                <img
-                  src="/choose-2.jpeg"
-                  alt="Dental clinic interior"
-                  className="w-full h-full object-cover"
-                />
-              </div>
+          <Button
+            asChild
+            size="lg"
+            variant="outline"
+            className="text-lg h-14 px-8 border-2 border-gray-300 hover:border-blue-500 hover:text-blue-600 hover:bg-blue-50 bg-white font-semibold group"
+          >
+            <a href="tel:+919471373777">
+              <Phone className="w-5 h-5 mr-2 group-hover:rotate-12 transition-transform" />
+              Call +91 9471373777
+            </a>
+          </Button>
+        </div>
 
-              <div
-                className="
-    absolute bottom-4 left-4
-    px-5 py-3 rounded-2xl 
-    backdrop-blur-xl 
-    bg-gradient-to-br from-white/70 to-blue-100/50 
-    border border-white/60 
-    shadow-[0_8px_30px_rgba(0,0,0,0.1)]
-    flex items-center gap-3
+        <div className="flex flex-wrap gap-4">
+          <div className="flex items-center space-x-2 px-4 py-2 bg-white rounded-full shadow-md">
+            <CheckCircle className="w-5 h-5 text-green-600" />
+            <span className="text-sm font-semibold text-gray-700">
+              Cosmetic Dentistry Expert
+            </span>
+          </div>
 
-    /* ANIMATION + HOVER */
-    transition-all duration-500 ease-out
-    hover:translate-x-2 hover:bg-blue-100/80 hover:shadow-[0_15px_35px_rgba(0,0,0,0.25)] hover:border-blue-300
+          <div className="flex items-center space-x-2 px-4 py-2 bg-white rounded-full shadow-md">
+            <Heart className="w-5 h-5 text-red-500" />
+            <span className="text-sm font-semibold text-gray-700">
+              Gentle & Painless
+            </span>
+          </div>
 
-    /* FLOATING ANIMATION WITHOUT GLOBAL CSS */
-    [animation:floating_6s_ease-in-out_infinite]
-    [@keyframes_floating]:[0%_{transform:translateY(0)}_50%_{transform:translateY(-6px)}_100%_{transform:translateY(0)}]
-  "
-              >
-                {/* ICON BUBBLE */}
-                <div
-                  className="
-      relative w-9 h-9 rounded-full bg-white/90 flex items-center justify-center shadow 
-      transition-all duration-500
-
-      hover:scale-110
-      hover:shadow-[0_0_12px_rgba(59,130,246,0.5)]
-    "
-                >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="w-5 h-5 text-blue-700"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                    strokeWidth={2}
-                  >
-                    <circle cx="12" cy="7" r="4" />
-                    <path d="M19 21v-2a4 4 0 00-4-4H9a4 4 0 00-4 4v2" />
-                  </svg>
-                </div>
-
-                {/* TEXT */}
-                <div className="transition-all duration-500">
-                  <p className="text-3xl font-extrabold text-blue-700 leading-none">
-                    8+
-                  </p>
-                  <p className="text-sm text-slate-700 font-semibold -mt-1">
-                    Years Experience
-                  </p>
-                </div>
-              </div>
-            </div>
+          <div className="flex items-center space-x-2 px-4 py-2 bg-white rounded-full shadow-md">
+            <Zap className="w-5 h-5 text-yellow-500" />
+            <span className="text-sm font-semibold text-gray-700">
+              Advanced Equipment
+            </span>
           </div>
         </div>
-      </section>
+      </div>
 
-      <section className="py-24 px-4 sm:px-6 lg:px-8 bg-white relative overflow-hidden">
-        <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-br from-blue-100 to-cyan-100 rounded-full blur-3xl opacity-50"></div>
+      {/* IMAGE CONTENT */}
+      <div className="relative order-1 lg:order-2">
+        <div className="aspect-square rounded-3xl overflow-hidden shadow-2xl border-8 border-white hover-lift">
+          <img
+            src="/choose-2.jpeg"
+            alt="Dental clinic interior"
+            className="w-full h-full object-cover"
+          />
+        </div>
 
-        <div className="max-w-7xl mx-auto relative z-10">
-          <div className="grid lg:grid-cols-2 gap-16 items-center mb-24">
-            <div>
-              <div className="inline-flex items-center space-x-2 px-4 py-2 bg-gradient-to-r from-blue-50 to-cyan-50 rounded-full mb-6">
-                <Heart className="w-4 h-4 text-blue-600" />
-                <span className="text-sm font-semibold text-blue-600">
-                  About Us
-                </span>
-              </div>
+        <div
+          className="
+            absolute bottom-4 left-4
+            px-5 py-3 rounded-2xl 
+            backdrop-blur-xl 
+            bg-gradient-to-br from-white/70 to-blue-100/50 
+            border border-white/60 
+            shadow-[0_8px_30px_rgba(0,0,0,0.1)]
+            flex items-center gap-3
+            transition-all duration-500 ease-out
+            hover:translate-x-2 hover:bg-blue-100/80 hover:shadow-[0_15px_35px_rgba(0,0,0,0.25)] hover:border-blue-300
+            [animation:floating_6s_ease-in-out_infinite]
+            [@keyframes_floating]:[0%_{transform:translateY(0)}_50%_{transform:translateY(-6px)}_100%_{transform:translateY(0)}]
+          "
+        >
+          <div className="relative w-9 h-9 rounded-full bg-white/90 flex items-center justify-center shadow transition-all duration-500 hover:scale-110 hover:shadow-[0_0_12px_rgba(59,130,246,0.5)]">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="w-5 h-5 text-blue-700"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              strokeWidth={2}
+            >
+              <circle cx="12" cy="7" r="4" />
+              <path d="M19 21v-2a4 4 0 00-4-4H9a4 4 0 00-4 4v2" />
+            </svg>
+          </div>
 
-              <h2
-                className="text-5xl font-bold text-gray-900 mb-6 leading-tight"
-                style={{ fontFamily: "var(--font-poppins)" }}
-              >
-                We Believe That Every{" "}
-                <span className="text-gradient">Smile Deserves</span> The Best
-                Care Possible
-              </h2>
+          <div>
+            <p className="text-3xl font-extrabold text-blue-700 leading-none">
+              8+
+            </p>
+            <p className="text-sm text-slate-700 font-semibold -mt-1">
+              Years Experience
+            </p>
+          </div>
+        </div>
+      </div>
 
-              <p className="text-xl text-gray-600 mb-8 leading-relaxed">
-                We shine with expert dentists, modern technology, and a gentle
-                approach. We deliver care that's as comfortable as it is
-                effective. From routine check-ups to advanced treatments, we put
-                your needs first, ensuring you feel confident every step of the
-                way.
-              </p>
+    </div>
+  </div>
+</section>
 
-              <div className="space-y-4">
+  <section className="py-24 px-4 sm:px-6 lg:px-8 bg-white relative overflow-hidden">
+  <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-br from-blue-100 to-cyan-100 rounded-full blur-3xl opacity-50"></div>
+
+  <div className="max-w-7xl mx-auto relative z-10">
+    <div className="grid lg:grid-cols-2 gap-16 items-center mb-24">
+
+      {/* ABOUT US BADGE (mobile top, desktop inside text) */}
+      <div className="order-1 lg:hidden">
+        <div className="inline-flex items-center space-x-2 px-4 py-2 bg-gradient-to-r from-blue-50 to-cyan-50 rounded-full mb-6">
+          <Heart className="w-4 h-4 text-blue-600" />
+          <span className="text-sm font-semibold text-blue-600">
+            About Us
+          </span>
+        </div>
+      </div>
+
+      {/* IMAGE */}
+      <div className="relative order-2 lg:order-2">
+        <div className="aspect-[4/5] rounded-3xl overflow-hidden shadow-2xl border-8 border-white hover-lift">
+          <img
+            src="/choose-1.jpg"
+            alt="Modern dental clinic"
+            className="w-full h-full object-cover"
+          />
+        </div>
+
+        <div className="absolute -top-6 -right-6 w-32 h-32 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-full blur-2xl opacity-60 animate-pulse"></div>
+        <div
+          className="absolute -bottom-6 -left-6 w-40 h-40 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full blur-2xl opacity-60 animate-pulse"
+          style={{ animationDelay: "1s" }}
+        ></div>
+      </div>
+
+      {/* TEXT CONTENT */}
+      <div className="order-3 lg:order-1">
+        {/* Badge for desktop */}
+        <div className="hidden lg:inline-flex items-center space-x-2 px-4 py-2 bg-gradient-to-r from-blue-50 to-cyan-50 rounded-full mb-6">
+          <Heart className="w-4 h-4 text-blue-600" />
+          <span className="text-sm font-semibold text-blue-600">
+            About Us
+          </span>
+        </div>
+
+        <h2
+          className="text-5xl font-bold text-gray-900 mb-6 leading-tight"
+          style={{ fontFamily: "var(--font-poppins)" }}
+        >
+          We Believe That Every{" "}
+          <span className="text-gradient">Smile Deserves</span> The Best
+          Care Possible
+        </h2>
+
+        <p className="text-xl text-gray-600 mb-8 leading-relaxed">
+          We shine with expert dentists, modern technology, and a gentle
+          approach. We deliver care that's as comfortable as it is
+          effective. From routine check-ups to advanced treatments, we put
+          your needs first.
+        </p>
+
+        <div className="space-y-4">
                 <div className="flex items-start space-x-4 p-4 bg-gradient-to-r from-blue-50 to-transparent rounded-xl hover:from-blue-100 transition-colors">
                   <div className="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center flex-shrink-0">
                     <Users className="w-6 h-6 text-white" />
@@ -388,26 +410,15 @@ export default function HomePage() {
                   </div>
                 </div>
               </div>
-            </div>
+      </div>
 
-            <div className="relative">
-              <div className="aspect-[4/5] rounded-3xl overflow-hidden shadow-2xl border-8 border-white hover-lift">
-                <img
-                  src="/choose-1.jpg"
-                  alt="Modern dental clinic"
-                  className="w-full h-full object-cover"
-                />
-              </div>
+    </div>
+  </div>
+</section>
 
-              <div className="absolute -top-6 -right-6 w-32 h-32 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-full blur-2xl opacity-60 animate-pulse"></div>
-              <div
-                className="absolute -bottom-6 -left-6 w-40 h-40 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full blur-2xl opacity-60 animate-pulse"
-                style={{ animationDelay: "1s" }}
-              ></div>
-            </div>
-          </div>
-        </div>
-      </section>
+
+
+      
 
       <section className="py-2 px-4 sm:px-6 lg:px-8 bg-white relative overflow-hidden">
         <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-br from-blue-100 to-cyan-100 rounded-full blur-3xl opacity-50"></div>

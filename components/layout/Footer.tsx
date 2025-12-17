@@ -28,11 +28,14 @@ export default function Footer() {
           {/* About Section */}
           <div>
             <div className="flex items-center space-x-3 mb-4">
-              <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-lg flex items-center justify-center text-white font-bold shadow-lg">
-                SDC
-              </div>
-              <span className="text-white font-bold text-lg">SHREE DENTAL CLINIC</span>
-            </div>
+  <img
+    src="/logo.png"
+    alt="Shree Dental Clinic Logo"
+    className="w-40 h-20 object-contain"
+  />
+</div>
+
+
             <p className="text-sm text-gray-400 leading-relaxed mb-4">
               For over 8 years, trusted name in family dental care. We combine state-of-the-art technology with
               compassionate, patient-centered approach in Kestopur, Kolkata.
@@ -152,12 +155,12 @@ export default function Footer() {
               {currentYear} SHREE DENTAL CLINIC. All rights reserved.
             </p>
             <div className="flex space-x-6 text-sm text-gray-500">
-              <Link href="/privacy" className="hover:text-blue-400 transition-colors">
+              <p className="hover:text-blue-400 transition-colors">
                 Privacy Policy
-              </Link>
-              <Link href="/terms" className="hover:text-blue-400 transition-colors">
+              </p>
+              <p className="hover:text-blue-400 transition-colors">
                 Terms of Service
-              </Link>
+              </p>
             </div>
           </div>
         </div>
