@@ -18,7 +18,6 @@ export default function ServicesPage() {
         "Minimally invasive cosmetic techniques",
         "Natural-looking results",
       ],
-    
     },
     {
       title: "Root Canal Treatment (R.C.T.)",
@@ -32,7 +31,6 @@ export default function ServicesPage() {
         "Pain-free procedures",
         "High success rate",
       ],
-    
     },
     {
       title: "Restoration (Tooth Fillings)",
@@ -45,7 +43,6 @@ export default function ServicesPage() {
         "Color matching",
         "Conservative preparation",
       ],
-      
     },
     {
       title: "Teeth Cleaning (Scaling)",
@@ -58,7 +55,6 @@ export default function ServicesPage() {
         "Gum disease prevention",
         "Stain removal",
       ],
-      
     },
     {
       title: "Teeth Polishing",
@@ -66,7 +62,6 @@ export default function ServicesPage() {
       description:
         "Polishing smooths tooth surfaces, removes stains, and gives a glossy finish after scaling.",
       features: ["Stain removal", "Smooth finish", "Bright appearance"],
-      
     },
     {
       title: "Orthodontic Treatment",
@@ -79,7 +74,6 @@ export default function ServicesPage() {
         "Customized plans",
         "Retention included",
       ],
-    
     },
     {
       title: "Dental Crowns",
@@ -87,7 +81,6 @@ export default function ServicesPage() {
       description:
         "Strong, natural-looking crowns restore damaged or weak teeth with long-term durability.",
       features: ["Zirconia crowns", "Color matched", "CAD/CAM design"],
-    
     },
     {
       title: "Dental Bridges",
@@ -99,7 +92,6 @@ export default function ServicesPage() {
         "Shade matching",
         "Improved chewing",
       ],
-      
     },
     {
       title: "Dentures (Full & Partial)",
@@ -107,7 +99,6 @@ export default function ServicesPage() {
       description:
         "Comfortable full and partial dentures to restore chewing, speech, and smile aesthetics.",
       features: ["Custom-fit", "Flexible partials", "Repairs & relining"],
-      
     },
     {
       title: "Dental Implants",
@@ -119,7 +110,6 @@ export default function ServicesPage() {
         "Single & full arch",
         "Long-term durability",
       ],
-      
     },
     {
       title: "Teeth Whitening",
@@ -132,7 +122,6 @@ export default function ServicesPage() {
         "Laser whitening",
         "Instant results",
       ],
-      
     },
     {
       title: "Post and Core Treatment",
@@ -140,16 +129,14 @@ export default function ServicesPage() {
       description:
         "Strengthens and rebuilds teeth with major structure loss after RCT to support a crown.",
       features: ["Fiber post", "Metal post", "Core buildup"],
-      
     },
   ];
 
   return (
-    <div className="min-h-screen">
-
+    <div className="min-h-screen overflow-x-hidden">
       {/* ---------------- HERO SECTION ---------------- */}
-      <section className="pt-32 pb-16 px-4 sm:px-6 lg:px-8 bg-blue-50">
-        <div className="max-w-7xl mx-auto text-center">
+      <section className="pt-28 pb-16 px-4 bg-blue-50 overflow-x-hidden">
+        <div className="max-w-7xl mx-auto text-center w-full px-2">
           <h1 className="text-5xl font-bold text-gray-900 mb-6">
             Comprehensive Dental Services
           </h1>
@@ -173,92 +160,91 @@ export default function ServicesPage() {
 
       {/* ---------------- SERVICE GRID ---------------- */}
       <section className="py-20 px-4 sm:px-6 lg:px-8 bg-white">
-        <div className="max-w-7xl mx-auto grid md:grid-cols-2 lg:grid-cols-3 gap-10">
-
-          {services.map((service, index) => (
-           <Card
-  key={index}
-  className="
-    relative overflow-hidden rounded-2xl border border-gray-100 bg-white
-    p-0 shadow-md transition-transform duration-300 will-change-transform
-    hover:-translate-y-3 hover:scale-[1.01] hover:shadow-2xl
-    group
-  "
->
-  {/* Gradient burst (appears on hover) */}
-  <div
-    aria-hidden="true"
-    className="
+        <div
+          className="
+  max-w-7xl mx-auto 
+  grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 
+  gap-8 
+  px-2 sm:px-0
+"
+        >
+          {services.map((service) => (
+            <Card
+              key={service.title}
+              className="
+      relative overflow-hidden rounded-2xl border border-gray-100 bg-white
+      p-0 shadow-md transition-transform duration-300
+      hover:-translate-y-3 hover:shadow-2xl
+      group w-full max-w-full
+    "
+            >
+              {/* Gradient burst (appears on hover) */}
+              <div
+                aria-hidden="true"
+                className="
       absolute -z-10 inset-0 opacity-0 transform scale-95
       bg-gradient-to-br from-blue-50 via-white to-cyan-50
       group-hover:opacity-100 group-hover:scale-100
       transition-all duration-500
     "
-  />
+              />
 
-  {/* FULL-WIDTH TOP IMAGE — zoom on hover */}
-  <div className="w-full h-52 overflow-hidden">
-    {/* eslint-disable-next-line @next/next/no-img-element */}
-    <img
-      src={service.image}
-      alt={service.title}
-      className="
-        w-full h-full object-cover transform transition-transform duration-700
-        group-hover:scale-105
-      "
-      loading="lazy"
-    />
-  </div>
+              {/* FULL-WIDTH TOP IMAGE — zoom on hover */}
+              <div className="w-full h-52 overflow-hidden">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={service.image}
+                  alt={service.title}
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  loading="lazy"
+                />
+              </div>
 
-  {/* CONTENT */}
-  <div className="p-6 bg-white/90 transition-colors duration-400 group-hover:bg-white/95">
-    <h3
-      className="text-2xl font-bold text-gray-900 mb-2 transition-colors duration-300"
-      style={{ fontFamily: "var(--font-poppins)" }}
-    >
-      {service.title}
-    </h3>
+              {/* CONTENT */}
+              <div className="p-6 bg-white/90 transition-colors duration-400 group-hover:bg-white/95">
+                <h3
+                  className="text-2xl font-bold text-gray-900 mb-2 transition-colors duration-300"
+                  style={{ fontFamily: "var(--font-poppins)" }}
+                >
+                  {service.title}
+                </h3>
 
-    <p className="text-gray-600 text-sm mb-4 transition-colors duration-300 group-hover:text-gray-700">
-      {service.description}
-    </p>
+                <p className="text-gray-600 text-sm mb-4 transition-colors duration-300 group-hover:text-gray-700">
+                  {service.description}
+                </p>
 
-    <ul className="space-y-2 mb-4">
-      {service.features.map((feature, idx) => (
-        <li
-          key={idx}
-          className="
+                <ul className="space-y-2 mb-4">
+                  {service.features.map((feature, idx) => (
+                    <li
+                      key={idx}
+                      className="
             flex gap-2 text-sm text-gray-700 items-start
             transition-colors duration-300 group-hover:text-gray-800
           "
-        >
-          <span className="text-green-600 mt-0.5">✔</span>
-          <span>{feature}</span>
-        </li>
-      ))}
-    </ul>
+                    >
+                      <span className="text-green-600 mt-0.5">✔</span>
+                      <span>{feature}</span>
+                    </li>
+                  ))}
+                </ul>
 
-    <div className="flex items-center justify-between pt-3 border-t border-gray-100">
-      <p className="text-blue-600 font-semibold text-lg transition-colors duration-300 group-hover:text-blue-700">
-      
-      </p>
+                <div className="flex items-center justify-between pt-3 border-t border-gray-100">
+                  <p className="text-blue-600 font-semibold text-lg transition-colors duration-300 group-hover:text-blue-700"></p>
 
-      <Link
-        href="/contact"
-        className="
+                  <Link
+                    href="/contact"
+                    className="
           inline-flex items-center px-4 py-2 rounded-md text-sm font-semibold
           bg-blue-600 text-white shadow-sm transition-all duration-300
           hover:bg-blue-700 active:translate-y-[1px]
         "
-      >
-        Book Now
-      </Link>
-    </div>
-  </div>
-</Card>
-
+                  >
+                    Book Now
+                  </Link>
+                </div>
+              </div>
+            </Card>
           ))}
-
         </div>
       </section>
 
@@ -283,28 +269,27 @@ export default function ServicesPage() {
         </h2>
         <p className="text-xl mb-8">Get a FREE consultation today.</p>
 
-       <div className="flex flex-col sm:flex-row gap-4 justify-center">
-
-  {/* Primary Button */}
-  <Button
-    asChild
-    size="lg"
-    className="
+        <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+          {/* Primary Button */}
+          <Button
+            asChild
+            size="lg"
+            className="
       bg-white text-blue-600 font-semibold
       px-8 py-6 text-lg rounded-xl
       shadow-md hover:shadow-lg
       transition-all duration-300
       hover:bg-gray-100 active:scale-95
     "
-  >
-    <Link href="/contact">Free Consultation</Link>
-  </Button>
+          >
+            <Link href="/contact">Free Consultation</Link>
+          </Button>
 
-  {/* Secondary Button */}
-  <Button
-    asChild
-    size="lg"
-    className="
+          {/* Secondary Button */}
+          <Button
+            asChild
+            size="lg"
+            className="
       border-2 border-white text-white font-semibold
       px-8 py-6 text-lg rounded-xl
       bg-white/10 backdrop-blur-sm
@@ -312,17 +297,14 @@ export default function ServicesPage() {
       active:scale-95
       transition-all duration-300
     "
-  >
-    <a href="tel:+919471373777" className="flex items-center">
-      <Phone className="w-5 h-5 mr-2" />
-      Call Now
-    </a>
-  </Button>
-
-</div>
-
+          >
+            <a href="tel:+919471373777" className="flex items-center">
+              <Phone className="w-5 h-5 mr-2" />
+              Call Now
+            </a>
+          </Button>
+        </div>
       </section>
-
     </div>
   );
 }
