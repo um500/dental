@@ -131,8 +131,13 @@ export default function DoctorPage() {
               </motion.div>
 
               {/* FLOATING AWARD */}
-              <div className="absolute top-3 right-3 sm:-top-4 sm:-right-4 z-10">
-                <div className="bg-gradient-to-br from-yellow-400 to-orange-500 rounded-2xl shadow-xl border-4 border-white p-4">
+              <div className="
+  absolute 
+  -top-6 right-4 
+  sm:-top-8 sm:-right-6 
+  z-10
+">
+                <div className="bg-gradient-to-br from-yellow-400 to-orange-500/90 backdrop-blur rounded-2xl shadow-xl border-4 border-white p-4">
                   <Award className="w-10 h-10 text-white mx-auto mb-1" />
                   <p className="text-white font-bold text-sm text-center">
                     Best Dental Care <br /> 2024
@@ -159,7 +164,7 @@ export default function DoctorPage() {
 
               <motion.h1
                 variants={slideLeft}
-                className="text-4xl sm:text-5xl font-extrabold text-gray-900"
+                className="text-5xl sm:text-5xl font-extrabold text-gray-900"
               >
                 Where Your Smile is Our Top Priority
               </motion.h1>

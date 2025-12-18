@@ -17,7 +17,10 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  // route change par menu close
   useEffect(() => setIsOpen(false), [pathname]);
+
+  // body scroll lock
   useEffect(() => {
     document.body.style.overflow = isOpen ? "hidden" : "unset";
   }, [isOpen]);
@@ -34,28 +37,28 @@ export default function Navbar() {
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled
-          ? "bg-white/80 backdrop-blur-xl shadow-lg border-b border-gray-200"
+          ? "bg-white/90 backdrop-blur-xl shadow-lg border-b"
           : "bg-[#eaf6ff]"
       }`}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16 sm:h-20">
-          {/* LOGO PART — DO NOT TOUCH */}
-          <Link href="/" className="flex items-center space-x-3 flex-shrink-0">
-            <span className="relative w-28 h-10 sm:w-36 sm:h-14 block">
+      {/* TOP BAR */}
+      <div className="max-w-7xl mx-auto px-4">
+        <div className="flex items-center justify-between h-16 sm:h-20">
+          {/* LOGO */}
+          <Link href="/" className="flex items-center">
+            <div className="relative w-28 h-10 sm:w-36 sm:h-14">
               <Image
                 src="/logo.png"
-                alt="Shree Dental Clinic Logo"
+                alt="Shree Dental Clinic"
                 fill
-                sizes="144px"
                 className="object-contain"
                 priority
               />
-            </span>
+            </div>
           </Link>
 
-          {/* DESKTOP NAV — improved text size & style */}
-          <div className="hidden lg:flex items-center space-x-2">
+          {/* DESKTOP MENU */}
+          <div className="hidden lg:flex items-center space-x-1">
             {navigation.map((item) => {
               const active = pathname === item.href;
 
@@ -63,105 +66,85 @@ export default function Navbar() {
                 <Link
                   key={item.name}
                   href={item.href}
-                  className={`relative px-4 py-2 rounded-lg transition-all duration-200 group ${
-                    active ? "text-white" : "text-slate-800"
+                  className={`relative px-3 py-2 rounded-lg font-semibold transition-all duration-200 ${
+                    active
+                      ? "bg-blue-600 text-white"
+                      : "text-slate-800 hover:bg-blue-100"
                   }`}
                 >
-                  {/* Highlight pill */}
-                  {active && (
-                    <span className="absolute inset-0 rounded-lg bg-gradient-to-r from-blue-500 to-indigo-500 shadow-lg -z-10"></span>
-                  )}
-
-                  <span className="text-lg font-semibold">{item.name}</span>
-
-                  {/* Hover underline */}
-                  {!active && (
-                    <span className="absolute left-1/2 -translate-x-1/2 -bottom-[3px] w-0 h-[2px] bg-blue-600 rounded-full transition-all duration-300 group-hover:w-10"></span>
-                  )}
+                  {item.name}
                 </Link>
               );
             })}
           </div>
 
-          {/* Desktop Actions */}
-          <div className="hidden lg:flex items-center space-x-4">
-            {/* CALL BUTTON */}
-            <a
-              href="tel:+919471373777"
-              className="group flex items-center gap-2 px-4 py-2 rounded-md 
-               bg-gradient-to-r from-blue-500 to-indigo-500 
-               border border-gray-200 shadow-sm
-               transition-all duration-300 
-               hover:bg-[#e0f7ff] hover:border-teal-300 hover:shadow-md"
-            >
-              <Phone className="w-4 h-4 text-white transition-colors duration-300 " />
-              <span className="font-semibold text-white transition-colors duration-300 ">
-                +91 9471373777
-              </span>
-            </a>
-
-            {/* BOOK NOW BUTTON */}
+          {/* DESKTOP CTA */}
+          <div className="hidden lg:flex">
             <Link
               href="/contact"
-              className="group flex items-center gap-2 px-4 py-2 rounded-md 
-               bg-gradient-to-r from-blue-500 to-indigo-500 
-               border border-gray-200 shadow-sm
-               transition-all duration-300 
-               hover:bg-[#e0f7ff] hover:border-teal-300 hover:shadow-md"
+              className="px-4 py-2 rounded-md bg-blue-600 text-white font-semibold"
             >
-              <span className="font-semibold text-white transition-colors duration-300 ">
-                Book Now
-              </span>
+              Book Now
             </Link>
           </div>
 
-          {/* Mobile menu button */}
+          {/* MOBILE BURGER (ONLY BURGER HERE) */}
           <button
-            onClick={() => setIsOpen((s) => !s)}
-            className="lg:hidden p-2.5 rounded-md text-slate-700 hover:bg-white/40"
+            onClick={() => setIsOpen(true)}
+            className="lg:hidden p-2 rounded-md bg-white border shadow-md"
+            aria-label="Open menu"
           >
-            {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            <Menu className="w-6 h-6 stroke-[3]" />
           </button>
         </div>
       </div>
 
-      {/* MOBILE MENU */}
+      {/* ================= MOBILE MENU ================= */}
       {isOpen && (
-        <div className="lg:hidden fixed inset-0 bg-black/20 backdrop-blur-sm z-40">
-          <div className="absolute top-16 left-0 right-0 bg-white rounded-b-2xl shadow-xl px-6 py-6 space-y-4">
-            {navigation.map((item) => {
-              const active = pathname === item.href;
+        <div className="lg:hidden fixed inset-0 z-50">
+          {/* DARK OVERLAY */}
+          <div
+            className="absolute inset-0 bg-black/30"
+            onClick={() => setIsOpen(false)}
+          />
 
-              return (
-                <Link
-                  key={item.name}
-                  href={item.href}
-                  onClick={() => setIsOpen(false)}
-                  className={`block px-4 py-3 rounded-lg ${
-                    active
-                      ? "bg-gradient-to-r from-blue-500 to-indigo-500 text-white shadow-md"
-                      : "text-slate-800 hover:bg-slate-100"
-                  }`}
-                >
-                  <span className="text-xl font-semibold">{item.name}</span>
-                </Link>
-              );
-            })}
-
-            {/* Call */}
-            <a
-              href="tel:+919471373777"
-              className="flex items-center gap-3 px-4 py-3 rounded-lg bg-white shadow-sm text-slate-800 border border-gray-200"
+          {/* MENU PANEL */}
+          <div className="absolute top-0 left-0 right-0 bg-white rounded-b-2xl shadow-2xl px-6 py-6 relative">
+            {/* ✅ CLOSE BUTTON (ONLY WHEN MENU OPEN) */}
+            <button
+              onClick={() => setIsOpen(false)}
+              className="absolute top-4 right-4 p-2 rounded-full bg-white border shadow-lg"
+              aria-label="Close menu"
             >
-              <Phone className="w-5 h-5" />
-              <span className="font-semibold">+91 9471373777</span>
-            </a>
+              <X className="w-6 h-6 stroke-[3]" />
+            </button>
+
+            {/* MENU ITEMS */}
+            <div className="mt-8 space-y-3">
+              {navigation.map((item) => {
+                const active = pathname === item.href;
+                return (
+                  <Link
+                    key={item.name}
+                    href={item.href}
+                    onClick={() => setIsOpen(false)}
+                    className={`block px-4 py-3 rounded-lg text-lg font-semibold ${
+                      active
+                        ? "bg-blue-600 text-white"
+                        : "text-slate-800 hover:bg-slate-100"
+                    }`}
+                  >
+                    {item.name}
+                  </Link>
+                );
+              })}
+            </div>
 
             {/* CTA */}
             <Link
               href="/contact"
-              className="block w-full text-center py-3 rounded-lg bg-slate-900 text-white font-semibold text-lg"
               onClick={() => setIsOpen(false)}
+              className="block mt-4 text-center py-3 rounded-lg bg-slate-900 text-white font-semibold"
             >
               Book Appointment
             </Link>

@@ -20,6 +20,7 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { ReviewsSlider } from "@/components/ui/reviews-slider";
 
+
 export default function HomePage() {
   const [reviews, setReviews] = useState([]);
   const [averageRating, setAverageRating] = useState(4.9);
@@ -68,43 +69,44 @@ export default function HomePage() {
   }, []);
 
   const services = [
-    {
-      title: "Root Canal Treatment",
-      description: "Advanced endodontic treatment to save your natural teeth",
-      icon: "🦷",
-      gradient: "from-blue-500 to-cyan-500",
-    },
-    {
-      title: "Dental Implants",
-      description: "Permanent solution for missing teeth with natural look",
-      icon: "⚕️",
-      gradient: "from-purple-500 to-pink-500",
-    },
-    {
-      title: "Orthodontic Braces",
-      description: "Straighten your teeth for a perfect smile",
-      icon: "😁",
-      gradient: "from-orange-500 to-red-500",
-    },
-    {
-      title: "Teeth Cleaning",
-      description: "Professional cleaning and scaling for oral health",
-      icon: "✨",
-      gradient: "from-green-500 to-emerald-500",
-    },
-    {
-      title: "Crown & Bridge",
-      description: "Restore damaged teeth with custom prosthetics",
-      icon: "👑",
-      gradient: "from-yellow-500 to-orange-500",
-    },
-    {
-      title: "Tooth Extraction",
-      description: "Safe and painless tooth removal procedures",
-      icon: "🔧",
-      gradient: "from-indigo-500 to-purple-500",
-    },
-  ];
+  {
+    title: "Root Canal Treatment",
+    description: "Advanced endodontic treatment to save your natural teeth",
+    image: "/rct final.png",
+    gradient: "from-blue-500 to-cyan-500",
+  },
+  {
+    title: "Dental Implants",
+    description: "Permanent solution for missing teeth with natural look",
+    image: "/Dental implants,.png",
+    gradient: "from-purple-500 to-pink-500",
+  },
+  {
+    title: "Orthodontic Braces",
+    description: "Straighten your teeth for a perfect smile",
+    image: "/Orthodontic Treatment.png",
+    gradient: "from-orange-500 to-red-500",
+  },
+  {
+    title: "Teeth Cleaning",
+    description: "Professional cleaning and scaling for oral health",
+    image: "/Teeth Cleaning (Scaling),.png",
+    gradient: "from-green-500 to-emerald-500",
+  },
+  {
+    title: "Crown & Bridge",
+    description: "Restore damaged teeth with custom prosthetics",
+    image: "/Bridges.jpg",
+    gradient: "from-yellow-500 to-orange-500",
+  },
+  {
+    title: "Tooth Extraction",
+    description: "Safe and painless tooth removal procedures",
+    image: "/ext.png",
+    gradient: "from-indigo-500 to-purple-500",
+  },
+];
+
 
   const features = [
     {
@@ -481,115 +483,113 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-gray-50 to-blue-50 relative overflow-hidden">
-        <div className="max-w-7xl mx-auto relative z-10">
-          <div className="text-center mb-16">
-            <div className="inline-flex items-center space-x-2 px-4 py-2 bg-white rounded-full mb-4 shadow-md">
-              <Sparkles className="w-4 h-4 text-blue-600" />
-              <span className="text-sm font-semibold text-blue-600">
-                Our Services
-              </span>
-            </div>
-            <h2
-              className="text-5xl font-bold text-gray-900 mb-4"
+     <section className="py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-gray-50 to-blue-50 relative overflow-hidden">
+  <div className="max-w-7xl mx-auto relative z-10">
+
+    {/* Heading */}
+    <div className="text-center mb-16">
+      <div className="inline-flex items-center space-x-2 px-4 py-2 bg-white rounded-full mb-4 shadow-md">
+        <Sparkles className="w-4 h-4 text-blue-600" />
+        <span className="text-sm font-semibold text-blue-600">
+          Our Services
+        </span>
+      </div>
+
+      <h2
+        className="text-5xl font-bold text-gray-900 mb-4"
+        style={{ fontFamily: "var(--font-poppins)" }}
+      >
+        Our Dental Services
+      </h2>
+
+      <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+        Comprehensive dental care for all your oral health needs
+      </p>
+    </div>
+
+    {/* Cards */}
+    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {services.map((service, index) => (
+        <Card
+          key={index}
+          className="
+            border-2 border-white bg-white rounded-2xl overflow-hidden relative group
+            transform transition-all duration-400
+            hover:-translate-y-3 hover:shadow-2xl
+          "
+        >
+
+          {/* IMAGE TOP */}
+          <div className="relative h-48 w-full overflow-hidden">
+            <img
+              src={service.image}
+              alt={service.title}
+              className="
+                h-full w-full object-cover
+                transition-transform duration-500
+                group-hover:scale-110
+              "
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
+          </div>
+
+          {/* CONTENT */}
+          <div className="relative z-10 p-8">
+
+            {/* 🔥 HOLO EFFECT — CARD BOTTOM CORNER */}
+            <div
+              aria-hidden="true"
+              className={`
+                absolute -bottom-10 -right-10 w-44 h-44 rounded-full
+                bg-gradient-to-br ${service.gradient}
+                opacity-20 blur-2xl
+                transition-all duration-500
+                group-hover:opacity-70 group-hover:scale-125
+                pointer-events-none
+              `}
+            />
+
+            <h3
+              className="relative text-2xl font-bold text-gray-900 mb-3"
               style={{ fontFamily: "var(--font-poppins)" }}
             >
-              Our Dental Services
-            </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto text-balance">
-              Comprehensive dental care for all your oral health needs
+              {service.title}
+              <span
+                className="block h-0.5 bg-blue-400 rounded-full mt-3 w-10 transition-all duration-400 group-hover:w-20"
+              />
+            </h3>
+
+            <p className="text-gray-600 mb-5 leading-relaxed">
+              {service.description}
             </p>
-          </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {services.map((service, index) => (
-              <Card
-                key={index}
-                className="
-    p-8 border-2 border-white bg-white rounded-2xl group overflow-hidden relative
-    transform transition-all duration-400 will-change-transform
-    hover:-translate-y-3 hover:scale-[1.01] hover:shadow-2xl
-  "
-              >
-                {/* Gradient burst (subtle) */}
-                <div
-                  aria-hidden="true"
-                  className={`
-      absolute -top-6 -right-6 w-44 h-44 rounded-full
-      bg-gradient-to-br ${service.gradient}
-      opacity-10 blur-2xl transform transition-all duration-500
-      group-hover:opacity-80 group-hover:scale-125
-      pointer-events-none
-    `}
-                />
-
-                {/* Decorative diagonal light bar */}
-                <div
-                  aria-hidden="true"
-                  className="absolute left-0 top-0 h-full w-0.5 bg-gradient-to-b from-white/30 to-transparent opacity-0 group-hover:opacity-60 transition-opacity duration-400"
-                />
-
-                <div className="relative z-10">
-                  {/* Icon with pop + halo on hover */}
-                  <div
-                    className="
-        w-20 h-20 rounded-2xl flex items-center justify-center mb-5
-        bg-white/60 ring-1 ring-white/30 backdrop-blur-sm
-        transition-all duration-400 transform
-        group-hover:scale-110 group-hover:rotate-3
-        shadow-sm
-      "
-                  >
-                    <div className="relative">
-                      <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-30 transition-opacity duration-500" />
-                      <div className="text-5xl">{service.icon}</div>
-                    </div>
-                  </div>
-
-                  <h3
-                    className="text-2xl font-bold text-gray-900 mb-3 relative"
-                    style={{ fontFamily: "var(--font-poppins)" }}
-                  >
-                    {service.title}
-                    {/* underline grow on hover */}
-                    <span
-                      className="block h-0.5 bg-blue-400 rounded-full mt-3 w-10 transition-all duration-400 group-hover:w-20"
-                      aria-hidden="true"
-                    />
-                  </h3>
-
-                  <p className="text-gray-600 mb-5 leading-relaxed transition-colors duration-300 group-hover:text-gray-700">
-                    {service.description}
-                  </p>
-
-                  <Link
-                    href="/services"
-                    className="
-        inline-flex items-center text-blue-600 hover:text-blue-700 font-semibold text-sm
-        group transition-all duration-300
-      "
-                    aria-label={`Learn more about ${service.title}`}
-                  >
-                    Learn More
-                    <ArrowRight className="w-4 h-4 ml-1 transition-transform duration-300 transform group-hover:translate-x-2" />
-                  </Link>
-                </div>
-              </Card>
-            ))}
-          </div>
-
-          <div className="text-center mt-12">
-            <Button
-              asChild
-              size="lg"
-              variant="outline"
-              className="border-2 border-gray-300 hover:border-blue-500 hover:text-blue-600 hover:bg-white bg-white shadow-lg font-semibold h-12 px-8"
+            <Link
+              href="/services"
+              className="inline-flex items-center text-blue-600 hover:text-blue-700 font-semibold text-sm"
             >
-              <Link href="/services">View All Services</Link>
-            </Button>
+              Learn More
+              <ArrowRight className="w-4 h-4 ml-1 transition-transform duration-300 group-hover:translate-x-2" />
+            </Link>
           </div>
-        </div>
-      </section>
+        </Card>
+      ))}
+    </div>
+
+    {/* Button */}
+    <div className="text-center mt-12">
+      <Button
+        asChild
+        size="lg"
+        variant="outline"
+        className="border-2 border-gray-300 hover:border-blue-500 hover:text-blue-600 bg-white shadow-lg font-semibold h-12 px-8"
+      >
+        <Link href="/services">View All Services</Link>
+      </Button>
+    </div>
+  </div>
+</section>
+
+
 
       <section className="py-24 px-4 sm:px-6 lg:px-8 bg-white">
         <div className="max-w-7xl mx-auto">

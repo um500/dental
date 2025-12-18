@@ -137,7 +137,7 @@ export default function ServicesPage() {
       {/* ---------------- HERO SECTION ---------------- */}
       <section className="pt-28 pb-16 px-4 bg-blue-50 overflow-x-hidden">
         <div className="max-w-7xl mx-auto text-center w-full px-2">
-          <h1 className="text-4xl font-bold text-gray-900 mb-6">
+          <h1 className="text-5xl font-bold text-gray-900 mb-6">
             Comprehensive Dental Services
           </h1>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-8">
