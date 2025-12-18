@@ -335,12 +335,16 @@ export default function ReviewsPage() {
   }, []);
 
   /* 🔹 REAL AUTO SCROLL (NO CSS JANK) */
+/* 🔹 REAL AUTO SCROLL (MOBILE + DESKTOP OPTIMIZED) */
 useEffect(() => {
   const container = scrollRef.current;
   if (!container) return;
 
   let rafId: number;
-  const speed = 2; // ✅ yahin 2 set kar diya
+
+  // ✅ device based speed
+  const isMobile = window.innerWidth < 768;
+  const speed = isMobile ? 4 : 2; // 🔥 mobile fast, desktop smooth
 
   const step = () => {
     if (!paused) {
@@ -350,8 +354,8 @@ useEffect(() => {
       ) {
         container.scrollTop += speed;
       } else {
-        cancelAnimationFrame(rafId); // last pe ruk jao
-        return;
+        // 🔁 last pe jaakar upar se phir start
+        container.scrollTop = 0;
       }
     }
     rafId = requestAnimationFrame(step);
@@ -361,6 +365,7 @@ useEffect(() => {
 
   return () => cancelAnimationFrame(rafId);
 }, [paused, data.google.latest_reviews]);
+
 
 
   return (
