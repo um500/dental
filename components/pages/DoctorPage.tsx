@@ -263,76 +263,78 @@ export default function DoctorPage() {
         </div>
       </section>
 
-      {/* Qualifications & Specializations */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-gray-50 to-blue-50">
-        <div className="max-w-7xl mx-auto">
-          <motion.div
-            className="grid lg:grid-cols-2 gap-12"
-            initial="hidden"
-            whileInView="show"
-            viewport={{ once: true, amount: 0.25 }}
-            variants={container}
-          >
-            {/* Qualifications */}
-            <motion.div variants={slideLeft}>
-              <Card className="p-8 border-2 bg-white hover:shadow-xl transition-shadow">
-                <div className="flex items-center space-x-3 mb-6">
-                  <div className="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center">
-                    <GraduationCap className="w-6 h-6 text-blue-600" />
-                  </div>
-                  <h2 className="text-3xl font-bold text-gray-900">
-                    Qualifications
-                  </h2>
-                </div>
-                <ul className="space-y-4">
-                  {qualifications.map((qual, index) => (
-                    <li key={index} className="flex items-start space-x-3">
-                      <motion.span
-                        initial={{ scale: 0.8, opacity: 0 }}
-                        animate={{ scale: 1, opacity: 1 }}
-                        transition={{ delay: 0.06 * index }}
-                        className="text-green-600 font-bold text-xl flex-shrink-0"
-                      >
-                        ✓
-                      </motion.span>
-                      <span className="text-gray-700 text-lg">{qual}</span>
-                    </li>
-                  ))}
-                </ul>
-              </Card>
-            </motion.div>
+    {/* Qualifications & Specializations */}
+<section className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-gray-50 to-blue-50">
+  <div className="max-w-7xl mx-auto">
+    <motion.div
+      className="grid grid-cols-1 lg:grid-cols-2 gap-12"
+      initial="hidden"
+      animate="show"
+      variants={container}
+    >
+      {/* Qualifications */}
+      <motion.div variants={slideLeft} className="w-full">
+        <Card className="p-8 border-2 bg-white hover:shadow-xl transition-shadow w-full">
+          <div className="flex items-center space-x-3 mb-6">
+            <div className="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center">
+              <GraduationCap className="w-6 h-6 text-blue-600" />
+            </div>
+            <h2 className="text-3xl font-bold text-gray-900">
+              Qualifications
+            </h2>
+          </div>
 
-            {/* Specializations */}
-            <motion.div variants={slideRight}>
-              <Card className="p-8 border-2 bg-white hover:shadow-xl transition-shadow">
-                <div className="flex items-center space-x-3 mb-6">
-                  <div className="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center">
-                    <Briefcase className="w-6 h-6 text-blue-600" />
-                  </div>
-                  <h2 className="text-3xl font-bold text-gray-900">
-                    Specializations
-                  </h2>
-                </div>
-                <ul className="space-y-4">
-                  {specializations.map((spec, index) => (
-                    <li key={index} className="flex items-start space-x-3">
-                      <motion.span
-                        initial={{ x: -8, opacity: 0 }}
-                        animate={{ x: 0, opacity: 1 }}
-                        transition={{ delay: 0.04 * index }}
-                        className="text-blue-600 font-bold text-xl flex-shrink-0"
-                      >
-                        •
-                      </motion.span>
-                      <span className="text-gray-700 text-lg">{spec}</span>
-                    </li>
-                  ))}
-                </ul>
-              </Card>
-            </motion.div>
-          </motion.div>
-        </div>
-      </section>
+          <ul className="space-y-4">
+            {qualifications.map((qual, index) => (
+              <li key={qual} className="flex items-start space-x-3">
+                <motion.span
+                  initial={{ scale: 0.8, opacity: 0 }}
+                  animate={{ scale: 1, opacity: 1 }}
+                  transition={{ delay: 0.06 * index }}
+                  className="text-green-600 font-bold text-xl flex-shrink-0"
+                >
+                  ✓
+                </motion.span>
+                <span className="text-gray-700 text-lg">{qual}</span>
+              </li>
+            ))}
+          </ul>
+        </Card>
+      </motion.div>
+
+      {/* Specializations */}
+      <motion.div variants={slideRight} className="w-full">
+        <Card className="p-8 border-2 bg-white hover:shadow-xl transition-shadow w-full">
+          <div className="flex items-center space-x-3 mb-6">
+            <div className="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center">
+              <Briefcase className="w-6 h-6 text-blue-600" />
+            </div>
+            <h2 className="text-3xl font-bold text-gray-900">
+              Specializations
+            </h2>
+          </div>
+
+          <ul className="space-y-4">
+            {specializations.map((spec, index) => (
+              <li key={spec} className="flex items-start space-x-3">
+                <motion.span
+                  initial={{ x: -8, opacity: 0 }}
+                  animate={{ x: 0, opacity: 1 }}
+                  transition={{ delay: 0.04 * index }}
+                  className="text-blue-600 font-bold text-xl flex-shrink-0"
+                >
+                  •
+                </motion.span>
+                <span className="text-gray-700 text-lg">{spec}</span>
+              </li>
+            ))}
+          </ul>
+        </Card>
+      </motion.div>
+    </motion.div>
+  </div>
+</section>
+
 
       {/* Philosophy Section */}
       <section className="py-20 px-4 sm:px-6 lg:px-8 bg-white">
