@@ -169,81 +169,75 @@ export default function ServicesPage() {
 "
         >
           {services.map((service) => (
-            <Card
-              key={service.title}
-              className="
-      relative overflow-hidden rounded-2xl border border-gray-100 bg-white
-      p-0 shadow-md transition-transform duration-300
-      hover:-translate-y-3 hover:shadow-2xl
-      group w-full max-w-full
-    "
-            >
-              {/* Gradient burst (appears on hover) */}
-              <div
-                aria-hidden="true"
-                className="
-      absolute -z-10 inset-0 opacity-0 transform scale-95
-      bg-gradient-to-br from-blue-50 via-white to-cyan-50
-      group-hover:opacity-100 group-hover:scale-100
-      transition-all duration-500
-    "
-              />
+           <Card
+  key={service.title}
+  className="
+    relative overflow-hidden rounded-2xl border border-gray-100 bg-white
+    shadow-md transition-all duration-300
+    hover:-translate-y-3 hover:shadow-2xl
+    group w-full h-full flex flex-col
+  "
+>
+  {/* 1️⃣ IMAGE SECTION */}
+  <div className="w-full h-52 overflow-hidden">
+    {/* eslint-disable-next-line @next/next/no-img-element */}
+    <img
+      src={service.image}
+      alt={service.title}
+      loading="lazy"
+      className="
+        w-full h-full object-cover
+        transition-transform duration-700
+        group-hover:scale-105
+      "
+    />
+  </div>
 
-              {/* FULL-WIDTH TOP IMAGE — zoom on hover */}
-              <div className="w-full h-52 overflow-hidden">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src={service.image}
-                  alt={service.title}
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                  loading="lazy"
-                />
-              </div>
+  {/* 2️⃣ CONTENT SECTION */}
+  <div className="flex-1 p-6 bg-white/90 transition-colors duration-300 group-hover:bg-white">
+    <h3
+      className="text-2xl font-bold text-gray-900 mb-2"
+      style={{ fontFamily: "var(--font-poppins)" }}
+    >
+      {service.title}
+    </h3>
 
-              {/* CONTENT */}
-              <div className="p-6 bg-white/90 transition-colors duration-400 group-hover:bg-white/95">
-                <h3
-                  className="text-2xl font-bold text-gray-900 mb-2 transition-colors duration-300"
-                  style={{ fontFamily: "var(--font-poppins)" }}
-                >
-                  {service.title}
-                </h3>
+    <p className="text-gray-600 text-sm mb-4 group-hover:text-gray-700 transition-colors">
+      {service.description}
+    </p>
 
-                <p className="text-gray-600 text-sm mb-4 transition-colors duration-300 group-hover:text-gray-700">
-                  {service.description}
-                </p>
+    <ul className="space-y-2">
+      {service.features.map((feature, idx) => (
+        <li
+          key={idx}
+          className="flex gap-2 text-sm text-gray-700 items-start group-hover:text-gray-800 transition-colors"
+        >
+          <span className="text-green-600 mt-0.5">✔</span>
+          <span>{feature}</span>
+        </li>
+      ))}
+    </ul>
+  </div>
 
-                <ul className="space-y-2 mb-4">
-                  {service.features.map((feature, idx) => (
-                    <li
-                      key={idx}
-                      className="
-            flex gap-2 text-sm text-gray-700 items-start
-            transition-colors duration-300 group-hover:text-gray-800
-          "
-                    >
-                      <span className="text-green-600 mt-0.5">✔</span>
-                      <span>{feature}</span>
-                    </li>
-                  ))}
-                </ul>
+  {/* 3️⃣ BUTTON SECTION (ALWAYS BOTTOM RIGHT) */}
+  <div className="p-6 pt-0 mt-auto flex justify-end">
+    <Link
+      href="/contact"
+      className="
+        inline-flex items-center gap-2
+        px-5 py-2.5 rounded-lg
+        text-sm font-semibold
+        bg-blue-600 text-white shadow-md
+        hover:bg-blue-700 hover:shadow-lg
+        transition-all duration-300
+        active:translate-y-[1px]
+      "
+    >
+      Book Now
+    </Link>
+  </div>
+</Card>
 
-                <div className="flex items-center justify-between pt-3 border-t border-gray-100">
-                  <p className="text-blue-600 font-semibold text-lg transition-colors duration-300 group-hover:text-blue-700"></p>
-
-                  <Link
-                    href="/contact"
-                    className="
-          inline-flex items-center px-4 py-2 rounded-md text-sm font-semibold
-          bg-blue-600 text-white shadow-sm transition-all duration-300
-          hover:bg-blue-700 active:translate-y-[1px]
-        "
-                  >
-                    Book Now
-                  </Link>
-                </div>
-              </div>
-            </Card>
           ))}
         </div>
       </section>

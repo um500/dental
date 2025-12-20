@@ -171,7 +171,7 @@ export default function HomePage() {
                 <span className="text-gradient">Our Priority</span>
               </h1>
 
-              <p className="text-xl text-gray-600 mb-10 leading-relaxed text-pretty">
+              <p className="text-xl text-justify text-gray-600 mb-10 leading-relaxed text-pretty">
                 For over 8 years, SHREE DENTAL CLINIC has been the trusted name
                 in family dental care. We combine state-of-the-art technology
                 with a compassionate, patient-centered approach in Kestopur,
@@ -331,7 +331,7 @@ export default function HomePage() {
                 Care Possible
               </h2>
 
-              <p className="text-xl text-gray-600 mb-8 leading-relaxed">
+              <p className="text-xl text-justify text-gray-600 mb-8 leading-relaxed">
                 We shine with expert dentists, modern technology, and a gentle
                 approach. We deliver care that's as comfortable as it is
                 effective. From routine check-ups to advanced treatments, we put
