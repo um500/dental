@@ -137,7 +137,7 @@ export default function ServicesPage() {
       {/* ---------------- HERO SECTION ---------------- */}
       <section className="pt-28 pb-16 px-4 bg-blue-50 overflow-x-hidden">
         <div className="max-w-7xl mx-auto text-center w-full px-2">
-          <h1 className="text-4xl font-bold text-gray-900 mb-6">
+          <h1 className="text-4xl font-bold text-gray-900 mb-6 select-none">
             Comprehensive Care for Every Smile
           </h1>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-8">
@@ -250,7 +250,7 @@ export default function ServicesPage() {
 
       {/* ---------------- EMERGENCY SECTION ---------------- */}
       <section className="py-16 px-4 bg-red-50 text-center">
-        <h2 className="text-3xl font-bold mb-4">Emergency Dental Care</h2>
+        <h2 className="text-3xl font-bold mb-4 select-none">Emergency Dental Care</h2>
         <p className="text-lg text-gray-700 mb-6">
           Severe toothache or broken tooth? We provide SAME-DAY emergency care.
         </p>
@@ -264,7 +264,7 @@ export default function ServicesPage() {
 
       {/* ---------------- CTA SECTION ---------------- */}
       <section className="py-20 px-4 bg-gradient-to-br from-blue-600 to-cyan-600 text-white text-center">
-        <h2 className="text-4xl font-bold mb-6">
+        <h2 className="text-4xl font-bold mb-6 select-none">
           Not Sure Which Treatment You Need?
         </h2>
         <p className="text-xl mb-8">Get a FREE consultation today.</p>

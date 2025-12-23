@@ -108,7 +108,7 @@ export default function ReviewsPage() {
       {/* ---------- HERO ---------- */}
       <section className="pt-32 pb-16 px-4">
   <div className="max-w-7xl mx-auto text-center">
-    <h1 className="text-4xl font-bold mb-6">
+    <h1 className="text-4xl font-bold mb-6 select-none">
       Patient Reviews & Testimonials
     </h1>
 

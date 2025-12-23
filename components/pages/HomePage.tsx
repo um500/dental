@@ -160,7 +160,7 @@ export default function HomePage() {
               </div>
 
               <h1
-                className="text-4xl lg:text-4xl font-bold text-gray-900 mb-6 leading-tight text-balance"
+                className="text-4xl select-none lg:text-4xl font-bold text-gray-900 mb-6 leading-tight text-balance"
                 style={{ fontFamily: "var(--font-poppins)" }}
               >
                 Where Your Smile is{" "}
@@ -280,7 +280,7 @@ export default function HomePage() {
               </div>
 
               <h2
-                className="text-4xl font-bold text-gray-900 mb-6 leading-tight"
+                className="text-4xl font-bold text-gray-900 mb-6 leading-tight select-none"
                 style={{ fontFamily: "var(--font-poppins)" }}
               >
                 We Believe That Every{" "}
@@ -388,7 +388,7 @@ export default function HomePage() {
             </div>
 
             <h2
-              className="text-4xl font-bold text-gray-900 mb-4"
+              className="text-4xl font-bold text-gray-900 mb-4 select-none"
               style={{ fontFamily: "var(--font-poppins)" }}
             >
               Why Choose Shree Dental Clinic?
@@ -477,7 +477,7 @@ export default function HomePage() {
             </div>
 
             <h2
-              className="text-4xl font-bold text-gray-900 mb-4"
+              className="text-4xl font-bold text-gray-900 mb-4 select-none"
               style={{ fontFamily: "var(--font-poppins)" }}
             >
               Our Dental Services
@@ -580,7 +580,7 @@ export default function HomePage() {
             </div>
 
             <h2
-              className="text-4xl font-bold text-gray-900 mb-4"
+              className="text-4xl font-bold text-gray-900 mb-4 select-none"
               style={{ fontFamily: "var(--font-poppins)" }}
             >
               What Our Patients Say

@@ -164,10 +164,23 @@ export default function DoctorPage() {
 
               <motion.h1
                 variants={slideLeft}
-                className="text-4xl sm:text-4xl font-extrabold text-gray-900"
+                className="select-none text-4xl sm:text-4xl font-extrabold text-gray-900"
               >
                 Where Your Smile is Our Top Priority
               </motion.h1>
+
+              <motion.div
+  variants={fadeUp}
+  className="space-y-1"
+>
+  <h2 className="text-2xl sm:text-3xl font-bold text-blue-700 select-none">
+    Dr. Chanchal Rani
+  </h2>
+  <p className="text-gray-600 font-medium">
+    BDS • Cosmetic & Implant Dentist
+  </p>
+</motion.div>
+
 
               <div className="space-y-4 mt-6">
   {/* Point 1: Mission & Environment */}
@@ -289,7 +302,7 @@ export default function DoctorPage() {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.6 }}
-      className="text-4xl font-extrabold text-gray-900 mb-8"
+      className="text-4xl font-extrabold text-gray-900 mb-8 select-none"
     >
       Shree Dental Clinic
     </motion.h2>
@@ -409,7 +422,7 @@ export default function DoctorPage() {
             <div className="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center">
               <GraduationCap className="w-6 h-6 text-blue-600" />
             </div>
-            <h2 className="text-3xl font-bold text-gray-900">
+            <h2 className="text-3xl font-bold text-gray-900 select-none">
               Qualifications
             </h2>
           </div>
@@ -445,7 +458,7 @@ export default function DoctorPage() {
             <div className="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center">
               <Briefcase className="w-6 h-6 text-blue-600" />
             </div>
-            <h2 className="text-3xl font-bold text-gray-900">
+            <h2 className="text-3xl font-bold text-gray-900 select-none">
               Specializations
             </h2>
           </div>
@@ -485,7 +498,7 @@ export default function DoctorPage() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-4xl font-bold text-gray-900 mb-6"
+            className="text-4xl font-bold text-gray-900 mb-6 select-none"
           >
             Our Treatment Philosophy
           </motion.h2>
@@ -576,7 +589,7 @@ export default function DoctorPage() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-4xl font-bold mb-6"
+            className="text-4xl font-bold mb-6 select-none"
           >
             Experience the Future of Dentistry
           </motion.h2>

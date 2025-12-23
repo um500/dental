@@ -144,7 +144,7 @@ export default function ContactPage() {
         className="pt-24 pb-12 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-blue-50 via-white to-cyan-50"
       >
         <div className="max-w-7xl mx-auto text-center">
-          <motion.h1 className="text-4xl sm:text-4xl font-extrabold text-gray-900 mb-4">
+          <motion.h1 className="text-4xl sm:text-4xl font-extrabold text-gray-900 mb-4 select-none">
             Visit Shree Dental Clinic
           </motion.h1>
           <motion.p className="text-lg text-gray-600 max-w-3xl mx-auto mb-6">
@@ -254,7 +254,7 @@ export default function ContactPage() {
             <motion.div variants={cardVariant} className="h-full">
               <Card className="p-6 h-full flex flex-col justify-between">
                 <div>
-                  <h2 className="text-2xl font-bold text-gray-900 mb-2">
+                  <h2 className="text-2xl font-bold text-gray-900 mb-2 select-none">
                     Book an Appointment & Query
                   </h2>
                   <p className="text-sm text-gray-600 mb-6">
@@ -371,7 +371,7 @@ export default function ContactPage() {
             {/* LEFT: CONTACT FORM */}
             <motion.div variants={cardVariant}>
               <Card className="p-6 h-full relative overflow-hidden">
-                <h3 className="text-2xl font-bold text-gray-900 mb-1">
+                <h3 className="text-2xl font-bold text-gray-900 mb-1 select-none">
                   Connect Us & Query
                 </h3>
 
@@ -494,7 +494,7 @@ export default function ContactPage() {
             {/* RIGHT: MAP */}
             <motion.div>
               <Card className="p-6 h-full flex flex-col">
-                <h3 className="text-2xl font-bold text-gray-900 mb-4">
+                <h3 className="text-2xl font-bold text-gray-900 mb-4 select-none">
                   Find Us on Map
                 </h3>
 
@@ -524,7 +524,7 @@ export default function ContactPage() {
         <div className="max-w-4xl mx-auto">
           {/* HEADING */}
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-3">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-3 select-none">
               Frequently Asked Questions
             </h2>
             <p className="text-gray-600">
@@ -589,7 +589,7 @@ export default function ContactPage() {
         className="py-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-blue-600 to-cyan-600 text-white"
       >
         <div className="max-w-4xl mx-auto text-center">
-          <motion.h3 className="text-2xl sm:text-3xl font-bold mb-3">
+          <motion.h3 className="text-2xl sm:text-3xl font-bold mb-3 select-none">
             Ready to Transform Your Smile?
           </motion.h3>
           <motion.p className="mb-6 text-lg text-blue-50">
