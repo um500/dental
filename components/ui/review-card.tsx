@@ -1,15 +1,19 @@
+
+
 "use client"
 
 import { motion } from "framer-motion"
 import { Star, CheckCircle } from "lucide-react"
 import { Card } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
+import { timeAgo } from "@/lib/time-ago"
 
 interface Review {
   id?: string
   author: string
   rating: number
   text: string
+  date: string // ✅ REQUIRED (ISO string)
   source: "google" | "site"
   postedOnGoogle?: boolean
   avatar?: string
@@ -61,6 +65,12 @@ export function ReviewCard({ review }: { review: Review }) {
               <h4 className="font-semibold text-gray-900 leading-tight">
                 {review.author || "Anonymous"}
               </h4>
+
+              {/* ✅ REAL-TIME DATE */}
+              <p className="text-xs text-gray-500">
+  {timeAgo(review.date)}
+</p>
+
             </div>
           </div>
 

@@ -1,8 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { ExternalLink, RefreshCw, Star } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { Star } from "lucide-react";
 import { ReviewCard } from "@/components/ui/review-card";
 
 interface Review {
@@ -10,11 +9,10 @@ interface Review {
   author: string;
   rating: number;
   text: string;
-  date: string;
+  date: string; // ✅ ONLY date (no time)
   source: "google" | "site";
   postedOnGoogle?: boolean;
   avatar?: string;
-  time?: string;
 }
 
 interface ReviewData {
@@ -38,16 +36,14 @@ export default function ReviewsPage() {
   });
 
   const [isLoading, setIsLoading] = useState(true);
-  const [isRefreshing, setIsRefreshing] = useState(false);
 
   /* 🔹 AUTO SCROLL STATES */
   const scrollRef = useRef<HTMLDivElement>(null);
   const [paused, setPaused] = useState(false);
 
-  const fetchReviews = async (showRefreshing = false) => {
+  const fetchReviews = async () => {
     try {
-      if (showRefreshing) setIsRefreshing(true);
-      else setIsLoading(true);
+      setIsLoading(true);
 
       const response = await fetch("/api/reviews?refresh=true", {
         cache: "no-store",
@@ -72,7 +68,6 @@ export default function ReviewsPage() {
       console.error("Error fetching reviews:", error);
     } finally {
       setIsLoading(false);
-      setIsRefreshing(false);
     }
   };
 
@@ -80,66 +75,89 @@ export default function ReviewsPage() {
     fetchReviews();
   }, []);
 
-  /* 🔹 REAL AUTO SCROLL (NO CSS JANK) */
-/* 🔹 REAL AUTO SCROLL (MOBILE + DESKTOP OPTIMIZED) */
-useEffect(() => {
-  const container = scrollRef.current;
-  if (!container) return;
+  /* 🔹 REAL AUTO SCROLL (MOBILE + DESKTOP) */
+  useEffect(() => {
+    const container = scrollRef.current;
+    if (!container) return;
 
-  let rafId: number;
+    let rafId: number;
 
-  // ✅ device based speed
-  const isMobile = window.innerWidth < 768;
-  const speed = isMobile ? 4 : 2; // 🔥 mobile fast, desktop smooth
+    const isMobile = window.innerWidth < 768;
+    const speed = isMobile ? 4 : 2;
 
-  const step = () => {
-    if (!paused) {
-      if (
-        container.scrollTop + container.clientHeight <
-        container.scrollHeight
-      ) {
-        container.scrollTop += speed;
-      } else {
-        // 🔁 last pe jaakar upar se phir start
-        container.scrollTop = 0;
+    const step = () => {
+      if (!paused) {
+        if (
+          container.scrollTop + container.clientHeight <
+          container.scrollHeight
+        ) {
+          container.scrollTop += speed;
+        } else {
+          container.scrollTop = 0;
+        }
       }
-    }
+      rafId = requestAnimationFrame(step);
+    };
+
     rafId = requestAnimationFrame(step);
-  };
-
-  rafId = requestAnimationFrame(step);
-
-  return () => cancelAnimationFrame(rafId);
-}, [paused, data.google.latest_reviews]);
-
-
+    return () => cancelAnimationFrame(rafId);
+  }, [paused, data.google.latest_reviews]);
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
-
-      {/* HERO SECTION — SAME */}
+      {/* ---------- HERO ---------- */}
       <section className="pt-32 pb-16 px-4">
-        <div className="max-w-7xl mx-auto text-center">
-          <h1 className="text-5xl font-bold mb-6">
-            Patient Reviews & Testimonials
-          </h1>
-          <div className="flex justify-center gap-1 mb-6">
-            {[...Array(5)].map((_, i) => (
-              <Star key={i} className="w-6 h-6 fill-yellow-400 text-yellow-400" />
-            ))}
-            <span className="text-2xl font-bold ml-2">
-              {data.google.rating}
-            </span>
-          </div>
-        </div>
-      </section>
+  <div className="max-w-7xl mx-auto text-center">
+    <h1 className="text-4xl font-bold mb-6">
+      Patient Reviews & Testimonials
+    </h1>
 
+    {/* ⭐ Rating */}
+    <div className="flex justify-center gap-1 mb-4">
+      {[...Array(5)].map((_, i) => (
+        <Star
+          key={i}
+          className="w-6 h-6 fill-yellow-400 text-yellow-400"
+        />
+      ))}
+      <span className="text-2xl font-bold ml-2">
+        {data.google.rating}
+      </span>
+    </div>
+
+    {/* 🟢 Write Google Review Button */}
+    <a
+      href="https://maps.app.goo.gl/sfFKDghTvXpKvFq36"
+      target="_blank"
+      rel="noopener noreferrer"
+      className="
+        inline-flex
+        items-center
+        gap-2
+        px-6
+        py-3
+        rounded-full
+        bg-blue-600
+        text-white
+        font-semibold
+        hover:bg-blue-700
+        transition-all
+        shadow-md
+        hover:shadow-lg
+      "
+    >
+      Write Google Review
+    </a>
+  </div>
+</section>
+
+
+      {/* ---------- CONTENT ---------- */}
       {isLoading ? (
         <div className="text-center py-20">Loading reviews...</div>
       ) : (
         <section className="py-12 px-4">
           <div className="max-w-7xl mx-auto">
-
             <h2 className="text-3xl font-bold text-center mb-6">
               Google Reviews
             </h2>

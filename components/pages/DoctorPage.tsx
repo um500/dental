@@ -19,9 +19,9 @@ import { Card } from "@/components/ui/card";
 
 export default function DoctorPage() {
   const qualifications = [
-    "Bachelor of Dental Surgery (BDS)",
+    "Bachelor of Dental Surgery (BDS)(RGUHS-Bengaluru)",
+    "Certified Implantologist (Chandigarh)",
     "Advanced Certificate in Endodontics",
-    "Certified Implantologist",
     "Member - Indian Dental Association",
   ];
 
@@ -164,18 +164,71 @@ export default function DoctorPage() {
 
               <motion.h1
                 variants={slideLeft}
-                className="text-5xl sm:text-5xl font-extrabold text-gray-900"
+                className="text-4xl sm:text-4xl font-extrabold text-gray-900"
               >
                 Where Your Smile is Our Top Priority
               </motion.h1>
 
-              <motion.p
-                variants={fadeUp}
-                className="text-lg text-gray-600 leading-relaxed"
-              >
-                We are a dental practice dedicated to the well-being and
-                happiness of every patient with compassionate, advanced care.
-              </motion.p>
+              <div className="space-y-4 mt-6">
+  {/* Point 1: Mission & Environment */}
+  <motion.div variants={fadeUp} className="flex items-start gap-3">
+    <div className="mt-1 min-w-[20px] text-blue-600">
+      <svg
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2.5"
+        viewBox="0 0 24 24"
+        className="w-5 h-5"
+      >
+        <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+      </svg>
+    </div>
+    <p className="text-gray-700 text-justify leading-relaxed">
+      Our mission is to provide exceptional, compassionate dental care in a
+      state-of-the-art environment, building trust through personalized
+      treatment.
+    </p>
+  </motion.div>
+
+  {/* Point 2: Comfort & Team */}
+  <motion.div variants={fadeUp} className="flex items-start gap-3">
+    <div className="mt-1 min-w-[20px] text-blue-600">
+      <svg
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2.5"
+        viewBox="0 0 24 24"
+        className="w-5 h-5"
+      >
+        <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+      </svg>
+    </div>
+    <p className="text-gray-600 text-justify leading-relaxed">
+      Our experienced and friendly team is committed to making every visit
+      comfortable and stress-free, ensuring a plan that fits your individual
+      needs.
+    </p>
+  </motion.div>
+
+  {/* Point 3: Services */}
+  <motion.div variants={fadeUp} className="flex items-start gap-3">
+    <div className="mt-1 min-w-[20px] text-blue-600">
+      <svg
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2.5"
+        viewBox="0 0 24 24"
+        className="w-5 h-5"
+      >
+        <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+      </svg>
+    </div>
+    <p className="text-gray-600 text-justify leading-relaxed">
+      We offer a comprehensive range of services from routine cleaning to
+      advanced restorative treatment to help you achieve optimal oral health.
+    </p>
+  </motion.div>
+</div>
 
               <motion.div variants={fadeUp} className="flex items-center gap-2">
                 {[...Array(5)].map((_, i) => (
@@ -224,6 +277,75 @@ export default function DoctorPage() {
           </div>
         </div>
       </section>
+
+
+      {/* About Clinic / Treatment Overview (NO BOX) */}
+<section className="py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-white via-blue-50 to-cyan-50">
+  <div className="max-w-5xl mx-auto text-center">
+
+    {/* Heading */}
+    <motion.h2
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.6 }}
+      className="text-4xl font-extrabold text-gray-900 mb-8"
+    >
+      Shree Dental Clinic
+    </motion.h2>
+
+    {/* Paragraph */}
+    <motion.p
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
+      viewport={{ once: true }}
+      transition={{ delay: 0.15 }}
+      className="text-lg text-gray-700 leading-relaxed text-justify mb-6"
+    >
+      We combine state-of-the-art technology with a compassionate,
+      patient-centered approach. Our clinic is equipped with the latest
+      and advanced equipment to provide you with accurate and efficient
+      care. We specialize in cosmetic dentistry and dental implants,
+      helping our patients achieve the radiant, healthy smile they’ve
+      always wanted.
+    </motion.p>
+
+    <motion.p
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
+      viewport={{ once: true }}
+      transition={{ delay: 0.25 }}
+      className="text-lg text-gray-700 leading-relaxed text-justify mb-10"
+    >
+      We understand that dental anxiety is a real concern for many. That’s
+      why we’ve built our practice around creating a stress-free and
+      supportive environment even for the most nervous patients. Our team
+      is trained in gentle techniques and offers sedation options to
+      ensure your comfort throughout your treatment.
+    </motion.p>
+
+    {/* Button */}
+    <motion.div
+      initial={{ opacity: 0, scale: 0.9 }}
+      whileInView={{ opacity: 1, scale: 1 }}
+      viewport={{ once: true }}
+      transition={{ type: "spring", stiffness: 160 }}
+      className="flex justify-center"
+    >
+      <Button
+        asChild
+        size="lg"
+        className="bg-blue-600 hover:bg-blue-700 px-10 py-6 rounded-full shadow-md hover:shadow-lg transition-all"
+      >
+        <Link href="/services">
+          Explore Our Treatments
+        </Link>
+      </Button>
+    </motion.div>
+
+  </div>
+</section>
+
 
       {/* Achievements */}
       <section className="py-16 px-4 sm:px-6 lg:px-8 bg-white">

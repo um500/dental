@@ -137,12 +137,15 @@ export default function ServicesPage() {
       {/* ---------------- HERO SECTION ---------------- */}
       <section className="pt-28 pb-16 px-4 bg-blue-50 overflow-x-hidden">
         <div className="max-w-7xl mx-auto text-center w-full px-2">
-          <h1 className="text-5xl font-bold text-gray-900 mb-6">
-            Comprehensive Dental Services
+          <h1 className="text-4xl font-bold text-gray-900 mb-6">
+            Comprehensive Care for Every Smile
           </h1>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-8">
-            From preventive care to advanced procedures, we provide complete
-            dental care with modern technology.
+            At Shree Dental Clinic, we provide a complete range of dental treatments designed to care for your oral health and enhance your smile’s beauty.
+          </p>
+
+          <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-8">
+            From preventive care to advanced restorative and cosmetic procedures, every treatment is performed with precision, compassion, and the latest technology.
           </p>
 
           <Button

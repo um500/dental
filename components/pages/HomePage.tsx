@@ -19,6 +19,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { ReviewsSlider } from "@/components/ui/reviews-slider";
+import HeroSlider from "@/components/ui/HeroSlider";
 
 
 export default function HomePage() {
@@ -82,24 +83,6 @@ export default function HomePage() {
     gradient: "from-purple-500 to-pink-500",
   },
   {
-    title: "Orthodontic Braces",
-    description: "Straighten your teeth for a perfect smile",
-    image: "/Orthodontic Treatment.png",
-    gradient: "from-orange-500 to-red-500",
-  },
-  {
-    title: "Teeth Cleaning",
-    description: "Professional cleaning and scaling for oral health",
-    image: "/Teeth Cleaning (Scaling),.png",
-    gradient: "from-green-500 to-emerald-500",
-  },
-  {
-    title: "Crown & Bridge",
-    description: "Restore damaged teeth with custom prosthetics",
-    image: "/Bridges.jpg",
-    gradient: "from-yellow-500 to-orange-500",
-  },
-  {
     title: "Tooth Extraction",
     description: "Safe and painless tooth removal procedures",
     image: "/ext.png",
@@ -109,39 +92,43 @@ export default function HomePage() {
 
 
   const features = [
-    {
-      icon: Award,
-      title: "8+ Years Experience",
-      description: "Trusted name in family dental care in Kestopur community",
-      color: "text-blue-600",
-      bg: "bg-blue-50",
-    },
-    {
-      icon: Shield,
-      title: "State-of-the-Art Technology",
-      description: "Latest advanced equipment for accurate and efficient care",
-      color: "text-green-600",
-      bg: "bg-green-50",
-    },
-    {
-      icon: Users,
-      title: "Patient-Centered Care",
-      description:
-        "Stress-free environment with gentle techniques for all ages",
-      color: "text-purple-600",
-      bg: "bg-purple-50",
-    },
-    {
-      icon: Clock,
-      title: "Flexible Timings",
-      description: "Open 7 days: Mon-Sun 10:30AM-9:30PM",
-      color: "text-orange-600",
-      bg: "bg-orange-50",
-    },
-  ];
+  {
+    icon: Award,
+    title: "13+ Years Experience",
+    description: "Trusted name in family dental care in Kestopur community",
+    color: "text-blue-600",
+    bg: "bg-blue-50",
+  },
+  {
+    icon: Shield, // or use 'Cpu' or 'Monitor' icon if available
+    title: "Modern Tech & Devices",
+    description: "Equipped with latest dental devices for precise & painless treatment",
+    color: "text-green-600",
+    bg: "bg-green-50",
+  },
+  {
+    icon: Users,
+    title: "Patient-Centered Care",
+    description:
+      "Stress-free environment with gentle techniques for all ages",
+    color: "text-purple-600",
+    bg: "bg-purple-50",
+  },
+  {
+    icon: Clock,
+    title: "Flexible Timings",
+    description: "Mon - Sun: 10:30 AM-9:30 PM (Open on Sat & Sun)",
+    color: "text-orange-600",
+    bg: "bg-orange-50",
+  },
+];
 
   return (
     <div className="min-h-screen">
+
+       <HeroSlider />
+
+
       <section className="relative pt-32 pb-24 px-4 sm:px-6 lg:px-8 overflow-hidden">
         {/* Gradient background */}
         <div className="absolute inset-0 gradient-dental-light"></div>
@@ -160,11 +147,11 @@ export default function HomePage() {
               <div className="inline-flex items-center space-x-2 px-5 py-2.5 glass-effect border border-blue-200 rounded-full text-sm font-semibold mb-8 shadow-lg">
                 <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
                 <Star className="w-4 h-4 text-yellow-500 fill-yellow-500" />
-                <span className="text-gradient">8+ Years of Trusted Care</span>
+                <span className="text-gradient">13+ Years of Trusted Care</span>
               </div>
 
               <h1
-                className="text-5xl lg:text-7xl font-bold text-gray-900 mb-6 leading-tight text-balance"
+                className="text-4xl lg:text-4xl font-bold text-gray-900 mb-6 leading-tight text-balance"
                 style={{ fontFamily: "var(--font-poppins)" }}
               >
                 Where Your Smile is{" "}
@@ -172,10 +159,7 @@ export default function HomePage() {
               </h1>
 
               <p className="text-xl text-justify text-gray-600 mb-10 leading-relaxed text-pretty">
-                For over 8 years, SHREE DENTAL CLINIC has been the trusted name
-                in family dental care. We combine state-of-the-art technology
-                with a compassionate, patient-centered approach in Kestopur,
-                Kolkata.
+                For over 8 years, Shree Dental Clinic has been the trusted name in family dental care in the community. Our warm and welcoming office is designed to make patients of all ages feel comfortable and at ease, from a child's first visit to a senior's restorative needs. We focus on gentle, preventive care and patient education, ensuring every member of your family has a positive and healthy dental experience for a lifetime of beautiful smiles.
               </p>
 
               <div className="flex flex-col sm:flex-row gap-4 mb-10">
@@ -237,44 +221,7 @@ export default function HomePage() {
                 />
               </div>
 
-              <div
-                className="
-            absolute bottom-4 left-4
-            px-5 py-3 rounded-2xl 
-            backdrop-blur-xl 
-            bg-gradient-to-br from-white/70 to-blue-100/50 
-            border border-white/60 
-            shadow-[0_8px_30px_rgba(0,0,0,0.1)]
-            flex items-center gap-3
-            transition-all duration-500 ease-out
-            hover:translate-x-2 hover:bg-blue-100/80 hover:shadow-[0_15px_35px_rgba(0,0,0,0.25)] hover:border-blue-300
-            [animation:floating_6s_ease-in-out_infinite]
-            [@keyframes_floating]:[0%_{transform:translateY(0)}_50%_{transform:translateY(-6px)}_100%_{transform:translateY(0)}]
-          "
-              >
-                <div className="relative w-9 h-9 rounded-full bg-white/90 flex items-center justify-center shadow transition-all duration-500 hover:scale-110 hover:shadow-[0_0_12px_rgba(59,130,246,0.5)]">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="w-5 h-5 text-blue-700"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                    strokeWidth={2}
-                  >
-                    <circle cx="12" cy="7" r="4" />
-                    <path d="M19 21v-2a4 4 0 00-4-4H9a4 4 0 00-4 4v2" />
-                  </svg>
-                </div>
-
-                <div>
-                  <p className="text-3xl font-extrabold text-blue-700 leading-none">
-                    8+
-                  </p>
-                  <p className="text-sm text-slate-700 font-semibold -mt-1">
-                    Years Experience
-                  </p>
-                </div>
-              </div>
+              
             </div>
           </div>
         </div>
@@ -323,19 +270,16 @@ export default function HomePage() {
               </div>
 
               <h2
-                className="text-5xl font-bold text-gray-900 mb-6 leading-tight"
+                className="text-4xl font-bold text-gray-900 mb-6 leading-tight"
                 style={{ fontFamily: "var(--font-poppins)" }}
               >
                 We Believe That Every{" "}
-                <span className="text-gradient">Smile Deserves</span> The Best
-                Care Possible
+                <span className="text-gradient">Smile </span> 
+                Tell a Story
               </h2>
 
               <p className="text-xl text-justify text-gray-600 mb-8 leading-relaxed">
-                We shine with expert dentists, modern technology, and a gentle
-                approach. We deliver care that's as comfortable as it is
-                effective. From routine check-ups to advanced treatments, we put
-                your needs first.
+                We shine. With expert dentists, modern technology, and a gentle approach, we deliver care that’s as comfortable as it is effective. From routine check-ups to advanced treatments, we put your needs first, ensuring you feel confident every step of the way.
               </p>
 
               <div className="space-y-4">
@@ -426,7 +370,7 @@ export default function HomePage() {
               </span>
             </div>
             <h2
-              className="text-5xl font-bold text-gray-900 mb-4"
+              className="text-4xl font-bold text-gray-900 mb-4"
               style={{ fontFamily: "var(--font-poppins)" }}
             >
               Why Choose Shree Dental Clinic?
@@ -496,7 +440,7 @@ export default function HomePage() {
       </div>
 
       <h2
-        className="text-5xl font-bold text-gray-900 mb-4"
+        className="text-4xl font-bold text-gray-900 mb-4"
         style={{ fontFamily: "var(--font-poppins)" }}
       >
         Our Dental Services
@@ -536,7 +480,7 @@ export default function HomePage() {
           {/* CONTENT */}
           <div className="relative z-10 p-8">
 
-            {/* 🔥 HOLO EFFECT — CARD BOTTOM CORNER */}
+            {/* HOLO EFFECT — CARD BOTTOM CORNER */}
             <div
               aria-hidden="true"
               className={`
@@ -601,7 +545,7 @@ export default function HomePage() {
               </span>
             </div>
             <h2
-              className="text-5xl font-bold text-gray-900 mb-4"
+              className="text-4xl font-bold text-gray-900 mb-4"
               style={{ fontFamily: "var(--font-poppins)" }}
             >
               What Our Patients Say
@@ -646,7 +590,7 @@ export default function HomePage() {
               asChild
               size="lg"
               variant="outline"
-              className="border-2 border-white text-white hover:bg-white/20 text-lg h-14 px-8 bg-transparent font-semibold"
+              className="border-2 border-black text-black hover:bg-white/20 text-lg h-14 px-8 bg-transparent font-semibold"
             >
               <Link href="/reviews">Read All Reviews</Link>
             </Button>
@@ -663,7 +607,7 @@ export default function HomePage() {
           <Sparkles className="w-16 h-16 mx-auto mb-6 animate-pulse" />
 
           <h2
-            className="text-5xl font-bold mb-6 text-balance drop-shadow-lg"
+            className="text-4xl font-bold mb-6 text-balance drop-shadow-lg"
             style={{ fontFamily: "var(--font-poppins)" }}
           >
             Ready to Transform Your Smile?

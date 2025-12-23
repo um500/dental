@@ -129,7 +129,7 @@ const PUBLIC_KEY = "ERfaNZy54q0MS5Whe";         // ✅ tumne diya
         className="pt-24 pb-12 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-blue-50 via-white to-cyan-50"
       >
         <div className="max-w-7xl mx-auto text-center">
-          <motion.h1 className="text-4xl sm:text-5xl font-extrabold text-gray-900 mb-4">
+          <motion.h1 className="text-4xl sm:text-4xl font-extrabold text-gray-900 mb-4">
             Visit Shree Dental Clinic
           </motion.h1>
           <motion.p className="text-lg text-gray-600 max-w-3xl mx-auto mb-6">
