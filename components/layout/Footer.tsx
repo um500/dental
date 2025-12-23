@@ -23,16 +23,16 @@ export default function Footer() {
 
   return (
     <footer className="bg-gray-900 text-gray-300">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {/* About Section */}
           <div>
             <div className="flex items-center space-x-3 mb-4">
   <img
-    src="/logo.png"
-    alt="Shree Dental Clinic Logo"
-    className="w-40 h-20 object-contain"
-  />
+  src="/logo.png"
+  alt="Shree Dental Clinic Logo"
+  className="w-32 h-16 object-contain"
+/>
 </div>
 
 
@@ -74,7 +74,7 @@ export default function Footer() {
           {/* Services */}
           <div>
             <h3 className="text-white font-semibold text-lg mb-4">Our Services</h3>
-            <ul className="space-y-2">
+            <ul className="space-y-1.5">
               {services.map((service) => (
                 <li key={service}>
                   <Link href="/services" className="text-sm text-gray-400 hover:text-blue-400 transition-colors">
@@ -149,7 +149,7 @@ export default function Footer() {
         </div>
 
         {/* Bottom Bar */}
-        <div className="mt-12 pt-8 border-t border-gray-800">
+        <div className="mt-8 pt-6 border-t border-gray-800">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
             <p className="text-sm text-gray-500 text-center md:text-left">
               {currentYear} SHREE DENTAL CLINIC. All rights reserved.

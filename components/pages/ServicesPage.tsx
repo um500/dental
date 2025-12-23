@@ -141,11 +141,15 @@ export default function ServicesPage() {
             Comprehensive Care for Every Smile
           </h1>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-8">
-            At Shree Dental Clinic, we provide a complete range of dental treatments designed to care for your oral health and enhance your smile’s beauty.
+            At Shree Dental Clinic, we provide a complete range of dental
+            treatments designed to care for your oral health and enhance your
+            smile’s beauty.
           </p>
 
           <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-8">
-            From preventive care to advanced restorative and cosmetic procedures, every treatment is performed with precision, compassion, and the latest technology.
+            From preventive care to advanced restorative and cosmetic
+            procedures, every treatment is performed with precision, compassion,
+            and the latest technology.
           </p>
 
           <Button
@@ -172,61 +176,61 @@ export default function ServicesPage() {
 "
         >
           {services.map((service) => (
-           <Card
-  key={service.title}
-  className="
+            <Card
+              key={service.title}
+              className="
     relative overflow-hidden rounded-2xl border border-gray-100 bg-white
     shadow-md transition-all duration-300
     hover:-translate-y-3 hover:shadow-2xl
     group w-full h-full flex flex-col
   "
->
-  {/* 1️⃣ IMAGE SECTION */}
-  <div className="w-full h-52 overflow-hidden">
-    {/* eslint-disable-next-line @next/next/no-img-element */}
-    <img
-      src={service.image}
-      alt={service.title}
-      loading="lazy"
-      className="
+            >
+              {/* 1️⃣ IMAGE SECTION */}
+              <div className="w-full h-52 overflow-hidden">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={service.image}
+                  alt={service.title}
+                  loading="lazy"
+                  className="
         w-full h-full object-cover
         transition-transform duration-700
         group-hover:scale-105
       "
-    />
-  </div>
+                />
+              </div>
 
-  {/* 2️⃣ CONTENT SECTION */}
-  <div className="flex-1 p-6 bg-white/90 transition-colors duration-300 group-hover:bg-white">
-    <h3
-      className="text-2xl font-bold text-gray-900 mb-2"
-      style={{ fontFamily: "var(--font-poppins)" }}
-    >
-      {service.title}
-    </h3>
+              {/* 2️⃣ CONTENT SECTION */}
+              <div className="flex-1 p-6 bg-white/90 transition-colors duration-300 group-hover:bg-white">
+                <h3
+                  className="text-2xl font-bold text-gray-900 mb-2"
+                  style={{ fontFamily: "var(--font-poppins)" }}
+                >
+                  {service.title}
+                </h3>
 
-    <p className="text-gray-600 text-sm mb-4 group-hover:text-gray-700 transition-colors">
-      {service.description}
-    </p>
+                <p className="text-gray-600 text-sm mb-4 group-hover:text-gray-700 transition-colors">
+                  {service.description}
+                </p>
 
-    <ul className="space-y-2">
-      {service.features.map((feature, idx) => (
-        <li
-          key={idx}
-          className="flex gap-2 text-sm text-gray-700 items-start group-hover:text-gray-800 transition-colors"
-        >
-          <span className="text-green-600 mt-0.5">✔</span>
-          <span>{feature}</span>
-        </li>
-      ))}
-    </ul>
-  </div>
+                <ul className="space-y-2">
+                  {service.features.map((feature, idx) => (
+                    <li
+                      key={idx}
+                      className="flex gap-2 text-sm text-gray-700 items-start group-hover:text-gray-800 transition-colors"
+                    >
+                      <span className="text-green-600 mt-0.5">✔</span>
+                      <span>{feature}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
 
-  {/* 3️⃣ BUTTON SECTION (ALWAYS BOTTOM RIGHT) */}
-  <div className="p-6 pt-0 mt-auto flex justify-end">
-    <Link
-      href="/contact"
-      className="
+              {/* 3️⃣ BUTTON SECTION (ALWAYS BOTTOM RIGHT) */}
+              <div className="p-6 pt-0 mt-auto flex justify-end">
+                <Link
+                  href="/contact"
+                  className="
         inline-flex items-center gap-2
         px-5 py-2.5 rounded-lg
         text-sm font-semibold
@@ -235,12 +239,11 @@ export default function ServicesPage() {
         transition-all duration-300
         active:translate-y-[1px]
       "
-    >
-      Book Now
-    </Link>
-  </div>
-</Card>
-
+                >
+                  Book Now
+                </Link>
+              </div>
+            </Card>
           ))}
         </div>
       </section>
@@ -260,7 +263,7 @@ export default function ServicesPage() {
       </section>
 
       {/* ---------------- CTA SECTION ---------------- */}
-      <section className="py-20 px-4 bg-blue-600 text-white text-center">
+      <section className="py-20 px-4 bg-gradient-to-br from-blue-600 to-cyan-600 text-white text-center">
         <h2 className="text-4xl font-bold mb-6">
           Not Sure Which Treatment You Need?
         </h2>

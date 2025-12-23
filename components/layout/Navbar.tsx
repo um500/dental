@@ -4,23 +4,14 @@ import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Menu, X, Phone } from "lucide-react";
+import { Menu, X } from "lucide-react";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(false);
   const pathname = usePathname();
 
-  useEffect(() => {
-    const onScroll = () => setIsScrolled(window.scrollY > 12);
-    window.addEventListener("scroll", onScroll);
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
-
-  // route change par menu close
   useEffect(() => setIsOpen(false), [pathname]);
 
-  // body scroll lock
   useEffect(() => {
     document.body.style.overflow = isOpen ? "hidden" : "unset";
   }, [isOpen]);
@@ -34,16 +25,10 @@ export default function Navbar() {
   ];
 
   return (
-    <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled
-          ? "bg-white/90 backdrop-blur-xl shadow-lg border-b"
-          : "bg-[#eaf6ff]"
-      }`}
-    >
-      {/* TOP BAR */}
+    <nav className="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-xl border-b border-gray-200/60 shadow-sm">
       <div className="max-w-7xl mx-auto px-4">
-        <div className="flex items-center justify-between h-16 sm:h-20">
+        <div className="flex items-center h-16 sm:h-20">
+
           {/* LOGO */}
           <Link href="/" className="flex items-center">
             <div className="relative w-28 h-10 sm:w-36 sm:h-14">
@@ -57,100 +42,126 @@ export default function Navbar() {
             </div>
           </Link>
 
-          {/* DESKTOP MENU */}
-          <div className="hidden lg:flex items-center space-x-1">
-            {navigation.map((item) => {
-              const active = pathname === item.href;
+          {/* RIGHT SIDE */}
+          <div className="ml-auto flex items-center gap-8">
 
-              return (
-                <Link
-                  key={item.name}
-                  href={item.href}
-                  className={`relative px-3 py-2 rounded-lg font-semibold transition-all duration-200 ${
-                    active
-                      ? "bg-blue-600 text-white"
-                      : "text-slate-800 hover:bg-blue-100"
-                  }`}
-                >
-                  {item.name}
-                </Link>
-              );
-            })}
-          </div>
-
-          {/* DESKTOP CTA */}
-          <div className="hidden lg:flex">
-            <Link
-              href="/contact"
-              className="px-4 py-2 rounded-md bg-blue-600 text-white font-semibold"
-            >
-              Book Now
-            </Link>
-          </div>
-
-          {/* MOBILE BURGER (ONLY BURGER HERE) */}
-          <button
-            onClick={() => setIsOpen(true)}
-            className="lg:hidden p-2 rounded-md bg-white border shadow-md"
-            aria-label="Open menu"
-          >
-            <Menu className="w-6 h-6 stroke-[3]" />
-          </button>
-        </div>
-      </div>
-
-      {/* ================= MOBILE MENU ================= */}
-      {isOpen && (
-        <div className="lg:hidden fixed inset-0 z-50">
-          {/* DARK OVERLAY */}
-          <div
-            className="absolute inset-0 bg-black/30"
-            onClick={() => setIsOpen(false)}
-          />
-
-          {/* MENU PANEL */}
-          <div className="absolute top-0 left-0 right-0 bg-white rounded-b-2xl shadow-2xl px-6 py-6 relative">
-            {/* ✅ CLOSE BUTTON (ONLY WHEN MENU OPEN) */}
-            <button
-              onClick={() => setIsOpen(false)}
-              className="absolute top-4 right-4 p-2 rounded-full bg-white border shadow-lg"
-              aria-label="Close menu"
-            >
-              <X className="w-6 h-6 stroke-[3]" />
-            </button>
-
-            {/* MENU ITEMS */}
-            <div className="mt-8 space-y-3">
+            {/* DESKTOP MENU */}
+            <div className="hidden lg:flex items-center gap-6">
               {navigation.map((item) => {
                 const active = pathname === item.href;
+
                 return (
                   <Link
                     key={item.name}
                     href={item.href}
-                    onClick={() => setIsOpen(false)}
-                    className={`block px-4 py-3 rounded-lg text-lg font-semibold ${
-                      active
-                        ? "bg-blue-600 text-white"
-                        : "text-slate-800 hover:bg-slate-100"
-                    }`}
+                    className={`relative font-medium text-sm tracking-wide transition-colors
+                      ${
+                        active
+                          ? "text-blue-600"
+                          : "text-gray-800 hover:text-blue-600"
+                      }
+                    `}
                   >
                     {item.name}
+
+                    {/* underline animation */}
+                    <span
+                      className={`absolute -bottom-1 left-0 h-[2px] rounded-full bg-blue-600 transition-all duration-300
+                        ${
+                          active
+                            ? "w-full"
+                            : "w-0 group-hover:w-full"
+                        }
+                      `}
+                    />
                   </Link>
                 );
               })}
             </div>
 
-            {/* CTA */}
-            <Link
-              href="/contact"
-              onClick={() => setIsOpen(false)}
-              className="block mt-4 text-center py-3 rounded-lg bg-slate-900 text-white font-semibold"
+            {/* CTA BUTTON */}
+            <div className="hidden lg:flex">
+              <Link
+                href="/contact"
+                className="
+                  px-6 py-2.5 rounded-full
+                  bg-blue-600 text-white
+                  font-semibold text-sm
+                  shadow-md hover:shadow-lg
+                  hover:bg-blue-700
+                  transition-all
+                "
+              >
+                Book Now
+              </Link>
+            </div>
+
+            {/* MOBILE MENU BUTTON */}
+            <button
+              onClick={() => setIsOpen(true)}
+              className="lg:hidden p-2 rounded-full bg-white/90 border shadow-sm"
+              aria-label="Open menu"
             >
-              Book Appointment
-            </Link>
+              <Menu className="w-6 h-6" />
+            </button>
           </div>
         </div>
-      )}
+      </div>
+
+      {/* ================= MOBILE MENU ================= */}
+{isOpen && (
+  <div className="lg:hidden fixed inset-0 z-[999] flex items-start justify-center pt-20">
+
+    {/* 🔥 FULL PAGE BLUR OVERLAY */}
+    <div
+      className="fixed inset-0 bg-black/40 backdrop-blur-md z-[999]"
+      onClick={() => setIsOpen(false)}
+    />
+
+    {/* CENTER MODAL */}
+    <div className="relative z-[1000] w-[90%] max-w-sm bg-white rounded-2xl shadow-2xl p-6">
+      
+      <button
+        onClick={() => setIsOpen(false)}
+        className="absolute top-3 right-3 p-2 rounded-full bg-gray-100"
+      >
+        <X className="w-5 h-5" />
+      </button>
+
+      <div className="mt-6 space-y-3">
+        {navigation.map((item) => {
+          const active = pathname === item.href;
+          return (
+            <Link
+              key={item.name}
+              href={item.href}
+              onClick={() => setIsOpen(false)}
+              className={`block px-4 py-3 rounded-xl font-semibold
+                ${
+                  active
+                    ? "bg-blue-600 text-white"
+                    : "text-gray-800 hover:bg-gray-100"
+                }`}
+            >
+              {item.name}
+            </Link>
+          );
+        })}
+      </div>
+
+      <Link
+        href="/contact"
+        onClick={() => setIsOpen(false)}
+        className="block mt-6 text-center py-3 rounded-xl bg-slate-900 text-white font-semibold"
+      >
+        Book Appointment
+      </Link>
+    </div>
+  </div>
+)}
+
+
+
     </nav>
   );
 }

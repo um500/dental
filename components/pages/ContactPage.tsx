@@ -9,11 +9,6 @@ import emailjs from "@emailjs/browser";
 import { CheckCircle } from "lucide-react";
 import React, { useRef } from "react";
 
-
-
-
-
-
 export default function ContactPage() {
   const contactInfo = [
     {
@@ -57,7 +52,31 @@ export default function ContactPage() {
       answer:
         "We accept cash, credit/debit cards, UPI, and all major digital payment methods. EMI options are also available for select treatments.",
     },
-    // ... other FAQs unchanged
+    {
+      question: "Do dental treatments hurt?",
+      answer:
+        "Most treatments at Shree Dental Clinic are painless and comfortable. We use gentle techniques, local anesthesia, and advanced equipment to ensure minimal discomfort. Sedation options are also available for anxious patients.",
+    },
+    {
+      question: "How often should I visit the dentist?",
+      answer:
+        "It’s recommended to visit the dentist every six months for a regular check-up and cleaning. Regular visits help prevent cavities, gum problems, and detect any issues early.",
+    },
+    {
+      question: "How can I keep my teeth healthy at home?",
+      answer:
+        "Brush your teeth twice daily, floss once a day, limit sugary foods, and rinse with an antiseptic mouthwash. Regular dental visits help maintain strong and healthy teeth for life.",
+    },
+    {
+      question: "How long do dental implants last?",
+      answer:
+        "With proper care and regular dental check-ups, dental implants can last 15–25 years or even longer. Good oral hygiene plays a big role in their longevity.",
+    },
+    {
+      question: "What is cosmetic dentistry and who can benefit from it?",
+      answer:
+        "Cosmetic dentistry focuses on improving the appearance of your teeth and smile. Treatments like teeth whitening, veneers, and smile makeovers can benefit anyone who wants a brighter, more confident smile.",
+    },
   ];
 
   // motion variants
@@ -87,14 +106,14 @@ export default function ContactPage() {
   };
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-  e.preventDefault();
+    e.preventDefault();
 
-  setSubmitted(true);
+    setSubmitted(true);
 
-  formRef.current?.reset(); // ✅ safe
+    formRef.current?.reset(); // ✅ safe
 
-  setTimeout(() => setSubmitted(false), 4000);
-};
+    setTimeout(() => setSubmitted(false), 4000);
+  };
 
   const [meetingScheduled, setMeetingScheduled] = React.useState(false);
 
@@ -106,15 +125,11 @@ export default function ContactPage() {
 
   const formRef = useRef<HTMLFormElement>(null);
 
-
-
- //const [submitted, setSubmitted] = React.useState(false);
-const [loading, setLoading] = React.useState(false);
-const SERVICE_ID = "service_ahvtwz8";          // ✅ tumne diya
-const TEMPLATE_ID = "template_90fbkix";        // Email Template ID
-const PUBLIC_KEY = "ERfaNZy54q0MS5Whe";         // ✅ tumne diya
-
-
+  //const [submitted, setSubmitted] = React.useState(false);
+  const [loading, setLoading] = React.useState(false);
+  const SERVICE_ID = "service_ahvtwz8"; // ✅ tumne diya
+  const TEMPLATE_ID = "template_90fbkix"; // Email Template ID
+  const PUBLIC_KEY = "ERfaNZy54q0MS5Whe"; // ✅ tumne diya
 
   return (
     <motion.div
@@ -240,7 +255,7 @@ const PUBLIC_KEY = "ERfaNZy54q0MS5Whe";         // ✅ tumne diya
               <Card className="p-6 h-full flex flex-col justify-between">
                 <div>
                   <h2 className="text-2xl font-bold text-gray-900 mb-2">
-                    Book an Appointment
+                    Book an Appointment & Query
                   </h2>
                   <p className="text-sm text-gray-600 mb-6">
                     Book quickly via call, email, or WhatsApp — we’ll confirm
@@ -344,235 +359,227 @@ const PUBLIC_KEY = "ERfaNZy54q0MS5Whe";         // ✅ tumne diya
       </section>
 
       {/* Contact Form + Map Section */}
-<section className="py-16 px-4 sm:px-6 lg:px-8 bg-gray-50">
-  <div className="max-w-7xl mx-auto">
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.6 }}
-      className="grid lg:grid-cols-2 gap-8 items-stretch"
-    >
-      {/* LEFT: CONTACT FORM */}
-      <motion.div variants={cardVariant}>
-  <Card className="p-6 h-full relative overflow-hidden">
-    <h3 className="text-2xl font-bold text-gray-900 mb-1">
-      Send Us a Message
-    </h3>
-
-    <AnimatePresence>
-      {submitted && (
-        <motion.div
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: -20 }}
-          transition={{ duration: 0.4 }}
-          className="mb-4 rounded-xl border border-green-200 bg-green-50 px-4 py-3 text-green-800"
-        >
-          <strong>✅ Thank you for submitting!</strong>
-          <p className="text-sm">
-            We have received your message and will contact you shortly.
-          </p>
-        </motion.div>
-      )}
-    </AnimatePresence>
-
-    {/* ✅ FORM START */}
-<form
-  onSubmit={(e) => {
-    e.preventDefault();
-
-    const form = e.currentTarget; // ✅ IMPORTANT FIX
-
-    emailjs
-      .sendForm(
-        "service_ahvtwz8",          // Service ID
-        "template_90fbklx",         // Template ID
-        form,                       // ✅ use stored form
-        "ERfaNZy54q0MS5Whe"         // Public Key
-      )
-      .then(
-        () => {
-          setSubmitted(true);
-          form.reset(); // ✅ SAFE reset
-
-          setTimeout(() => setSubmitted(false), 4000);
-        },
-        (error) => {
-          console.error("EmailJS Error:", error);
-          alert("❌ Message failed. Please try again.");
-        }
-      );
-  }}
-  className="space-y-4"
->
-  {/* Full Name */}
-  <div>
-    <label className="block text-sm font-medium mb-1">
-      Full Name
-    </label>
-    <input
-      type="text"
-      name="name"
-      required
-      placeholder="Your full name"
-      className="w-full rounded-lg border px-4 py-2.5 text-sm outline-none focus:ring-2 focus:ring-blue-500"
-    />
-  </div>
-
-  {/* Email Address */}
-  <div>
-    <label className="block text-sm font-medium mb-1">
-      Email Address
-    </label>
-    <input
-      type="email"
-      name="email"
-      required
-      placeholder="you@example.com"
-      className="w-full rounded-lg border px-4 py-2.5 text-sm outline-none focus:ring-2 focus:ring-blue-500"
-    />
-  </div>
-
-  {/* Phone Number */}
-  <div>
-    <label className="block text-sm font-medium mb-1">
-      Phone Number
-    </label>
-    <input
-      type="tel"
-      name="phone"
-      required
-      placeholder="+91 XXXXX XXXXX"
-      className="w-full rounded-lg border px-4 py-2.5 text-sm outline-none focus:ring-2 focus:ring-blue-500"
-    />
-  </div>
-
-  {/* Message */}
-  <div>
-    <label className="block text-sm font-medium mb-1">
-      Message
-    </label>
-    <textarea
-      name="message"
-      rows={4}
-      required
-      placeholder="Write your message here..."
-      className="w-full rounded-lg border px-4 py-2.5 text-sm outline-none focus:ring-2 focus:ring-blue-500 resize-none"
-    />
-  </div>
-
-  {/* Submit Button */}
-  <button
-    type="submit"
-    className="w-full rounded-lg bg-blue-600 py-3 text-white font-semibold hover:bg-blue-700 transition"
-  >
-    Submit Message
-  </button>
-</form>
-
-
-    {/* ✅ FORM END */}
-  </Card>
-</motion.div>
-
-
-      {/* RIGHT: MAP */}
-      <motion.div>
-        <Card className="p-6 h-full flex flex-col">
-  <h3 className="text-2xl font-bold text-gray-900 mb-4">
-    Find Us on Map
-  </h3>
-
-  <div className="aspect-[4/3] rounded-xl overflow-hidden border shadow-sm">
-    <iframe
-  src="https://www.google.com/maps?q=Shree+Dental+Clinic+Kestopur+Kolkata&output=embed"
-  width="100%"
-  height="100%"
-  style={{ border: 0 }}
-  loading="lazy"
-  referrerPolicy="no-referrer-when-downgrade"
-  title="Shree Dental Clinic Location"
-/>
-
-  </div>
-
-  <p className="text-sm text-gray-600 text-center mt-4">
-    R. R. Tower, BC-14, Samarpally, Krishnapur, Kestopur, Kolkata – 700102
-  </p>
-</Card>
-
-      </motion.div>
-    </motion.div>
-  </div>
-</section>
-
-
-
-      {/* FAQs */}
-      <section className="py-16 px-4 sm:px-6 lg:px-8 bg-white">
-        <div className="max-w-4xl mx-auto">
+      <section className="py-16 px-4 sm:px-6 lg:px-8 bg-gray-50">
+        <div className="max-w-7xl mx-auto">
           <motion.div
-            initial="hidden"
-            animate="show"
-            variants={{ show: { transition: { staggerChildren: 0.06 } } }}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="grid lg:grid-cols-2 gap-8 items-stretch"
           >
-            <motion.div variants={heroVariant} className="text-center mb-8">
-              <h2 className="text-3xl font-bold text-gray-900 mb-2">
-                Frequently Asked Questions
-              </h2>
-              <p className="text-gray-600">
-                Find answers to common questions about our dental services and
-                clinic.
-              </p>
+            {/* LEFT: CONTACT FORM */}
+            <motion.div variants={cardVariant}>
+              <Card className="p-6 h-full relative overflow-hidden">
+                <h3 className="text-2xl font-bold text-gray-900 mb-1">
+                  Connect Us & Query
+                </h3>
+
+                <AnimatePresence>
+                  {submitted && (
+                    <motion.div
+                      initial={{ opacity: 0, y: -20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -20 }}
+                      transition={{ duration: 0.4 }}
+                      className="mb-4 rounded-xl border border-green-200 bg-green-50 px-4 py-3 text-green-800"
+                    >
+                      <strong>✅ Thank you for submitting!</strong>
+                      <p className="text-sm">
+                        We have received your message and will contact you
+                        shortly.
+                      </p>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+
+                {/* ✅ FORM START */}
+                <form
+                  onSubmit={(e) => {
+                    e.preventDefault();
+
+                    const form = e.currentTarget; // ✅ IMPORTANT FIX
+
+                    emailjs
+                      .sendForm(
+                        "service_ahvtwz8", // Service ID
+                        "template_90fbklx", // Template ID
+                        form, // ✅ use stored form
+                        "ERfaNZy54q0MS5Whe" // Public Key
+                      )
+                      .then(
+                        () => {
+                          setSubmitted(true);
+                          form.reset(); // ✅ SAFE reset
+
+                          setTimeout(() => setSubmitted(false), 4000);
+                        },
+                        (error) => {
+                          console.error("EmailJS Error:", error);
+                          alert("❌ Message failed. Please try again.");
+                        }
+                      );
+                  }}
+                  className="space-y-4"
+                >
+                  {/* Full Name */}
+                  <div>
+                    <label className="block text-sm font-medium mb-1">
+                      Full Name
+                    </label>
+                    <input
+                      type="text"
+                      name="name"
+                      required
+                      placeholder="Your full name"
+                      className="w-full rounded-lg border px-4 py-2.5 text-sm outline-none focus:ring-2 focus:ring-blue-500"
+                    />
+                  </div>
+
+                  {/* Email Address */}
+                  <div>
+                    <label className="block text-sm font-medium mb-1">
+                      Email Address
+                    </label>
+                    <input
+                      type="email"
+                      name="email"
+                      required
+                      placeholder="you@example.com"
+                      className="w-full rounded-lg border px-4 py-2.5 text-sm outline-none focus:ring-2 focus:ring-blue-500"
+                    />
+                  </div>
+
+                  {/* Phone Number */}
+                  <div>
+                    <label className="block text-sm font-medium mb-1">
+                      Phone Number
+                    </label>
+                    <input
+                      type="tel"
+                      name="phone"
+                      required
+                      placeholder="+91 XXXXX XXXXX"
+                      className="w-full rounded-lg border px-4 py-2.5 text-sm outline-none focus:ring-2 focus:ring-blue-500"
+                    />
+                  </div>
+
+                  {/* Message */}
+                  <div>
+                    <label className="block text-sm font-medium mb-1">
+                      Message
+                    </label>
+                    <textarea
+                      name="message"
+                      rows={4}
+                      required
+                      placeholder="Write your message here..."
+                      className="w-full rounded-lg border px-4 py-2.5 text-sm outline-none focus:ring-2 focus:ring-blue-500 resize-none"
+                    />
+                  </div>
+
+                  {/* Submit Button */}
+                  <button
+                    type="submit"
+                    className="w-full rounded-lg bg-blue-600 py-3 text-white font-semibold hover:bg-blue-700 transition"
+                  >
+                    Submit Message
+                  </button>
+                </form>
+
+                {/* ✅ FORM END */}
+              </Card>
             </motion.div>
 
-            <div className="space-y-4">
-              {faqs.map((faq, idx) => (
-                <motion.div key={idx} variants={cardVariant}>
-                  <Card className="p-5 border-2">
-                    <div className="flex items-start justify-between gap-4">
-                      <div>
-                        <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                          {faq.question}
-                        </h3>
-                        <AnimatePresence initial={false}>
-                          <motion.p
-                            key={openIndex === idx ? "open" : "closed"}
-                            initial={{ height: 0, opacity: 0 }}
-                            animate={{
-                              height: openIndex === idx ? "auto" : 0,
-                              opacity: openIndex === idx ? 1 : 0,
-                            }}
-                            exit={{ height: 0, opacity: 0 }}
-                            transition={{ duration: 0.35 }}
-                            className={`text-gray-600 leading-relaxed ${
-                              openIndex === idx ? "mt-0" : "overflow-hidden"
-                            }`}
-                          >
-                            {openIndex === idx ? faq.answer : ""}
-                          </motion.p>
-                        </AnimatePresence>
-                      </div>
+            {/* RIGHT: MAP */}
+            <motion.div>
+              <Card className="p-6 h-full flex flex-col">
+                <h3 className="text-2xl font-bold text-gray-900 mb-4">
+                  Find Us on Map
+                </h3>
 
-                      <div className="shrink-0">
-                        <Button
-                          size="sm"
-                          variant="outline"
-                          onClick={() =>
-                            setOpenIndex(openIndex === idx ? null : idx)
-                          }
-                          className="h-10 px-3"
-                        >
-                          {openIndex === idx ? "Hide" : "Read"}
-                        </Button>
-                      </div>
-                    </div>
-                  </Card>
-                </motion.div>
-              ))}
-            </div>
+                <div className="aspect-[4/3] rounded-xl overflow-hidden border shadow-sm">
+                  <iframe
+                    src="https://www.google.com/maps?q=Shree+Dental+Clinic+Kestopur+Kolkata&output=embed"
+                    width="100%"
+                    height="100%"
+                    style={{ border: 0 }}
+                    loading="lazy"
+                    referrerPolicy="no-referrer-when-downgrade"
+                    title="Shree Dental Clinic Location"
+                  />
+                </div>
+
+                <p className="text-sm text-gray-600 text-center mt-4">
+                  R. R. Tower, BC-14, Samarpally, Krishnapur, Kestopur, Kolkata
+                  – 700102
+                </p>
+              </Card>
+            </motion.div>
           </motion.div>
+        </div>
+      </section>
+
+      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-red-50">
+        <div className="max-w-4xl mx-auto">
+          {/* HEADING */}
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-3">
+              Frequently Asked Questions
+            </h2>
+            <p className="text-gray-600">
+              Find answers to common questions about our dental services and
+              clinic.
+            </p>
+          </div>
+
+          {/* FAQ LIST */}
+          <div className="space-y-4">
+            {faqs.map((faq, idx) => (
+              <Card
+                key={idx}
+                className="border border-gray-200 rounded-xl p-6 transition-shadow hover:shadow-md"
+              >
+                <div className="flex items-start justify-between gap-4">
+                  {/* QUESTION + ANSWER */}
+                  <div className="flex-1">
+                    <h3 className="text-lg font-semibold text-gray-900">
+                      {faq.question}
+                    </h3>
+
+                    <AnimatePresence initial={false}>
+                      {openIndex === idx && (
+                        <motion.p
+                          initial={{ height: 0, opacity: 0 }}
+                          animate={{ height: "auto", opacity: 1 }}
+                          exit={{ height: 0, opacity: 0 }}
+                          transition={{ duration: 0.3, ease: "easeInOut" }}
+                          className="mt-3 text-gray-600 leading-relaxed overflow-hidden"
+                        >
+                          {faq.answer}
+                        </motion.p>
+                      )}
+                    </AnimatePresence>
+                  </div>
+
+                  {/* ACTION BUTTON */}
+                  <Button
+                    size="sm"
+                    onClick={() => setOpenIndex(openIndex === idx ? null : idx)}
+                    className="
+    shrink-0 h-9 px-4
+    bg-blue-600 text-white
+    hover:bg-blue-700 hover:text-white
+    font-semibold rounded-lg
+    transition
+  "
+                  >
+                    {openIndex === idx ? "Hide" : "Read"}
+                  </Button>
+                </div>
+              </Card>
+            ))}
+          </div>
         </div>
       </section>
 
