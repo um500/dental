@@ -1,7 +1,8 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import {
   ArrowRight,
   Award,
@@ -15,12 +16,12 @@ import {
   Sparkles,
   Heart,
   Zap,
+  Palette,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { ReviewsSlider } from "@/components/ui/reviews-slider";
 import HeroSlider from "@/components/ui/HeroSlider";
-
 
 export default function HomePage() {
   const [reviews, setReviews] = useState([]);
@@ -69,6 +70,8 @@ export default function HomePage() {
     return () => clearInterval(interval);
   }, []);
 
+
+
   const services = [
   {
     title: "Root Canal Treatment",
@@ -100,9 +103,10 @@ export default function HomePage() {
     bg: "bg-blue-50",
   },
   {
-    icon: Shield, // or use 'Cpu' or 'Monitor' icon if available
+    icon: Shield,
     title: "Modern Tech & Devices",
-    description: "Equipped with latest dental devices for precise & painless treatment",
+    description:
+      "Equipped with latest dental devices for precise & painless treatment",
     color: "text-green-600",
     bg: "bg-green-50",
   },
@@ -121,13 +125,23 @@ export default function HomePage() {
     color: "text-orange-600",
     bg: "bg-orange-50",
   },
+  {
+    icon: Palette,
+    title: "Simple Designing Excellence",
+    description:
+      "Clean, modern & calming clinic design for relaxed dental visits",
+    color: "text-pink-600",
+    bg: "bg-pink-50",
+  },
 ];
+
 
   return (
     <div className="min-h-screen">
 
        <HeroSlider />
 
+ {/*Intro section */}
 
       <section className="relative pt-32 pb-24 px-4 sm:px-6 lg:px-8 overflow-hidden">
         {/* Gradient background */}
@@ -226,6 +240,8 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+
+{/* Why choose */}
 
       <section className="py-24 px-4 sm:px-6 lg:px-8 bg-white relative overflow-hidden">
         <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-br from-blue-100 to-cyan-100 rounded-full blur-3xl opacity-50"></div>
@@ -358,74 +374,117 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="py-2 px-4 sm:px-6 lg:px-8 bg-white relative overflow-hidden">
-        <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-br from-blue-100 to-cyan-100 rounded-full blur-3xl opacity-50"></div>
 
-        <div className="max-w-7xl mx-auto relative z-10">
-          <div className="text-center mb-16">
-            <div className="inline-flex items-center space-x-2 px-4 py-2 bg-blue-50 rounded-full mb-4">
-              <Sparkles className="w-4 h-4 text-blue-600" />
-              <span className="text-sm font-semibold text-blue-600">
-                Why Choose Us
-              </span>
+
+{/* WHY CHOOSE US SECTION */}
+<section className="py-10 px-4 sm:px-6 lg:px-8 bg-white relative overflow-hidden">
+  {/* Background glow */}
+  <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-br from-blue-100 to-cyan-100 rounded-full blur-3xl opacity-50" />
+
+  <div className="max-w-7xl mx-auto relative z-10">
+    {/* Heading */}
+    <div className="text-center mb-12">
+      <div className="inline-flex items-center space-x-2 px-4 py-2 bg-blue-50 rounded-full mb-4">
+        <Sparkles className="w-4 h-4 text-blue-600" />
+        <span className="text-sm font-semibold text-blue-600">
+          Why Choose Us
+        </span>
+      </div>
+
+      <h2
+        className="text-4xl font-bold text-gray-900 mb-4"
+        style={{ fontFamily: "var(--font-poppins)" }}
+      >
+        Why Choose Shree Dental Clinic?
+      </h2>
+
+      <p className="text-xl text-gray-600 max-w-3xl mx-auto text-balance">
+        We combine advanced dental technology with compassionate care to
+        deliver exceptional results
+      </p>
+    </div>
+
+    {/* Slider Wrapper */}
+    <div className="relative">
+      {/* LEFT ARROW */}
+      <button
+        onClick={() => {
+          const el = document.getElementById("feature-scroll");
+          el?.scrollBy({ left: -320, behavior: "smooth" });
+        }}
+        className="absolute left-0 top-1/2 -translate-y-1/2 z-20 bg-white shadow-lg rounded-full p-3 hover:bg-blue-50"
+      >
+        <ChevronLeft className="w-6 h-6 text-gray-700" />
+      </button>
+
+      {/* RIGHT ARROW */}
+      <button
+        onClick={() => {
+          const el = document.getElementById("feature-scroll");
+          el?.scrollBy({ left: 320, behavior: "smooth" });
+        }}
+        className="absolute right-0 top-1/2 -translate-y-1/2 z-20 bg-white shadow-lg rounded-full p-3 hover:bg-blue-50"
+      >
+        <ChevronRight className="w-6 h-6 text-gray-700" />
+      </button>
+
+      {/* SCROLL AREA */}
+      <div
+  id="feature-scroll"
+  className="flex gap-6 overflow-x-auto scroll-smooth px-12 pb-4 no-scrollbar"
+>
+
+        {features.map((feature, index) => (
+          <Card
+            key={index}
+            className="
+              min-w-[280px] max-w-[280px]
+              p-6 border-2 border-gray-100 bg-white rounded-2xl shadow-sm
+              relative overflow-hidden transition-all duration-300
+              hover:-translate-y-2 hover:shadow-xl hover:border-blue-400
+              group
+            "
+          >
+            {/* Glow */}
+            <div
+              className="
+                absolute inset-0 bg-gradient-to-br from-blue-200/40 to-cyan-200/40
+                opacity-0 group-hover:opacity-100 blur-2xl transition-opacity duration-500
+                pointer-events-none
+              "
+            />
+
+            {/* Icon */}
+            <div
+              className={`w-14 h-14 ${feature.bg} rounded-xl flex items-center justify-center mb-5 
+              group-hover:scale-110 transition-transform duration-300`}
+            >
+              <feature.icon
+                className={`w-7 h-7 ${feature.color} group-hover:drop-shadow-lg`}
+              />
             </div>
-            <h2
-              className="text-4xl font-bold text-gray-900 mb-4"
+
+            <h3
+              className="text-lg font-bold text-gray-900 mb-2"
               style={{ fontFamily: "var(--font-poppins)" }}
             >
-              Why Choose Shree Dental Clinic?
-            </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto text-balance">
-              We combine advanced dental technology with compassionate care to
-              deliver exceptional results
+              {feature.title}
+            </h3>
+
+            <p className="text-gray-600 text-sm leading-relaxed">
+              {feature.description}
             </p>
-          </div>
+          </Card>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {features.map((feature, index) => (
-              <Card
-                key={index}
-                className="
-    p-8 border-2 border-gray-100 bg-white rounded-2xl shadow-sm
-    relative overflow-hidden transition-all duration-300
-    hover:-translate-y-2 hover:shadow-2xl hover:border-blue-400
-    group
-  "
-              >
-                {/* Beautiful Glow Behind Card on Hover */}
-                <div
-                  className="
-      absolute inset-0 bg-gradient-to-br from-blue-200/40 to-cyan-200/40
-      opacity-0 group-hover:opacity-100 blur-2xl transition-opacity duration-500
-      pointer-events-none
-    "
-                ></div>
 
-                {/* Content */}
-                <div
-                  className={`w-16 h-16 ${feature.bg} rounded-2xl flex items-center justify-center mb-6 
-      group-hover:scale-110 transition-transform duration-300`}
-                >
-                  <feature.icon
-                    className={`w-8 h-8 ${feature.color} group-hover:drop-shadow-lg`}
-                  />
-                </div>
 
-                <h3
-                  className="text-xl font-bold text-gray-900 mb-3"
-                  style={{ fontFamily: "var(--font-poppins)" }}
-                >
-                  {feature.title}
-                </h3>
 
-                <p className="text-gray-600 leading-relaxed">
-                  {feature.description}
-                </p>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
+{/*Service */}
 
      <section className="py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-gray-50 to-blue-50 relative overflow-hidden">
   <div className="max-w-7xl mx-auto relative z-10">
@@ -534,69 +593,80 @@ export default function HomePage() {
 </section>
 
 
+{/* review */}
+{/* ===================== REVIEWS SECTION ===================== */}
+<section className="py-24 px-4 sm:px-6 lg:px-8 bg-white">
+  <div className="max-w-7xl mx-auto">
 
-      <section className="py-24 px-4 sm:px-6 lg:px-8 bg-white">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-16">
-            <div className="inline-flex items-center space-x-2 px-4 py-2 bg-yellow-50 rounded-full mb-4">
-              <Star className="w-4 h-4 text-yellow-600 fill-yellow-600" />
-              <span className="text-sm font-semibold text-yellow-600">
-                Patient Reviews
-              </span>
-            </div>
-            <h2
-              className="text-4xl font-bold text-gray-900 mb-4"
-              style={{ fontFamily: "var(--font-poppins)" }}
-            >
-              What Our Patients Say
-            </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto text-balance">
-              Real experiences from our satisfied patients - verified reviews
-              from Google Maps
-            </p>
-          </div>
+    {/* Heading */}
+    <div className="text-center mb-16">
+      <div className="inline-flex items-center space-x-2 px-4 py-2 bg-yellow-50 rounded-full mb-4">
+        <Star className="w-4 h-4 text-yellow-600 fill-yellow-600" />
+        <span className="text-sm font-semibold text-yellow-600">
+          Patient Reviews
+        </span>
+      </div>
 
-          {error && (
-            <div className="text-center py-12">
-              <p className="text-red-600 mb-4">Error: {error}</p>
-              <button
-                onClick={() => window.location.reload()}
-                className="text-blue-600 underline"
-              >
-                Reload Page
-              </button>
-            </div>
-          )}
+      <h2
+        className="text-4xl font-bold text-gray-900 mb-4"
+        style={{ fontFamily: "var(--font-poppins)" }}
+      >
+        What Our Patients Say
+      </h2>
 
-          {isLoading && !error ? (
-            <div className="text-center py-12">
-              <div className="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
-              <p className="text-gray-600 mt-4">Loading reviews...</p>
-            </div>
-          ) : !error && reviews.length > 0 ? (
-            <ReviewsSlider
-              reviews={reviews}
-              averageRating={averageRating}
-              totalReviews={totalReviews}
-            />
-          ) : !error ? (
-            <div className="text-center py-12">
-              <p className="text-gray-600">No reviews available yet.</p>
-            </div>
-          ) : null}
+      <p className="text-xl text-gray-600 max-w-3xl mx-auto text-balance">
+        Real experiences from our satisfied patients – verified reviews from Google Maps
+      </p>
+    </div>
 
-          <div className="text-center mt-12">
-            <Button
-              asChild
-              size="lg"
-              variant="outline"
-              className="border-2 border-black text-black hover:bg-white/20 text-lg h-14 px-8 bg-transparent font-semibold"
-            >
-              <Link href="/reviews">Read All Reviews</Link>
-            </Button>
-          </div>
-        </div>
-      </section>
+    {/* Reviews */}
+{error && (
+  <div className="text-center py-12 text-red-500">
+    Failed to load reviews
+  </div>
+)}
+
+{!error && isLoading && (
+  <div className="text-center py-12 text-gray-500">
+    Loading reviews...
+  </div>
+)}
+
+{!error && !isLoading && reviews.length > 0 && (
+  <ReviewsSlider
+    reviews={reviews.slice(0, 7)}
+    averageRating={averageRating}
+    totalReviews={totalReviews}
+  />
+)}
+
+{!error && !isLoading && reviews.length === 0 && (
+  <div className="text-center py-12 text-gray-500">
+    Reviews will appear here soon.
+  </div>
+)}
+
+
+    {/* CTA */}
+    <div className="text-center mt-12">
+      <Button
+        asChild
+        size="lg"
+        variant="outline"
+        className="border-2 border-black text-black hover:bg-black/5 text-lg h-14 px-8 bg-transparent font-semibold"
+      >
+
+        <Link href="/reviews">Read All Reviews</Link>
+      </Button>
+    </div>
+
+  </div>
+</section>
+{/* ===================== END ===================== */}
+
+
+{/* cta */}
+
 
       <section className="py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-blue-700 via-blue-800 to-blue-900 text-white relative overflow-hidden">
         {/* Soft Glows */}
