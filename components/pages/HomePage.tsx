@@ -82,7 +82,7 @@ export default function HomePage() {
   {
     title: "Dental Implants",
     description: "Permanent solution for missing teeth with natural look",
-    image: "/Dental implants,.png",
+    image: "/Dental Implants,.png",
     gradient: "from-purple-500 to-pink-500",
   },
   {
