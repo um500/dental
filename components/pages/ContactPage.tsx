@@ -147,11 +147,6 @@ export default function ContactPage() {
         "While walk-ins are welcome, we recommend booking an appointment to avoid waiting times. You can call us directly or message on WhatsApp.",
     },
     {
-      question: "What payment methods do you accept?",
-      answer:
-        "We accept cash, credit/debit cards, UPI, and all major digital payment methods. EMI options are also available for select treatments.",
-    },
-    {
       question: "Do dental treatments hurt?",
       answer:
         "Most treatments at Shree Dental Clinic are painless and comfortable. We use gentle techniques, local anesthesia, and advanced equipment to ensure minimal discomfort. Sedation options are also available for anxious patients.",
