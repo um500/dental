@@ -6,8 +6,107 @@ import { MapPin, Phone, Mail, Clock, Navigation } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import emailjs from "@emailjs/browser";
-import { CheckCircle } from "lucide-react";
+import { Plus, Minus } from "lucide-react";
 import React, { useRef } from "react";
+
+/* ================= COMMON TAILWIND CLASSES ================= */
+
+/* Sections */
+export const sectionPad = "py-16 px-4 sm:px-6 lg:px-8";
+export const sectionPadSm = "py-12 px-4 sm:px-6 lg:px-8";
+export const sectionPadLg = "py-24 px-4 sm:px-6 lg:px-8";
+
+/* Containers */
+export const container = "max-w-7xl mx-auto";
+export const containerMax = "max-w-7xl mx-auto";
+export const containerMd = "max-w-4xl mx-auto";
+
+/* Grids */
+export const gridTwo = "grid lg:grid-cols-2 gap-8 items-stretch";
+
+/* Cards */
+export const cardBase =
+  "p-6 h-full rounded-2xl border border-gray-200 bg-white";
+export const cardHover = "transition-all duration-300 hover:shadow-lg";
+
+/* Hero */
+export const heroSection =
+  "pt-24 pb-12 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-blue-50 via-white to-cyan-50";
+export const heroTitle =
+  "text-4xl sm:text-4xl font-extrabold text-gray-900 mb-4 select-none";
+export const heroDesc = "text-lg text-gray-600 max-w-3xl mx-auto mb-6";
+export const heroBtnPrimary = "bg-blue-600 hover:bg-blue-700 shadow-lg";
+export const heroBtnOutline = "border-2 bg-transparent";
+export const heroBtnContent = "flex items-center";
+
+/* Contact Info */
+export const infoCard = "p-6 border-2 h-full flex flex-col justify-between";
+export const infoIconWrap =
+  "w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center shrink-0";
+export const infoTitle = "text-lg font-semibold text-gray-900 mb-1";
+export const infoText =
+  "text-gray-600 whitespace-pre-line text-sm leading-relaxed mb-4";
+
+/* Appointment */
+export const bookTitle = "text-2xl font-bold text-gray-900 mb-2 select-none";
+export const bookDesc = "text-sm text-gray-600 mb-6";
+export const btnFullBlue = "w-full bg-blue-600 hover:bg-blue-700";
+export const btnFullOutline = "w-full";
+export const btnFullWhite =
+  "w-full bg-white text-blue-600 border border-blue-200";
+export const meetSuccess =
+  "mt-3 p-3 rounded-lg bg-green-50 border border-green-200 text-green-700 text-sm text-center";
+
+/* Contact Form */
+export const formTitle = "text-2xl font-bold text-gray-900 mb-1 select-none";
+export const successBox =
+  "mb-4 rounded-xl border border-green-200 bg-green-50 px-4 py-3 text-green-800";
+export const labelBase = "block text-sm font-medium mb-1";
+export const inputBase =
+  "w-full rounded-lg border px-4 py-2.5 text-sm outline-none focus:ring-2 focus:ring-blue-500";
+export const textareaBase =
+  "w-full rounded-lg border px-4 py-2.5 text-sm outline-none focus:ring-2 focus:ring-blue-500 resize-none";
+export const submitBtn =
+  "w-full rounded-lg bg-blue-600 py-3 text-white font-semibold hover:bg-blue-700 transition";
+
+/* Map */
+export const mapWrap =
+  "aspect-[4/3] rounded-xl overflow-hidden border shadow-sm";
+
+/* FAQ */
+export const faqSection =
+  "py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-red-50 via-white to-gray-50";
+export const faqHeading = "text-4xl md:text-5xl font-bold text-gray-900 mb-4";
+export const faqSubText = "text-gray-600 text-lg max-w-2xl mx-auto";
+export const faqCard =
+  "bg-white/90 backdrop-blur border border-gray-200 rounded-2xl px-6 py-5 transition-all duration-300 hover:shadow-lg";
+export const faqQuestion = "text-lg font-semibold text-gray-900";
+export const faqAnswer = "mt-4 text-gray-600 leading-relaxed";
+export const faqIconBase =
+  "flex h-10 w-10 items-center justify-center rounded-full border transition";
+export const faqIconOpen = "bg-blue-600 text-white border-blue-600";
+export const faqIconClose = "bg-gray-100 text-gray-700 border-gray-200";
+
+/* Small CTA */
+export const ctaBox =
+  "w-full max-w-md rounded-2xl border border-gray-200 bg-white/80 backdrop-blur px-8 py-8 text-center shadow-sm";
+export const ctaTitle = "text-xl font-semibold text-gray-900 mb-2";
+export const ctaText = "text-gray-600 text-sm mb-5";
+export const ctaBtn =
+  "inline-flex items-center justify-center rounded-md bg-green-600 px-6 py-2.5 text-sm font-semibold text-white hover:bg-green-700 transition shadow";
+
+/* Final CTA */
+export const finalCtaSection =
+  "py-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-blue-600 to-cyan-600 text-white";
+export const finalCtaTitle = "text-2xl sm:text-3xl font-bold mb-3 select-none";
+export const finalCtaDesc = "mb-6 text-lg text-blue-50";
+export const finalCtaBtnWrap = "flex flex-col sm:flex-row gap-4 justify-center";
+export const finalCtaBtnWhite = "bg-white text-blue-600 hover:bg-gray-100";
+export const finalCtaBtnOutline =
+  "border-2 border-white text-white hover:bg-white/10 bg-transparent";
+export const finalCtaBtnContent = "flex items-center";
+
+export const faqContainer = "max-w-4xl mx-auto";
 
 export default function ContactPage() {
   const contactInfo = [
@@ -119,7 +218,7 @@ export default function ContactPage() {
 
   // FAQ state
   const [openIndex, setOpenIndex] = React.useState<number | null>(null);
-
+  const contactFormRef = useRef<HTMLDivElement | null>(null);
   // ✅ Contact form submit success state
   const [submitted, setSubmitted] = React.useState(false);
 
@@ -139,15 +238,11 @@ export default function ContactPage() {
       className="min-h-screen bg-white"
     >
       {/* Hero */}
-      <motion.section
-        variants={heroVariant}
-        className="pt-24 pb-12 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-blue-50 via-white to-cyan-50"
-      >
+      <motion.section variants={heroVariant} className={heroSection}>
         <div className="max-w-7xl mx-auto text-center">
-          <motion.h1 className="text-4xl sm:text-4xl font-extrabold text-gray-900 mb-4 select-none">
-            Visit Shree Dental Clinic
-          </motion.h1>
-          <motion.p className="text-lg text-gray-600 max-w-3xl mx-auto mb-6">
+          <motion.h1 className={heroTitle}>Visit Shree Dental Clinic</motion.h1>
+
+          <motion.p className={heroDesc}>
             Located at R. R. Tower in Kestopur, Kolkata. We are here to answer
             your questions and provide expert dental care for your entire
             family.
@@ -155,12 +250,8 @@ export default function ContactPage() {
 
           <motion.div className="flex flex-wrap gap-4 justify-center">
             <motion.div {...btnTap}>
-              <Button
-                asChild
-                size="lg"
-                className="bg-blue-600 hover:bg-blue-700 shadow-lg"
-              >
-                <a href="tel:+919471373777" className="flex items-center">
+              <Button asChild size="lg" className={heroBtnPrimary}>
+                <a href="tel:+919471373777" className={heroBtnContent}>
                   <Phone className="w-5 h-5 mr-2" />
                   Call: +91 9471373777
                 </a>
@@ -172,13 +263,13 @@ export default function ContactPage() {
                 asChild
                 size="lg"
                 variant="outline"
-                className="border-2 bg-transparent"
+                className={heroBtnOutline}
               >
                 <a
                   href="https://maps.app.goo.gl/AsZ19tucWvQJxFzo8"
                   target="_blank"
                   rel="noreferrer"
-                  className="flex items-center"
+                  className={heroBtnContent}
                 >
                   <MapPin className="w-5 h-5 mr-2" />
                   R. R. Tower, Kestopur
@@ -190,8 +281,8 @@ export default function ContactPage() {
       </motion.section>
 
       {/* Contact Info Cards */}
-      <section className="py-12 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto">
+      <section className={sectionPadSm}>
+        <div className={containerMax}>
           <div className="grid lg:grid-cols-3 gap-8 items-stretch">
             {/* LEFT SIDE – 2x2 GRID */}
             <div className="grid sm:grid-cols-2 gap-6 lg:col-span-2">
@@ -204,19 +295,15 @@ export default function ContactPage() {
                     whileHover={{ y: -6, scale: 1.02 }}
                     transition={{ type: "spring", stiffness: 220 }}
                   >
-                    <Card className="p-6 border-2 h-full flex flex-col justify-between">
+                    <Card className={infoCard}>
                       <div className="flex items-start gap-4">
-                        <div className="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center shrink-0">
+                        <div className={infoIconWrap}>
                           <Icon className="w-6 h-6 text-blue-600" />
                         </div>
 
                         <div className="flex-1">
-                          <h3 className="text-lg font-semibold text-gray-900 mb-1">
-                            {info.title}
-                          </h3>
-                          <p className="text-gray-600 whitespace-pre-line text-sm leading-relaxed mb-4">
-                            {info.content}
-                          </p>
+                          <h3 className={infoTitle}>{info.title}</h3>
+                          <p className={infoText}>{info.content}</p>
                         </div>
                       </div>
 
@@ -254,21 +341,15 @@ export default function ContactPage() {
             <motion.div variants={cardVariant} className="h-full">
               <Card className="p-6 h-full flex flex-col justify-between">
                 <div>
-                  <h2 className="text-2xl font-bold text-gray-900 mb-2 select-none">
-                    Book an Appointment & Query
-                  </h2>
-                  <p className="text-sm text-gray-600 mb-6">
+                  <h2 className={bookTitle}>Book an Appointment & Query</h2>
+                  <p className={bookDesc}>
                     Book quickly via call, email, or WhatsApp — we’ll confirm
                     your slot within 24 hours.
                   </p>
 
                   <div className="space-y-4">
                     <motion.div {...btnTap}>
-                      <Button
-                        asChild
-                        size="lg"
-                        className="w-full bg-blue-600 hover:bg-blue-700"
-                      >
+                      <Button asChild size="lg" className={btnFullBlue}>
                         <a
                           href="tel:+919471373777"
                           className="flex items-center justify-center"
@@ -284,7 +365,7 @@ export default function ContactPage() {
                         asChild
                         size="lg"
                         variant="outline"
-                        className="w-full"
+                        className={btnFullOutline}
                       >
                         <a
                           href="mailto:shreedentalclinic804@gmail.com"
@@ -297,11 +378,7 @@ export default function ContactPage() {
                     </motion.div>
 
                     <motion.div {...btnTap}>
-                      <Button
-                        asChild
-                        size="lg"
-                        className="w-full bg-white text-blue-600 border border-blue-200"
-                      >
+                      <Button asChild size="lg" className={btnFullWhite}>
                         <a
                           href="https://wa.me/919471373777"
                           target="_blank"
@@ -314,7 +391,7 @@ export default function ContactPage() {
                       </Button>
                     </motion.div>
 
-                    {/* GOOGLE MEET SCHEDULING */}
+                    {/* GOOGLE MEET */}
                     <motion.div {...btnTap}>
                       <Button
                         size="lg"
@@ -331,14 +408,14 @@ export default function ContactPage() {
                       </Button>
                     </motion.div>
 
-                    {/* GOOGLE MEET SUCCESS MESSAGE */}
+                    {/* GOOGLE MEET SUCCESS */}
                     <AnimatePresence>
                       {meetingScheduled && (
                         <motion.div
                           initial={{ opacity: 0, y: -8 }}
                           animate={{ opacity: 1, y: 0 }}
                           exit={{ opacity: 0 }}
-                          className="mt-3 p-3 rounded-lg bg-green-50 border border-green-200 text-green-700 text-sm text-center"
+                          className={meetSuccess}
                         >
                           ✅ Google Meet scheduling opened. After selecting date
                           & time, the meeting link will be emailed to both you
@@ -359,21 +436,19 @@ export default function ContactPage() {
       </section>
 
       {/* Contact Form + Map Section */}
-      <section className="py-16 px-4 sm:px-6 lg:px-8 bg-gray-50">
-        <div className="max-w-7xl mx-auto">
+      <section ref={contactFormRef} className={`${sectionPad} bg-gray-50`}>
+        <div className={container}>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="grid lg:grid-cols-2 gap-8 items-stretch"
+            className={gridTwo}
           >
             {/* LEFT: CONTACT FORM */}
             <motion.div variants={cardVariant}>
-              <Card className="p-6 h-full relative overflow-hidden">
-                <h3 className="text-2xl font-bold text-gray-900 mb-1 select-none">
-                  Connect Us & Query
-                </h3>
+              <Card className={`${cardBase} relative overflow-hidden`}>
+                <h3 className={formTitle}>Connect Us & Query</h3>
 
                 <AnimatePresence>
                   {submitted && (
@@ -382,7 +457,7 @@ export default function ContactPage() {
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, y: -20 }}
                       transition={{ duration: 0.4 }}
-                      className="mb-4 rounded-xl border border-green-200 bg-green-50 px-4 py-3 text-green-800"
+                      className={successBox}
                     >
                       <strong>✅ Thank you for submitting!</strong>
                       <p className="text-sm">
@@ -393,117 +468,95 @@ export default function ContactPage() {
                   )}
                 </AnimatePresence>
 
-                {/* ✅ FORM START */}
+                {/* FORM */}
                 <form
                   onSubmit={(e) => {
                     e.preventDefault();
-
-                    const form = e.currentTarget; // ✅ IMPORTANT FIX
+                    const form = e.currentTarget;
 
                     emailjs
                       .sendForm(
-                        "service_ahvtwz8", // Service ID
-                        "template_90fbklx", // Template ID
-                        form, // ✅ use stored form
-                        "ERfaNZy54q0MS5Whe" // Public Key
+                        "service_ahvtwz8",
+                        "template_90fbklx",
+                        form,
+                        "ERfaNZy54q0MS5Whe"
                       )
                       .then(
                         () => {
                           setSubmitted(true);
-                          form.reset(); // ✅ SAFE reset
-
+                          form.reset();
                           setTimeout(() => setSubmitted(false), 4000);
                         },
-                        (error) => {
-                          console.error("EmailJS Error:", error);
+                        () => {
                           alert("❌ Message failed. Please try again.");
                         }
                       );
                   }}
                   className="space-y-4"
                 >
-                  {/* Full Name */}
                   <div>
-                    <label className="block text-sm font-medium mb-1">
-                      Full Name
-                    </label>
+                    <label className={labelBase}>Full Name</label>
                     <input
                       type="text"
                       name="name"
                       required
                       placeholder="Your full name"
-                      className="w-full rounded-lg border px-4 py-2.5 text-sm outline-none focus:ring-2 focus:ring-blue-500"
+                      className={inputBase}
                     />
                   </div>
 
-                  {/* Email Address */}
                   <div>
-                    <label className="block text-sm font-medium mb-1">
-                      Email Address
-                    </label>
+                    <label className={labelBase}>Email Address</label>
                     <input
                       type="email"
                       name="email"
                       required
                       placeholder="you@example.com"
-                      className="w-full rounded-lg border px-4 py-2.5 text-sm outline-none focus:ring-2 focus:ring-blue-500"
+                      className={inputBase}
                     />
                   </div>
 
-                  {/* Phone Number */}
                   <div>
-                    <label className="block text-sm font-medium mb-1">
-                      Phone Number
-                    </label>
+                    <label className={labelBase}>Phone Number</label>
                     <input
                       type="tel"
                       name="phone"
                       required
                       placeholder="+91 XXXXX XXXXX"
-                      className="w-full rounded-lg border px-4 py-2.5 text-sm outline-none focus:ring-2 focus:ring-blue-500"
+                      className={inputBase}
                     />
                   </div>
 
-                  {/* Message */}
                   <div>
-                    <label className="block text-sm font-medium mb-1">
-                      Message
-                    </label>
+                    <label className={labelBase}>Message</label>
                     <textarea
                       name="message"
                       rows={4}
                       required
                       placeholder="Write your message here..."
-                      className="w-full rounded-lg border px-4 py-2.5 text-sm outline-none focus:ring-2 focus:ring-blue-500 resize-none"
+                      className={textareaBase}
                     />
                   </div>
 
-                  {/* Submit Button */}
-                  <button
-                    type="submit"
-                    className="w-full rounded-lg bg-blue-600 py-3 text-white font-semibold hover:bg-blue-700 transition"
-                  >
+                  <button type="submit" className={submitBtn}>
                     Submit Message
                   </button>
                 </form>
-
-                {/* ✅ FORM END */}
               </Card>
             </motion.div>
 
             {/* RIGHT: MAP */}
             <motion.div>
-              <Card className="p-6 h-full flex flex-col">
+              <Card className={cardBase}>
                 <h3 className="text-2xl font-bold text-gray-900 mb-4 select-none">
                   Find Us on Map
                 </h3>
 
-                <div className="aspect-[4/3] rounded-xl overflow-hidden border shadow-sm">
+                <div className={mapWrap}>
                   <iframe
                     src="https://www.google.com/maps?q=Shree+Dental+Clinic+Kestopur+Kolkata&output=embed"
                     width="100%"
                     height="100%"
-                    style={{ border: 0 }}
                     loading="lazy"
                     referrerPolicy="no-referrer-when-downgrade"
                     title="Shree Dental Clinic Location"
@@ -520,92 +573,109 @@ export default function ContactPage() {
         </div>
       </section>
 
-      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-red-50">
-        <div className="max-w-4xl mx-auto">
+      <section className={faqSection}>
+        <div className={faqContainer}>
           {/* HEADING */}
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-3 select-none">
-              Frequently Asked Questions
-            </h2>
-            <p className="text-gray-600">
-              Find answers to common questions about our dental services and
-              clinic.
+          <div className="text-center mb-14">
+            <h2 className={faqHeading}>Frequently Asked Questions</h2>
+            <p className={faqSubText}>
+              Clear answers to common questions about our dental services and
+              treatments.
             </p>
           </div>
 
           {/* FAQ LIST */}
-          <div className="space-y-4">
-            {faqs.map((faq, idx) => (
-              <Card
-                key={idx}
-                className="border border-gray-200 rounded-xl p-6 transition-shadow hover:shadow-md"
-              >
-                <div className="flex items-start justify-between gap-4">
-                  {/* QUESTION + ANSWER */}
-                  <div className="flex-1">
-                    <h3 className="text-lg font-semibold text-gray-900">
-                      {faq.question}
-                    </h3>
+          <div className="space-y-5">
+            {faqs.map((faq, idx) => {
+              const isOpen = openIndex === idx;
 
-                    <AnimatePresence initial={false}>
-                      {openIndex === idx && (
-                        <motion.p
-                          initial={{ height: 0, opacity: 0 }}
-                          animate={{ height: "auto", opacity: 1 }}
-                          exit={{ height: 0, opacity: 0 }}
-                          transition={{ duration: 0.3, ease: "easeInOut" }}
-                          className="mt-3 text-gray-600 leading-relaxed overflow-hidden"
-                        >
-                          {faq.answer}
-                        </motion.p>
-                      )}
-                    </AnimatePresence>
-                  </div>
-
-                  {/* ACTION BUTTON */}
-                  <Button
-                    size="sm"
-                    onClick={() => setOpenIndex(openIndex === idx ? null : idx)}
-                    className="
-    shrink-0 h-9 px-4
-    bg-blue-600 text-white
-    hover:bg-blue-700 hover:text-white
-    font-semibold rounded-lg
-    transition
-  "
+              return (
+                <Card key={idx} className={faqCard}>
+                  <button
+                    onClick={() => setOpenIndex(isOpen ? null : idx)}
+                    className="w-full flex items-center justify-between text-left"
                   >
-                    {openIndex === idx ? "Hide" : "Read"}
-                  </Button>
-                </div>
-              </Card>
-            ))}
+                    <h3 className={faqQuestion}>{faq.question}</h3>
+
+                    <span
+                      className={`${faqIconBase} ${
+                        isOpen ? faqIconOpen : faqIconClose
+                      }`}
+                    >
+                      {isOpen ? (
+                        <Minus className="h-5 w-5" />
+                      ) : (
+                        <Plus className="h-5 w-5" />
+                      )}
+                    </span>
+                  </button>
+
+                  <AnimatePresence initial={false}>
+                    {isOpen && (
+                      <motion.div
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: "auto", opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.35, ease: "easeInOut" }}
+                        className="overflow-hidden"
+                      >
+                        <p className={faqAnswer}>{faq.answer}</p>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </Card>
+              );
+            })}
+          </div>
+
+          {/* SMALL CTA BOX */}
+          <div className="mt-20 flex justify-center">
+            <div className={ctaBox}>
+              <h3 className={ctaTitle}>Still have questions?</h3>
+
+              <p className={ctaText}>
+                Contact us for more information or personalized dental guidance.
+              </p>
+
+              <button
+                onClick={() =>
+                  contactFormRef?.current?.scrollIntoView({
+                    behavior: "smooth",
+                    block: "start",
+                  })
+                }
+                className={ctaBtn}
+              >
+                Contact
+              </button>
+            </div>
           </div>
         </div>
+
+        {/* 👇 FORM REF TARGET (unchanged) */}
+        <div ref={contactFormRef} />
       </section>
 
-      {/* CTA */}
-      <motion.section
-        variants={heroVariant}
-        className="py-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-blue-600 to-cyan-600 text-white"
-      >
+      <motion.section variants={heroVariant} className={finalCtaSection}>
         <div className="max-w-4xl mx-auto text-center">
-          <motion.h3 className="text-2xl sm:text-3xl font-bold mb-3 select-none">
+          <motion.h3 className={finalCtaTitle}>
             Ready to Transform Your Smile?
           </motion.h3>
-          <motion.p className="mb-6 text-lg text-blue-50">
+
+          <motion.p className={finalCtaDesc}>
             Contact Shree Dental Clinic today. Our friendly team in Kestopur is
             ready to help you.
           </motion.p>
 
-          <motion.div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <motion.div className={finalCtaBtnWrap}>
             <motion.div {...btnTap}>
               <Button
                 asChild
                 size="lg"
                 variant="secondary"
-                className="bg-white text-blue-600 hover:bg-gray-100"
+                className={finalCtaBtnWhite}
               >
-                <a href="tel:+919471373777" className="flex items-center">
+                <a href="tel:+919471373777" className={finalCtaBtnContent}>
                   <Phone className="w-5 h-5 mr-2" />
                   Call +91 9471373777
                 </a>
@@ -617,11 +687,11 @@ export default function ContactPage() {
                 asChild
                 size="lg"
                 variant="outline"
-                className="border-2 border-white text-white hover:bg-white/10 bg-transparent"
+                className={finalCtaBtnOutline}
               >
                 <a
                   href="mailto:shreedentalclinic804@gmail.com"
-                  className="flex items-center"
+                  className={finalCtaBtnContent}
                 >
                   <Mail className="w-5 h-5 mr-2" />
                   shreedentalclinic804@gmail.com
