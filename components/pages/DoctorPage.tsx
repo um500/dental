@@ -140,7 +140,7 @@ export default function DoctorPage() {
                 <div className="bg-gradient-to-br from-yellow-400 to-orange-500/90 backdrop-blur rounded-2xl shadow-xl border-4 border-white p-4">
                   <Award className="w-10 h-10 text-white mx-auto mb-1" />
                   <p className="text-white font-bold text-sm text-center">
-                    Best Dental Care <br /> 2024
+                    Best Dental Care <br /> 2025
                   </p>
                 </div>
               </div>
