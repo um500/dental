@@ -231,7 +231,7 @@ export default function HomePage() {
             <div className="relative order-1 lg:order-2">
               <div className="aspect-square rounded-3xl overflow-hidden shadow-2xl border-8 border-white hover-lift">
                 <img
-                  src="/choose-2.jpeg"
+                  src="/image.png"
                   alt="Dental clinic interior"
                   className="w-full h-full object-cover"
                 />

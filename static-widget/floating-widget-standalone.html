@@ -645,7 +645,7 @@
       
       window.open(whatsappUrl, '_blank');
       trackEvent('whatsapp_opened', { messageLength: message.length });
-      showToast('Opening WhatsApp... / व्हाट्सएप खोल रहे हैं...');
+      showToast('Opening WhatsApp...');
       whatsappModal.classList.remove('active');
     });
 
@@ -654,7 +654,7 @@
       if (isMobile) {
         window.location.href = `tel:${CONFIG.phoneNumber}`;
         trackEvent('call_initiated', { device: 'mobile' });
-        showToast('Dialing... / कॉल कर रहे हैं...');
+        showToast('Dialing...');
       } else {
         callModal.classList.add('active');
         trackEvent('call_confirm_shown', { device: 'desktop' });
@@ -664,7 +664,7 @@
     document.getElementById('confirmCall').addEventListener('click', () => {
       window.location.href = `tel:${CONFIG.phoneNumber}`;
       trackEvent('call_confirmed', { device: 'desktop' });
-      showToast('Dialing... / कॉल कर रहे हैं...');
+      showToast('Dialing...');
       callModal.classList.remove('active');
     });
 

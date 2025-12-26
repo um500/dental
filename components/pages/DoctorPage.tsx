@@ -124,7 +124,7 @@ export default function DoctorPage() {
                 className="aspect-square w-full max-w-[92%] sm:max-w-md mx-auto rounded-3xl overflow-hidden shadow-2xl border-4 border-white"
               >
                 <img
-                  src="/doctor.jpeg"
+                  src="/doc.jpeg"
                   alt="Doctor"
                   className="w-full h-full object-cover"
                 />
