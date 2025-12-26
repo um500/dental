@@ -32,17 +32,18 @@ export default function Navbar() {
           <div className="flex items-center h-16 sm:h-20">
 
             {/* LOGO */}
-            <Link href="/" className="flex items-center">
-              <div className="relative w-28 h-10 sm:w-36 sm:h-14">
-                <Image
-                  src="/logo.png"
-                  alt="Shree Dental Clinic"
-                  fill
-                  className="object-contain"
-                  priority
-                />
-              </div>
-            </Link>
+<Link href="/" className="flex items-center">
+  <div className="relative w-40 h-14 sm:w-52 sm:h-20 md:w-60 md:h-24">
+    <Image
+      src="/l1.png"
+      alt="Shree Dental Clinic"
+      fill
+      className="object-contain"
+      priority
+    />
+  </div>
+</Link>
+
 
             {/* RIGHT SIDE */}
             <div className="ml-auto flex items-center gap-8">
